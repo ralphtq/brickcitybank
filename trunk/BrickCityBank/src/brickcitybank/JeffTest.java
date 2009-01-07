@@ -7,7 +7,7 @@ package brickcitybank;
 
 /**
  *
- * @author Administrator
+ * @author GOD
  */
 public class JeffTest {
     public static void main(String[] args)
