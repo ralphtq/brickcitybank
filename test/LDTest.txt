@@ -1,2 +1,0 @@
-Write Test -LD
-Write Test 2 - LD
