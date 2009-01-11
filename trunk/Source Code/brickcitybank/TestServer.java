@@ -9,6 +9,8 @@ public class TestServer {
 		// TODO Auto-generated method stub
 		System.out.println("hello world");
 		DBConnection conn = new DBConnection();
+		
+		User st = new User();
 
 	}
 
