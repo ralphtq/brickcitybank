@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="brickcitybank/DBConnection.java" kind="src" path="Source Code"/>
+	<classpathentry excluding="brickcitybank/DBConnection.java|brickcitybank/" kind="src" path="Source Code"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="Source Code/brickcitybank/mysql-connector-java-5.1.7-bin.jar"/>
+	<classpathentry kind="lib" path="Source Code/mysql-connector-java-5.1.7-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

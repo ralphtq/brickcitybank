@@ -33,9 +33,9 @@ public class DBConnection {
 	{
 		setAddress("localhost");
 		//setPort("3306");
-		setDBName("test");
+		setDBName("mydb");
 		setUserName("root");
-		setPassword("123");
+		setPassword("admin");
 		
 		buildConnString();
 		connect();
