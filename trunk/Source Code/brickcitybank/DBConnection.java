@@ -1,7 +1,7 @@
 /**
  * @author Bill Manville
  * @version 1.0
- * 
+ *
  * This class uses JDBC to acquire a connection to a MySql database.
  * This requires the use of the java.sql package. 
  * This also requires the use of a jdbc driver that is from the MySql website.
