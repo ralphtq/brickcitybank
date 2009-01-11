@@ -10,7 +10,8 @@ public class TestServer {
 		System.out.println("hello world");
 		DBConnection conn = new DBConnection();
 		
-		User st = new User();
+		//User st = new User();
+		CreateDB create = new CreateDB();
 
 	}
 
