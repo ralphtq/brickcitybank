@@ -3,7 +3,7 @@
  * @version 1.0
  * 
  * This class uses JDBC to acquire a connection to a MySql database.
- * This reqires the use of the java.sql package. 
+ * This requires the use of the java.sql package. 
  * This also requires the use of a jdbc driver that is from the MySql website.
  * The driver has to be added to the classpath of the project. 
  */
@@ -19,15 +19,15 @@ public class DBConnection {
 	private String username;//username of the user connecting to the server
 	private String password;//password of the user
 	private String connStr; //connection string that is assembled to connect to the server
-	private Connection conn;//connection object that is reqired later to perform queries
+	private Connection conn;//connection object that is required later to perform queries
 	
 	//--------------------Constructors--------------------
 	
 	/**
-	 * default constructor sets values to default value.
+	 * Default constructor sets values to default value.
 	 * can be used if only one database server is used for the program.
 	 * 
-	 * will build the jdbc connection string based on the set valus and connect to the database. 
+	 * will build the jdbc connection string based on the set values and connect to the database. 
 	 */
 	public DBConnection()
 	{
@@ -41,7 +41,7 @@ public class DBConnection {
 		connect();
 	}
 	/**
-	 * paramiterized constructor used for MySql database servers running on the default port.
+	 * parameterized constructor used for MySql database servers running on the default port.
 	 * will construct a connection string and connect to the database. 
 	 * @param addr - server address
 	 * @param database - database name
@@ -65,7 +65,7 @@ public class DBConnection {
 	 * @param addr - address of the database server
 	 * @param database - name of the database
 	 * @param user - user name for the user to authenticate the server
-	 * @param pass - password for the user to authentacate on the database server with.
+	 * @param pass - password for the user to authenticate on the database server with.
 	 * @param DBport - port database runs on
 	 */
 	public DBConnection(String addr,String database,String user,String pass,String DBport)
