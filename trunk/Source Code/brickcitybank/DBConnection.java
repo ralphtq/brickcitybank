@@ -216,7 +216,7 @@ public class DBConnection {
 		{
 			//load driver
 			Class.forName("org.gjt.mm.mysql.Driver");
-			System.out.println("Class found");
+			System.out.println("Driver loaded");
 			
 			//create connection
 			conn = DriverManager.getConnection(connStr,username,password);
