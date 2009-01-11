@@ -78,7 +78,8 @@ public class User {
 		catch(SQLException e)
 		{
 			System.err.println(e.getMessage());
+			System.err.println("  Error Message: " + e.getMessage());
+			System.err.println(" Vendor Message: " + e.getErrorCode());
 		}
 	}
-
 }
