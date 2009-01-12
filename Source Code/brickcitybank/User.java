@@ -51,7 +51,7 @@ public class User {
 	//mutators
 	
 	
-	public void getAllUsers()
+	public ResultSet getAllUsers()
 	{
 		System.out.println("user class");
 		DBConnection conn = new DBConnection();
@@ -62,18 +62,9 @@ public class User {
 			state = conn.getConn().createStatement();
 			rs = state.executeQuery("select * from user");
 		
-		
-		while(rs.next())
-		{
-			for(int i=1;i<9;i++)
-			{
-				System.out.print(rs.getString(i) + " ");
-			}
-			System.out.println();
-		}
-		rs.close();
-		state.close();
-		conn.closeConnection();
+			rs.close();
+			state.close();
+			conn.closeConnection();
 		}
 		catch(SQLException e)
 		{
@@ -81,5 +72,7 @@ public class User {
 			System.err.println("  Error Message: " + e.getMessage());
 			System.err.println(" Vendor Message: " + e.getErrorCode());
 		}
+		
+		return rs;
 	}
 }
