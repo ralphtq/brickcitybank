@@ -1,6 +1,7 @@
 package brickcitybank;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.io.*;
 
@@ -8,7 +9,7 @@ public class CreateDB {
 
 	public CreateDB()
 	{
-		System.out.println("Create DB Class===================");
+		System.out.println("==== Creating Brick City Bank Database ====");
 		DBConnection conn = new DBConnection();
 		Statement state = null;
 		ResultSet rs = null;
@@ -26,6 +27,7 @@ public class CreateDB {
 		        * it returns null only for the END of the stream.
 		        * it returns an empty String if two newlines appear in a row.
 		        */
+				System.out.println("Reading .sql file...");
 		        while (( line = in.readLine()) != null)
 		        {
 		          contents.append(line);
@@ -35,19 +37,20 @@ public class CreateDB {
 		      finally {
 		        in.close();
 		      }
-
+		    
+		      System.out.println("Formatting .sql contents...");
 		    String script = contents.toString();
 		    String[] commands = script.split(";");
-		    
-		    for(int i = 0; i<commands.length; i++)
+			System.out.println("Executing MySQL statements...");
+		    for(int i = 0; i<commands.length-1; i++)
 		    {
+		    	//System.out.println(commands[i]);
 		    	String temp = commands[i] + ";";
 		    	state.execute(temp);
 		    }
-		    
-		    System.out.println(commands[0]);
+		    System.out.println("Testing database with query...");
 			rs = state.executeQuery("select * from user;");
-			
+
 			while(rs.next())
 			{
 				for(int i=1;i<9;i++)
@@ -59,10 +62,19 @@ public class CreateDB {
 			rs.close();
 			state.close();
 			conn.closeConnection();
+			System.out.println("Done!");
+			System.out.println("This is where we need to start RMI connection, and then provide a UI");
 		}
-		catch(Exception e)
-		{
-			System.out.println(""+e.getMessage());
+		catch(SQLException e) {
+			System.err.println("SQL Error(s) as follows:");
+			while (e != null) {
+				System.err.println("SQL Return Code: " + e.getSQLState());
+				System.err.println("  Error Message: " + e.getMessage());
+				System.err.println(" Vendor Message: " + e.getErrorCode());
+				e = e.getNextException();
+			}		
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

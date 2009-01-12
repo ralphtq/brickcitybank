@@ -216,11 +216,11 @@ public class DBConnection {
 		{
 			//load driver
 			Class.forName("org.gjt.mm.mysql.Driver");
-			System.out.println("Driver loaded");
+			System.out.println("Driver loaded!");
 			
 			//create connection
 			conn = DriverManager.getConnection(connStr,username,password);
-			System.out.println("connection created");
+			System.out.println("Connection to database established!");
 			
 		}
 		catch(ClassNotFoundException cnf)
