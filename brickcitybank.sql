@@ -14,7 +14,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`User` (
   `idUser` INT NOT NULL AUTO_INCREMENT ,
   `LastName` VARCHAR(45) NOT NULL ,
   `FirstName` VARCHAR(45) NOT NULL ,
-  `Pin` VARCHAR(45) NULL ,
+  `UserName` VARCHAR(45) NULL ,
   `Password` VARCHAR(45) NOT NULL ,
   `Street` VARCHAR(40) NULL ,
   `City` VARCHAR(45) NULL ,
@@ -30,7 +30,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mydb`.`Account` ;
 
 CREATE  TABLE IF NOT EXISTS `mydb`.`Account` (
-  `idAccount` INT(12) NOT NULL ,
+  `idAccount` INT(12) NOT NULL AUTO_INCREMENT,
   `Balance` DOUBLE NOT NULL ,
   PRIMARY KEY (`idAccount`) )
 ENGINE = InnoDB;
@@ -78,10 +78,9 @@ DROP TABLE IF EXISTS `mydb`.`Loan` ;
 
 CREATE  TABLE IF NOT EXISTS `mydb`.`Loan` (
   `idLoan` INT(12) NOT NULL ,
-  `type` VARCHAR(45) NOT NULL ,
   `term` DATE NOT NULL ,
-  `interst` VARCHAR(45) NOT NULL ,
-  `credit_line` VARCHAR(45) NULL ,
+  `interest` VARCHAR(45) NOT NULL ,
+  `credit_line` INT(12) NULL ,
   PRIMARY KEY (`idLoan`) ,
   INDEX `idLoan` (`idLoan` ASC) ,
   CONSTRAINT `idLoan`
@@ -93,20 +92,53 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `mydb`.`TransactionType`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`TransactionType` ;
+
+CREATE  TABLE IF NOT EXISTS `mydb`.`TransactionType` (
+  `id_type` CHAR(1) NOT NULL ,
+  `type_name` VARCHAR(12) NOT NULL ,
+  PRIMARY KEY (`id_type`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `mydb`.`Transaction`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mydb`.`Transaction` ;
 
 CREATE  TABLE IF NOT EXISTS `mydb`.`Transaction` (
   `idTransaction` INT NOT NULL AUTO_INCREMENT,
-  `type` VARCHAR(45) NOT NULL ,
+  `type` CHAR(1) NOT NULL ,
   `account1` INT(12) NULL ,
   `account2` INT(12) NULL ,
   `Date` DATE NOT NULL ,
   `Time` TIME NOT NULL ,
-  `old_balance` DOUBLE NULL ,
-  `new_balance` DOUBLE NULL ,
-  PRIMARY KEY (`idTransaction`) )
+  `old_balance1` DOUBLE NULL ,
+  `new_balance1` DOUBLE NULL ,
+  `old_balance2` DOUBLE NULL ,
+  `new_balance2` DOUBLE NULL ,
+  PRIMARY KEY (`idTransaction`),
+  INDEX `type` (`type` ASC) ,
+  INDEX `account1` (`account1` ASC) ,
+  INDEX `account2` (`account2` ASC) ,
+  CONSTRAINT `type`
+    FOREIGN KEY (`type` )
+    REFERENCES `mydb`.`TransactionType` (`id_type` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `account1`
+    FOREIGN KEY (`account1` )
+    REFERENCES `mydb`.`Account` (`idAccount` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+	CONSTRAINT `account2`
+    FOREIGN KEY (`account2` )
+    REFERENCES `mydb`.`Account` (`idAccount` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+  )
 ENGINE = InnoDB;
 
 
@@ -162,15 +194,68 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 
+/**
+* INSERTION
+*/
+
+/* User Table*/
+
+INSERT INTO user(LastName, FirstName, UserName, Password, Street, City, State, Zipcode) VALUES('Smith', 'Bob', '1234', 'password', '1 Random Street', 'Nowhere', 'NY', '12345');
+INSERT INTO user(LastName, FirstName, UserName, Password, Street, City, State, Zipcode) VALUES('Turner', 'Joe', '2345', 'password1', '234 It Street', 'Somewhere', 'NV', '12384');
+INSERT INTO user(LastName, FirstName, UserName, Password, Street, City, State, Zipcode) VALUES('Hanks', 'Tom', '2565', 'password4', '2 LA Street', 'Los Angeles', 'CA', '1284');
+INSERT INTO user(LastName, FirstName, UserName, Password, Street, City, State, Zipcode) VALUES('Farmer', 'Mylene', '2687', 'pass7', '13 paradize Street', 'New York City', 'NY', '10023');
+
+/*Account Table */
+INSERT INTO Account(Balance) VALUES('45679');
+INSERT INTO Account(Balance) VALUES('78');
+INSERT INTO Account(Balance) VALUES('500000');
+INSERT INTO Account(Balance) VALUES('567');
+INSERT INTO Account(Balance) VALUES('6555555');
+/*loans*/
+INSERT INTO Account(Balance) VALUES('10000');
+INSERT INTO Account(Balance) VALUES('20000');
+
+/* Credit_card Table */
+INSERT INTO Credit_card(idCredit_card,pin,expiration_date) VALUES('3457','3457','2009-01-08');
+INSERT INTO Credit_card(idCredit_card,pin,expiration_date) VALUES('3450','1257','2010-01-08');
+INSERT INTO Credit_card(idCredit_card,pin,expiration_date) VALUES('6574','3887','2010-01-07');
+INSERT INTO Credit_card(idCredit_card,pin,expiration_date) VALUES('0097','1234','2009-01-07');
+INSERT INTO Credit_card(idCredit_card,pin,expiration_date) VALUES('0007','1784','2009-01-09');
 
 
-INSERT INTO user(LastName, FirstName, Pin, Password, Street, City, State, Zipcode) VALUES('Smith', 'Bob', '1234', 'password', '1 Random Street', 'Nowhere', 'NY', '12345');
-INSERT INTO user(LastName, FirstName, Pin, Password, Street, City, State, Zipcode) VALUES('Turner', 'Joe', '2345', 'password1', '234 It Street', 'Somewhere', 'NV', '12384');
 
 
+/*User_Accounts Table*/
+INSERT INTO User_Accounts(account_number,user_id,card_number) VALUES('1','1','3457');
+INSERT INTO User_Accounts(account_number,user_id,card_number) VALUES('1','2','3450');
+INSERT INTO User_Accounts(account_number,user_id,card_number) VALUES('2','3','6574');
+INSERT INTO User_Accounts(account_number,user_id,card_number) VALUES('3','4','0097');
+INSERT INTO User_Accounts(account_number,user_id,card_number) VALUES('2','1','0007');
+INSERT INTO User_Accounts(account_number,user_id) VALUES('4','3');
+INSERT INTO User_Accounts(account_number,user_id) VALUES('5','4');
+INSERT INTO User_Accounts(account_number,user_id) VALUES('6','2');
+INSERT INTO User_Accounts(account_number,user_id) VALUES('7','1');
 
 
+/* Checking Table*/
+INSERT INTO Checking(idChecking) VALUES('4');
+INSERT INTO Checking(idChecking) VALUES('5');
+
+/*Saving Table*/
+INSERT INTO Saving(idSaving,interest) VALUES('1','4');
+INSERT INTO Saving(idSaving,interest) VALUES('2','4');
+INSERT INTO Saving(idSaving,interest) VALUES('3','4');
+
+/*Loan Table*/
+INSERT INTO Loan(idLoan,term, interest, credit_line) VALUES('6','2015-01-08','15','15000');
+INSERT INTO Loan(idLoan,  term, interest, credit_line) VALUES('7','2020-01-08','15','25000');
 
 
+/* TransactionType Table */
+INSERT INTO TransactionType(id_type,type_name) VALUES('W','Withdrawal');
+INSERT INTO TransactionType(id_type,type_name) VALUES('D','Deposit');
+INSERT INTO TransactionType(id_type,type_name) VALUES('T','Transfert');
 
-
+/*Transactions Table */
+INSERT INTO Transaction(type, account1, Date, Time,old_balance1, new_balance1) VALUES('W','1','2008-01-08', '12:09:56','45699','45679');
+INSERT INTO Transaction(type, account1, account2, Date, Time,old_balance1, new_balance1,old_balance2,new_balance2) VALUES('T','1','2','2008-01-07','12:09:56','45699','45679','679','699');
