@@ -5,22 +5,7 @@ import java.sql.*;
 
 public class User {
 	
-	/*
-		+-----------+-------------+------+-----+---------+----------------+
-		| Field     | Type        | Null | Key | Default | Extra          |
-		+-----------+-------------+------+-----+---------+----------------+
-		| idUser    | int(11)     | NO   | PRI | NULL    | auto_increment |
-		| LastName  | varchar(45) | NO   |     | NULL    |                |
-		| FirstName | varchar(45) | NO   |     | NULL    |                |
-		| Pin       | varchar(45) | YES  |     | NULL    |                |
-		| Password  | varchar(45) | NO   |     | NULL    |                |
-		| Street    | varchar(40) | YES  |     | NULL    |                |
-		| City      | varchar(45) | YES  |     | NULL    |                |
-		| State     | varchar(45) | YES  |     | NULL    |                |
-		| Zipcode   | varchar(10) | YES  |     | NULL    |                |
-		+-----------+-------------+------+-----+---------+----------------+
-	 */
-	//attributes
+	//==================== attributes ====================
 	private int idUser;
 	private String lastName;
 	private String firstName;
@@ -30,8 +15,12 @@ public class User {
 	private String city;
 	private String state;
 	private String zipCode;
-	
-	//accessors
+	//==================== Constructors ====================
+	/*public User()
+	{
+		
+	}*/
+	//===================== Accessors =====================
 	public int getIdUser()
 	{
 		return idUser;
@@ -48,9 +37,65 @@ public class User {
 	{
 		return password;
 	}
-	//mutators
+	public String getUsername()
+	{
+		return username;
+	}
+	public String getStreet()
+	{
+		return street;
+	}
+	public String getCity()
+	{
+		return city;
+	}
+	public String getState()
+	{
+		return state;
+	}
+	public String getZipCode()
+	{
+		return zipCode;
+	}
 	
-	
+	//==================== mutators ====================
+	public void setIdUser(int userID)
+	{
+		idUser = userID;
+	}
+	public void setLastName(String last)
+	{
+		lastName = last;
+	}
+	public void setFirstName(String first)
+	{
+		firstName = first;
+	}
+	public void setPassword(String pass)
+	{
+		password = pass;
+	}
+	public void setUsername(String user)
+	{
+		username = user;
+	}
+	public void setStreet(String _street)
+	{
+		street = _street;
+	}
+	public void setCity(String _city)
+	{
+		city = _city;
+	}
+	public void setState(String _state)
+	{
+		state = _state;
+	}
+	public void setZipCode(String zip)
+	{
+		zipCode = zip;
+	}
+	//sample query 
 	public ResultSet getAllUsers()
 	{
 		System.out.println("user class");
@@ -75,4 +120,6 @@ public class User {
 		
 		return rs;
 	}
+	//sample insert
+	//sample update
 }
