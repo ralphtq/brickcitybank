@@ -10,7 +10,7 @@ public class CreateDB {
 	public CreateDB()
 	{
 		System.out.println("==== Creating Brick City Bank Database ====");
-		DBConnection conn = new DBConnection();
+		DBConnection conn = new DBConnection("localhost","","root","admin");
 		Statement state = null;
 		ResultSet rs = null;
 		try
