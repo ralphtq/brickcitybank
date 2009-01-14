@@ -102,6 +102,8 @@ public class User {
 		DBConnection conn = new DBConnection();
 		Statement state = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
+		
 		try
 		{
 			state = conn.getConn().createStatement();
@@ -110,6 +112,8 @@ public class User {
 			rs.close();
 			state.close();
 			conn.closeConnection();
+			rs2 = rs;
+			rs.close();
 		}
 		catch(SQLException e)
 		{
@@ -117,9 +121,30 @@ public class User {
 			System.err.println("  Error Message: " + e.getMessage());
 			System.err.println(" Vendor Message: " + e.getErrorCode());
 		}
+		return rs2;
 		
-		return rs;
+		/*while(Resultset.next()){}*/
 	}
+	//update
+	public void UpdateUser(int userId,String firstName)
+	{
+		DBConnection conn = new DBConnection();
+		Statement state = null;
+		ResultSet rs = null;
+		
+		try
+		{
+			state = conn.getConn().createStatement();
+			state.execute("update user set firstname="+firstName + " where iduser = " + userId);
+			
+		}
+		catch(SQLException e)
+		{
+			System.err.println(e.getMessage());
+			System.err.println("  Error Message: " + e.getMessage());
+			System.err.println(" Vendor Message: " + e.getErrorCode());
+		}
+	}
+	//drop
 	//sample insert
-	//sample update
 }
