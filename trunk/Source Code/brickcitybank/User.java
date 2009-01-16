@@ -146,5 +146,42 @@ public class User {
 		}
 	}
 	//drop
+	public void deleteUser(int userID)
+	{
+		DBConnection conn = new DBConnection();
+		Statement state = null;
+		ResultSet rs = null;
+		
+		try
+		{
+			state = conn.getConn().createStatement();
+			state.execute("delete from user_accounts where user_id = " + userID);
+			state.execute("delete from user where iduser = " + userID);
+		}
+		catch(SQLException e)
+		{
+			System.err.println(e.getMessage());
+			System.err.println("  Error Message: " + e.getMessage());
+			System.err.println(" Vendor Message: " + e.getErrorCode());
+		}
+	}
 	//sample insert
+	public void deleteUser(String first, String last,String user,String pasword,String street,String city,String state,String zip )
+	{
+		DBConnection conn = new DBConnection();
+		Statement state1 = null;
+		ResultSet rs = null;
+		 
+		try
+		{
+			state1 = conn.getConn().createStatement();
+			state1.execute("insert into user(firstname,lastname,username,password,street,city,state,zipcode) values "+ first+","+last+","+user+","+password+","+street+","+city+","+state1+","+zip);
+		}
+		catch(SQLException e)
+		{
+			System.err.println(e.getMessage());
+			System.err.println("  Error Message: " + e.getMessage());
+			System.err.println(" Vendor Message: " + e.getErrorCode());
+		}
+	}
 }

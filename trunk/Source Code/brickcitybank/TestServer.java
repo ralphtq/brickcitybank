@@ -12,6 +12,10 @@ public class TestServer {
 		
 		//User st = new User();
 		CreateDB create = new CreateDB();
+		
+		User usr = new User();
+		usr.deleteUser(1);
+		usr.insertUser();
 
 	}
 
