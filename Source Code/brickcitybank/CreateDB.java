@@ -7,6 +7,11 @@ import java.io.*;
 
 public class CreateDB {
 
+	
+	public CreateDB(){
+	}
+	
+	
 	public CreateDB(String pass)
 	{
 		System.out.println("==== Creating Brick City Bank Database ====");

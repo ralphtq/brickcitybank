@@ -8,6 +8,7 @@
  */
 package brickcitybank;
 
+import java.sql.*;
 import java.rmi.*;
 import java.rmi.server.*;
 
@@ -53,22 +54,31 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 *  Primary method used to insert new records into the user table of
 	 *  the database.
 	 */
-	public void insertRecord(int i) throws RemoteException{
+	public void insertRecord() throws RemoteException{
 		
 	}
 	
 	/**
 	 *  Used to drop a record from the user table of the database.
 	 */
-	public void dropRecord(int i) throws RemoteException{
+	public void dropRecord() throws RemoteException{
 		
 	}
 	
 	/**
 	 *  Used to update an existing record in the user table
 	 */
-	public void updateRecord(int i) throws RemoteException{
+	public void updateRecord() throws RemoteException{
 		
 	}
-
+	
+	/**
+	 * Gets all users from the user database. 
+	 */
+	public ResultSet getAllUsers(){
+		ResultSet retVal = null;
+		
+		
+		return retVal;
+	}
 }
