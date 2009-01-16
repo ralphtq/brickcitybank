@@ -14,7 +14,7 @@ public class TestServer {
 		CreateDB create = new CreateDB("admin");
 		
 		User usr = new User();
-		usr.deleteUser(1);
+		usr.deleteUser(1, conn);
 		//usr.insertUser();
 
 	}

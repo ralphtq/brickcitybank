@@ -126,9 +126,8 @@ public class User {
 		/*while(Resultset.next()){}*/
 	}
 	//update
-	public void UpdateUser(int userId,String firstName)
+	public void updateUser(int userId,String firstName, DBConnection conn)
 	{
-		DBConnection conn = new DBConnection();
 		Statement state = null;
 		ResultSet rs = null;
 		
@@ -146,9 +145,8 @@ public class User {
 		}
 	}
 	//drop
-	public void deleteUser(int userID)
+	public void deleteUser(int userID, DBConnection conn)
 	{
-		DBConnection conn = new DBConnection();
 		Statement state = null;
 		ResultSet rs = null;
 		
@@ -166,9 +164,8 @@ public class User {
 		}
 	}
 	//sample insert
-	public void insertUser(String first, String last,String user,String usrPassword,String street,String city,String state,String zip )
+	public void insertUser(DBConnection conn, String first, String last,String user,String usrPassword,String street,String city,String state,String zip )
 	{
-		DBConnection conn = new DBConnection();
 		Statement state1 = null;
 		ResultSet rs = null;
 		 
