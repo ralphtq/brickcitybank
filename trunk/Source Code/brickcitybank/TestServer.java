@@ -11,7 +11,7 @@ public class TestServer {
 		DBConnection conn = new DBConnection();
 		
 		//User st = new User();
-		CreateDB create = new CreateDB();
+		CreateDB create = new CreateDB("admin");
 		
 		User usr = new User();
 		usr.deleteUser(1);

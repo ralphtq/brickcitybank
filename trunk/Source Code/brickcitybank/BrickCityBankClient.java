@@ -62,6 +62,7 @@ public class BrickCityBankClient {
 
 		try{
 		//Enter Actual server usage
+		myServ.establishConn(uRespon);
 		System.out.println("Welcome to the Brick City Bank Demo");
 		System.out.println("Inserting new Users....");
 		myServ.insertRecord();
