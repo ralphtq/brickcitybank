@@ -28,7 +28,6 @@ public class BrickCityBankClient {
 		BCBServer myServ = null;
 		String uRespon = "no input";
 		BufferedReader in = new BufferedReader( new InputStreamReader( System.in ));
-		String inp = "No Input";
 				
 		//try and look up the server.
 		try{
