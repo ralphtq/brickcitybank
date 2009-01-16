@@ -166,7 +166,7 @@ public class User {
 		}
 	}
 	//sample insert
-	public void deleteUser(String first, String last,String user,String usrPassword,String street,String city,String state,String zip )
+	public void insertUser(String first, String last,String user,String usrPassword,String street,String city,String state,String zip )
 	{
 		DBConnection conn = new DBConnection();
 		Statement state1 = null;
