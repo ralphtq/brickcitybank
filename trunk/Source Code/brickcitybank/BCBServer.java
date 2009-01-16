@@ -55,6 +55,8 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 *  the database.
 	 */
 	public void insertRecord() throws RemoteException{
+		//create a fake user
+		myUser.insertUser(myConn, "Tom", "Smith", "tsmith", "it4567", "Kimball drive", "Rochester", "NY", "14623");
 		
 	}
 	
@@ -62,6 +64,8 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 *  Used to drop a record from the user table of the database.
 	 */
 	public void dropRecord() throws RemoteException{
+		//call the method from User.java
+		myUser.deleteUser(2, myConn);
 		
 	}
 	
@@ -69,6 +73,9 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 *  Used to update an existing record in the user table
 	 */
 	public void updateRecord() throws RemoteException{
+		
+		//call the method from User.java, call him Smith
+		myUser.UpdateUser(1,"Smith", myConn);
 		
 	}
 	
@@ -80,4 +87,9 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 		retVal=myUser.getAllUsers();
 		return retVal;
 	}
+	public void createDB() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
