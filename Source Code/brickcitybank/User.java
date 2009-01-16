@@ -166,7 +166,7 @@ public class User {
 		}
 	}
 	//sample insert
-	public void deleteUser(String first, String last,String user,String pasword,String street,String city,String state,String zip )
+	public void deleteUser(String first, String last,String user,String usrPassword,String street,String city,String state,String zip )
 	{
 		DBConnection conn = new DBConnection();
 		Statement state1 = null;
@@ -175,7 +175,7 @@ public class User {
 		try
 		{
 			state1 = conn.getConn().createStatement();
-			state1.execute("insert into user(firstname,lastname,username,password,street,city,state,zipcode) values "+ first+","+last+","+user+","+password+","+street+","+city+","+state1+","+zip);
+			state1.execute("insert into user(firstname,lastname,username,password,street,city,state,zipcode) values ('" + first+"','" + last + "','" + user + "','" + usrPassword + "','" + street + "','" + city + "','" + state1 + "','" + zip + "')");
 		}
 		catch(SQLException e)
 		{
