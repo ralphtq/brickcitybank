@@ -15,23 +15,7 @@ import java.io.*;
  * @author Louis Duke
  */
 public class BrickCityBankClient {
-	
-	//Variables
-	private static boolean oOF = true;
-	
-	public static String getInput(){
-		String inp = "No input";
-		BufferedReader in = new BufferedReader( new InputStreamReader( System.in ));
 		
-		try{
-			inp = in.readLine();
-		}catch(IOException e){
-			System.err.println(e.getMessage());
-		}
-		
-		return inp;
-	}
-	
 	/**
 	 * Main function of the Client
 	 * 
@@ -42,6 +26,8 @@ public class BrickCityBankClient {
 		//Variables we will need
 		BCBServer myServ = null;
 		String uRespon = "no input";
+		BufferedReader in = new BufferedReader( new InputStreamReader( System.in ));
+		String inp = "No Input";
 		
 		//Counters for the operations
 		int insertNum = 0;
@@ -62,7 +48,13 @@ public class BrickCityBankClient {
 		System.out.println("Please input your MySQL root password:");
 		System.out.println("");
 		
-		uRespon = getInput();
+		//get user input
+		try{
+			uRespon = in.readLine();
+		}catch(IOException e){
+			System.err.println(e.getMessage());
+		}
+		
 		
 		//create database
 		try{
@@ -86,13 +78,20 @@ public class BrickCityBankClient {
 		System.out.println("");
 		
 		//get user input
-		in= getInput();
+		try{
+			inp = in.readLine();
+		}catch(IOException e){
+			System.err.println(e.getMessage());
+		}
 		
-		if ( in.equalsIgnoreCase("No Input")){
+		if ( in.equals("No Input")){
 			System.out.println("Invalid Input");
 		}else if (in.equals("1")){
-			//run insert command
-			//show contents of db
+			try{
+				myServ.insertRecord(insertNum);
+			}catch(Exception e){
+				System.err.println(e.getMessage());
+			}
 		}else if (in.equals( "2" )){
 			//run update command
 			//show contents of DB
