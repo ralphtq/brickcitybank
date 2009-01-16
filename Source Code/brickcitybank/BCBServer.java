@@ -75,7 +75,7 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	public void updateRecord() throws RemoteException{
 		
 		//call the method from User.java, call him Smith
-		myUser.UpdateUser(1,"Smith", myConn);
+		myUser.updateUser(1,"Smith", myConn);
 		
 	}
 	
