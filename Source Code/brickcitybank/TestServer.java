@@ -15,7 +15,7 @@ public class TestServer {
 		
 		User usr = new User();
 		usr.deleteUser(1);
-		usr.insertUser();
+		//usr.insertUser();
 
 	}
 
