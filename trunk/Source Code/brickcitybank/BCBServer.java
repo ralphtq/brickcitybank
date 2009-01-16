@@ -77,8 +77,7 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 */
 	public ResultSet getAllUsers(){
 		ResultSet retVal = null;
-		
-		
+		retVal=myUser.getAllUsers();
 		return retVal;
 	}
 }
