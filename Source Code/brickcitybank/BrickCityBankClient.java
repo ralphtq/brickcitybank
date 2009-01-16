@@ -9,6 +9,7 @@
 package brickcitybank;
 
 import java.rmi.*;
+import java.sql.ResultSet;
 import java.io.*;
 
 /**
@@ -64,15 +65,69 @@ public class BrickCityBankClient {
 		//Enter Actual server usage
 		myServ.establishConn(uRespon);
 		System.out.println("Welcome to the Brick City Bank Demo");
+		
+		System.out.println("Current State of the user Table");
+		ResultSet rs=myServ.getAllUsers();
+		while(rs.next())
+		{
+			for(int i=1;i<9;i++)
+			{
+				System.out.print(rs.getString(i) + " ");
+			}
+			System.out.println();
+		}
+		rs.close();
+		
 		System.out.println("Inserting new Users....");
 		myServ.insertRecord();
+		
+		System.out.println("Daterbase after insertions");
+		myServ.getAllUsers();
+		ResultSet rs2=myServ.getAllUsers();
+		while(rs2.next())
+		{
+			for(int i=1;i<9;i++)
+			{
+				System.out.print(rs2.getString(i) + " ");
+			}
+			System.out.println();
+		}
+		rs2.close();
+		
+		
 		System.out.println("");
 		System.out.println("Updating Records...");
 		myServ.updateRecord();
+		System.out.println("Daterbase after updating");
+		ResultSet rs3=myServ.getAllUsers();
+		while(rs3.next())
+		{
+			for(int i=1;i<9;i++)
+			{
+				System.out.print(rs3.getString(i) + " ");
+			}
+			System.out.println();
+		}
+		rs3.close();
+		
 		System.out.println("Dropping Record...");
 		myServ.dropRecord();
+		System.out.println("Daterbase after drops");
+		ResultSet rs4=myServ.getAllUsers();
+		while(rs4.next())
+		{
+			for(int i=1;i<9;i++)
+			{
+				System.out.print(rs4.getString(i) + " ");
+			}
+			System.out.println();
+		}
+		rs4.close();
+		
+		
+		
 		}catch(Exception e){
-			
+			System.err.println(e.getMessage());
 		}
 		
 		
