@@ -40,6 +40,26 @@ public class DBConnection {
 		buildConnString();
 		connect();
 	}
+	
+	/**
+	 *  Overloaded constructor used to connect to a default server set up w/a specific password
+	 *  
+	 *  @param pass - Password from the user
+	 *  @param DB	- Database to connect to, blank connects to the server and no database
+	 *  
+	 *  @author L. Duke
+	 */
+	public DBConnection(String DB, String pass){
+		setAddress("localhost");
+		//setPort("3306");
+		setDBName(DB);
+		setUserName("root");
+		setPassword(pass);
+		
+		buildConnString();
+		connect();
+	}
+	
 	/**
 	 * parameterized constructor used for MySql database servers running on the default port.
 	 * will construct a connection string and connect to the database. 
