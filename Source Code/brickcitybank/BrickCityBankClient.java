@@ -117,9 +117,9 @@ public class BrickCityBankClient {
 		{
 			System.out.print(al1.get(i));
 		}
-		System.out.println("Done deleting!\n\nThis concludes Deliverable 2 =)\nExiting...");
+		System.out.println("Done deleting!\n\nThis concludes Deliverable 2 =)\nPress the Enter key to exit...");
 		
-		
+		in.readLine();
 		
 		}catch(Exception e){
 			System.err.println(e.getMessage());
