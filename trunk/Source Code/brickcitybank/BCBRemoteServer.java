@@ -2,6 +2,7 @@ package brickcitybank;
 
 import java.rmi.*;
 import java.sql.*;
+import java.util.*;
 
 public interface BCBRemoteServer extends Remote {
 
@@ -15,7 +16,7 @@ public interface BCBRemoteServer extends Remote {
 	
 	public void updateRecord() throws RemoteException;
 	
-	public ResultSet getAllUsers() throws RemoteException;
+	public ArrayList<String> getAllUsers() throws RemoteException;
 	
 	
 }

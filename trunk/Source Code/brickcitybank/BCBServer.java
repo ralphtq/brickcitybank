@@ -11,6 +11,7 @@ package brickcitybank;
 import java.sql.*;
 import java.rmi.*;
 import java.rmi.server.*;
+import java.util.*;
 
 /**
  * @author Louis Duke
@@ -27,6 +28,7 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 * Constructor for the server... mostly empty
 	 */
 	public BCBServer() throws RemoteException {
+		myUser = new User();
 	}
 
 	/**
@@ -36,8 +38,9 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 * 
 	 * @return - DBConnection		//A Database Connection Object
 	 */
-	public void establishConn(String pass ) throws RemoteException{
-		myConn = new DBConnection( "", pass);
+	public void establishConn(String pass) throws RemoteException{
+		//myConn = new DBConnection("", pass);
+		myConn = new DBConnection(pass);
 	}
 	
 	/**
@@ -47,7 +50,7 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 * @args pass - user root password
 	 */	
 	public void createDB(String pass) throws RemoteException{
-		myCreateDB = new CreateDB( pass );
+		myCreateDB = new CreateDB(pass);
 	}
 	
 	/**
@@ -57,7 +60,6 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	public void insertRecord() throws RemoteException{
 		//create a fake user
 		myUser.insertUser(myConn, "Tom", "Smith", "tsmith", "it4567", "Kimball drive", "Rochester", "NY", "14623");
-		
 	}
 	
 	/**
@@ -65,8 +67,7 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 */
 	public void dropRecord() throws RemoteException{
 		//call the method from User.java
-		myUser.deleteUser(2, myConn);
-		
+		myUser.deleteUser(2, myConn);	
 	}
 	
 	/**
@@ -75,16 +76,16 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	public void updateRecord() throws RemoteException{
 		
 		//call the method from User.java, call him Smith
-		myUser.updateUser(1,"Smith", myConn);
-		
+		myUser.updateUser(1,"UPDATE!", myConn);
 	}
 	
 	/**
 	 * Gets all users from the user database. 
 	 */
-	public ResultSet getAllUsers(){
-		ResultSet retVal = null;
-		retVal=myUser.getAllUsers();
+	public ArrayList<String> getAllUsers()
+	{
+		ArrayList<String> retVal = new ArrayList<String>();
+		retVal = myUser.getAllUsers(myConn);
 		return retVal;
 	}
 	public void createDB() throws RemoteException {
