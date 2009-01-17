@@ -29,13 +29,13 @@ public class DBConnection {
 	 * 
 	 * will build the jdbc connection string based on the set values and connect to the database. 
 	 */
-	public DBConnection()
+	public DBConnection(String pass)
 	{
 		setAddress("localhost");
 		//setPort("3306");
 		setDBName("mydb");
 		setUserName("root");
-		setPassword("admin");
+		setPassword(pass);
 		
 		buildConnString();
 		connect();
@@ -49,13 +49,13 @@ public class DBConnection {
 	 *  
 	 *  @author L. Duke
 	 */
-	public DBConnection(String DB, String pass){
+	public DBConnection(String db, String pass){
 		setAddress("localhost");
-		//setPort("3306");
-		setDBName(DB);
+		setPort("3306");
+		setDBName(db);
 		setUserName("root");
 		setPassword(pass);
-		
+		System.out.println("Hi!!!");
 		buildConnString();
 		connect();
 	}
@@ -74,7 +74,7 @@ public class DBConnection {
 		setDBName(database);
 		setUserName(user);
 		setPassword(pass);
-		
+		System.out.println("THIS IS CALLED FIRST");
 		buildConnString();
 		connect();
 	}
@@ -229,12 +229,14 @@ public class DBConnection {
 		{
 			connStr = "jdbc:mysql://" + address + ":" + port + "/" + DBName;
 		}
+		System.out.println(connStr);	
 	}
 	public void connect()
 	{
 		try
 		{
 			//load driver
+			System.out.println("Attempting to load driver!");
 			Class.forName("org.gjt.mm.mysql.Driver");
 			System.out.println("Driver loaded!");
 			
@@ -245,10 +247,12 @@ public class DBConnection {
 		}
 		catch(ClassNotFoundException cnf)
 		{
+			System.out.println("OH SHIT!");
 			System.out.println(cnf.getMessage());
 		}
 		catch(SQLException sql)
 		{
+			System.out.println("OH SHIT!!");
 			System.out.println(sql.getMessage());
 		}
 	}

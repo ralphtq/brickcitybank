@@ -2,6 +2,7 @@ package brickcitybank;
 
 import java.io.*;
 import java.sql.*;
+import java.util.*;
 
 public class User {
 	
@@ -96,33 +97,39 @@ public class User {
 		zipCode = zip;
 	}
 	//sample query 
-	public ResultSet getAllUsers()
+	public ArrayList<String> getAllUsers(DBConnection conn)
 	{
 		System.out.println("user class");
-		DBConnection conn = new DBConnection();
+		//conn = new DBConnection();
 		Statement state = null;
 		ResultSet rs = null;
-		ResultSet rs2 = null;
-		
+		ResultSet rs2;
+		ArrayList<String> al = new ArrayList<String>();
 		try
 		{
 			state = conn.getConn().createStatement();
 			rs = state.executeQuery("select * from user");
-		
-			rs.close();
+			while(rs.next())
+			{
+				String res = "";
+				for(int i=1;i<9;i++)
+				{
+					res += rs.getString(i)+"\t";
+				}
+				al.add(res);
+				al.add("\n");
+			}
 			state.close();
 			conn.closeConnection();
-			rs2 = rs;
-			rs.close();
 		}
 		catch(SQLException e)
 		{
+			
 			System.err.println(e.getMessage());
 			System.err.println("  Error Message: " + e.getMessage());
 			System.err.println(" Vendor Message: " + e.getErrorCode());
 		}
-		return rs2;
-		
+		return al;
 		/*while(Resultset.next()){}*/
 	}
 	//update
@@ -134,7 +141,7 @@ public class User {
 		try
 		{
 			state = conn.getConn().createStatement();
-			state.execute("update user set firstname="+firstName + " where iduser = " + userId);
+			state.execute("update user set firstname='"+firstName + "' where iduser = " + userId);
 			
 		}
 		catch(SQLException e)
@@ -164,7 +171,7 @@ public class User {
 		}
 	}
 	//sample insert
-	public void insertUser(DBConnection conn, String first, String last,String user,String usrPassword,String street,String city,String state,String zip )
+	public void insertUser(DBConnection conn, String first, String last,String user,String usrPassword,String street,String city,String mystate,String zip )
 	{
 		Statement state1 = null;
 		ResultSet rs = null;
@@ -172,7 +179,7 @@ public class User {
 		try
 		{
 			state1 = conn.getConn().createStatement();
-			state1.execute("insert into user(firstname,lastname,username,password,street,city,state,zipcode) values ('" + first+"','" + last + "','" + user + "','" + usrPassword + "','" + street + "','" + city + "','" + state1 + "','" + zip + "')");
+			state1.execute("insert into user(firstname,lastname,username,password,street,city,state,zipcode) values ('" + first+"','" + last + "','" + user + "','" + usrPassword + "','" + street + "','" + city + "','" + mystate + "','" + zip + "')");
 		}
 		catch(SQLException e)
 		{

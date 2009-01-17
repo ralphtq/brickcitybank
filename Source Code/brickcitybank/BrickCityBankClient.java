@@ -11,6 +11,7 @@ package brickcitybank;
 import java.rmi.*;
 import java.sql.ResultSet;
 import java.io.*;
+import java.util.*;
 
 /**
  * @author Louis Duke
@@ -25,21 +26,21 @@ public class BrickCityBankClient {
 	public static void main(String[] args) {
 		
 		//Variables we will need
-		BCBServer myServ = null;
+		BCBRemoteServer myServ = null;
 		String uRespon = "no input";
-		BufferedReader in = new BufferedReader( new InputStreamReader( System.in ));
+		BufferedReader in = new BufferedReader(new InputStreamReader( System.in ));
 				
 		//try and look up the server.
 		try{
-			myServ = (BCBServer)Naming.lookup( "rmi://localhost/BCBServer");
+			myServ = (BCBRemoteServer)Naming.lookup("rmi://localhost:1099/BCBServer");
 		}catch( Exception e ){
-			System.err.println( "Client Terminating - Server Lookup Failed" );
+			System.err.println( "Client Terminating - Server Lookup Failed: " +e.getMessage());
 			System.exit(1);
 		}
 		
 		//prompt the user for the root password
 		System.out.println("");
-		System.out.println("Welcome to the Brick City Bank Client");
+		System.out.println("Welcome to the Brick City Bank Client\n");
 		System.out.println("Please input your MySQL root password:");
 		System.out.println("");
 		
@@ -50,11 +51,11 @@ public class BrickCityBankClient {
 			System.err.println(e.getMessage());
 		}
 		
-		
 		//create database
 		try{
 			myServ.createDB(uRespon);
 		}catch(Exception e){
+			System.out.println("FAIL");
 			e.getMessage();
 		}
 		System.out.println("================Creating Database================");
@@ -63,65 +64,60 @@ public class BrickCityBankClient {
 		try{
 		//Enter Actual server usage
 		myServ.establishConn(uRespon);
-		System.out.println("Welcome to the Brick City Bank Demo");
+		System.out.println("Welcome to the Brick City Bank Demo\n");
+		System.out.println("Current State of the user table:");
+		ArrayList<String> al1 = new ArrayList<String>();
 		
-		System.out.println("Current State of the user Table");
-		ResultSet rs=myServ.getAllUsers();
-		while(rs.next())
+		al1 = myServ.getAllUsers();
+		
+		if(al1.get(0) == null)
 		{
-			for(int i=1;i<9;i++)
-			{
-				System.out.print(rs.getString(i) + " ");
-			}
-			System.out.println();
+			System.out.println("Your MySQL password is incorrect. Please try again.\nExiting...");
+			System.exit(0);
 		}
-		rs.close();
 		
-		System.out.println("Inserting new Users....");
+		for(int i = 0; i < al1.size(); i++)
+		{
+			System.out.print(al1.get(i));
+		}
+		System.out.println();
+		
+		// Insert
+		myServ.establishConn(uRespon);
+		System.out.println("Inserting \"Tom Smith\" with ID=5...");
 		myServ.insertRecord();
-		
-		System.out.println("Daterbase after insertions");
-		myServ.getAllUsers();
-		ResultSet rs2=myServ.getAllUsers();
-		while(rs2.next())
+		myServ.establishConn(uRespon);
+		al1 = myServ.getAllUsers();
+		for(int i = 0; i < al1.size(); i++)
 		{
-			for(int i=1;i<9;i++)
-			{
-				System.out.print(rs2.getString(i) + " ");
-			}
-			System.out.println();
+			System.out.print(al1.get(i));
 		}
-		rs2.close();
+		System.out.println("Done inserting!\n\n");
 		
-		
-		System.out.println("");
-		System.out.println("Updating Records...");
+		// Update
+		myServ.establishConn(uRespon);
+		System.out.println("Updating first name of user with UID=1...");
 		myServ.updateRecord();
-		System.out.println("Daterbase after updating");
-		ResultSet rs3=myServ.getAllUsers();
-		while(rs3.next())
+		myServ.establishConn(uRespon);
+		al1 = myServ.getAllUsers();
+		for(int i = 0; i < al1.size(); i++)
 		{
-			for(int i=1;i<9;i++)
-			{
-				System.out.print(rs3.getString(i) + " ");
-			}
-			System.out.println();
+			System.out.print(al1.get(i));
 		}
-		rs3.close();
+		System.out.println("Done updating!\n\n");
+
 		
-		System.out.println("Dropping Record...");
+		// Delete
+		myServ.establishConn(uRespon);
+		System.out.println("Deleting user with UID=2...");
 		myServ.dropRecord();
-		System.out.println("Daterbase after drops");
-		ResultSet rs4=myServ.getAllUsers();
-		while(rs4.next())
+		myServ.establishConn(uRespon);
+		al1 = myServ.getAllUsers();
+		for(int i = 0; i < al1.size(); i++)
 		{
-			for(int i=1;i<9;i++)
-			{
-				System.out.print(rs4.getString(i) + " ");
-			}
-			System.out.println();
+			System.out.print(al1.get(i));
 		}
-		rs4.close();
+		System.out.println("Done deleting!\n\nThis concludes Deliverable 2 =)\nExiting...");
 		
 		
 		
