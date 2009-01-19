@@ -14,14 +14,25 @@ import java.rmi.server.*;
 import java.util.*;
 
 /**
- * @author Louis Duke
- *
+ * @author  Louis Duke
  */
 public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 
 	//Veriables
+	/**
+	 * @uml.property  name="myCreateDB"
+	 * @uml.associationEnd  
+	 */
 	CreateDB myCreateDB;
+	/**
+	 * @uml.property  name="myConn"
+	 * @uml.associationEnd  
+	 */
 	DBConnection myConn;
+	/**
+	 * @uml.property  name="myUser"
+	 * @uml.associationEnd  
+	 */
 	User myUser;
 	
 	/**

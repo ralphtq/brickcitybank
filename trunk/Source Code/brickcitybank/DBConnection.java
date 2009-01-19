@@ -10,15 +10,39 @@
 package brickcitybank;
 import java.sql.*;
 
+/**
+ * @author  Louis Duke
+ */
 public class DBConnection {
 	
 	//attributes
+	/**
+	 * @uml.property  name="address"
+	 */
 	private String address;	//address of the database server
+	/**
+	 * @uml.property  name="port"
+	 */
 	private String port;	//port of the database server
+	/**
+	 * @uml.property  name="dBName"
+	 */
 	private String DBName;	//the name of the database on the server
+	/**
+	 * @uml.property  name="username"
+	 */
 	private String username;//username of the user connecting to the server
+	/**
+	 * @uml.property  name="password"
+	 */
 	private String password;//password of the user
+	/**
+	 * @uml.property  name="connStr"
+	 */
 	private String connStr; //connection string that is assembled to connect to the server
+	/**
+	 * @uml.property  name="conn"
+	 */
 	private Connection conn;//connection object that is required later to perform queries
 	
 	//--------------------Constructors--------------------
@@ -99,8 +123,8 @@ public class DBConnection {
 	//--------------------Mutators--------------------
 	/**
 	 * sets the address of the database server
-	 * 
-	 * @param addr - address of the database server
+	 * @param addr  - address of the database server
+	 * @uml.property  name="address"
 	 */
 	public void setAddress(String addr)
 	{
@@ -108,8 +132,8 @@ public class DBConnection {
 	}
 	/**
 	 * sets the port to connect to\
-	 * 
-	 * @param DBport
+	 * @param  DBport
+	 * @uml.property  name="port"
 	 */
 	public void setPort(String DBport)
 	{
@@ -117,7 +141,8 @@ public class DBConnection {
 	}
 	/**
 	 * sets the name of the database that is going to be used by the program
-	 * @param databaseName
+	 * @param  databaseName
+	 * @uml.property  name="dBName"
 	 */
 	public void setDBName(String databaseName)
 	{
@@ -134,7 +159,8 @@ public class DBConnection {
 	}
 	/**
 	 * sets the password that the user uses to authenticate to the server
-	 * @param pass
+	 * @param  pass
+	 * @uml.property  name="password"
 	 */
 	public void setPassword(String pass)
 	{
@@ -142,7 +168,8 @@ public class DBConnection {
 	}
 	/**
 	 * sets the connection string that is used for jdbc to connect to the server
-	 * @param connString
+	 * @param  connString
+	 * @uml.property  name="connStr"
 	 */
 	public void setConnStr(String connString)
 	{
@@ -150,7 +177,8 @@ public class DBConnection {
 	}
 	/**
 	 * sets the connection object 
-	 * @param connect
+	 * @param  connect
+	 * @uml.property  name="conn"
 	 */
 	public void setConn(Connection connect)
 	{
@@ -159,7 +187,8 @@ public class DBConnection {
 	//--------------------accessers--------------------
 	/**
 	 * returns the server address that is used to connect to the database
-	 * @return address - server address
+	 * @return  address - server address
+	 * @uml.property  name="address"
 	 */
 	public String getAddress()
 	{
@@ -167,7 +196,8 @@ public class DBConnection {
 	}
 	/**
 	 * returns the port number of the database
-	 * @return port - port used to connect to the database
+	 * @return  port - port used to connect to the database
+	 * @uml.property  name="port"
 	 */
 	public String getPort()
 	{
@@ -175,15 +205,17 @@ public class DBConnection {
 	}
 	/**
 	 * returns the database name
-	 * @return name of the database
+	 * @return  name of the database
+	 * @uml.property  name="dBName"
 	 */
 	public String getDBName()
 	{
 		return DBName;
 	}
-	/** 
+	/**
 	 * returns the user name that is authenticating to the database.
-	 * @return the username for the database
+	 * @return  the username for the database
+	 * @uml.property  name="username"
 	 */
 	public String getUsername()
 	{
@@ -191,15 +223,16 @@ public class DBConnection {
 	}
 	/**
 	 * returns the password of the database user
-	 * @return user's password
+	 * @return  user's password
+	 * @uml.property  name="password"
 	 */
 	public String getPassword()
 	{
 		return password;
 	}
 	/**
-	 * 
-	 * @return connection string used to connect to the database
+	 * @return  connection string used to connect to the database
+	 * @uml.property  name="connStr"
 	 */
 	public String getConnStr()
 	{
@@ -207,7 +240,8 @@ public class DBConnection {
 	}
 	/**
 	 * returns the jdbc connection object
-	 * @return conn connection class object
+	 * @return  conn connection class object
+	 * @uml.property  name="conn"
 	 */
 	public Connection getConn()
 	{

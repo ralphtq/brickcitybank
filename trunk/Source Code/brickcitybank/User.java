@@ -4,17 +4,47 @@ import java.io.*;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * @author  Louis Duke
+ */
 public class User {
 	
 	//==================== attributes ====================
+	/**
+	 * @uml.property  name="idUser"
+	 */
 	private int idUser;
+	/**
+	 * @uml.property  name="lastName"
+	 */
 	private String lastName;
+	/**
+	 * @uml.property  name="firstName"
+	 */
 	private String firstName;
+	/**
+	 * @uml.property  name="password"
+	 */
 	private String password;
+	/**
+	 * @uml.property  name="username"
+	 */
 	private String username;
+	/**
+	 * @uml.property  name="street"
+	 */
 	private String street;
+	/**
+	 * @uml.property  name="city"
+	 */
 	private String city;
+	/**
+	 * @uml.property  name="state"
+	 */
 	private String state;
+	/**
+	 * @uml.property  name="zipCode"
+	 */
 	private String zipCode;
 	//==================== Constructors ====================
 	/*public User()
@@ -22,76 +52,148 @@ public class User {
 		
 	}*/
 	//===================== Accessors =====================
+	/**
+	 * @return
+	 * @uml.property  name="idUser"
+	 */
 	public int getIdUser()
 	{
 		return idUser;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="lastName"
+	 */
 	public String getLastName()
 	{
 		return lastName;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="firstName"
+	 */
 	public String getFirstName()
 	{
 		return firstName;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="password"
+	 */
 	public String getPassword()
 	{
 		return password;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="username"
+	 */
 	public String getUsername()
 	{
 		return username;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="street"
+	 */
 	public String getStreet()
 	{
 		return street;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="city"
+	 */
 	public String getCity()
 	{
 		return city;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="state"
+	 */
 	public String getState()
 	{
 		return state;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="zipCode"
+	 */
 	public String getZipCode()
 	{
 		return zipCode;
 	}
 	
 	//==================== mutators ====================
+	/**
+	 * @param userID
+	 * @uml.property  name="idUser"
+	 */
 	public void setIdUser(int userID)
 	{
 		idUser = userID;
 	}
+	/**
+	 * @param last
+	 * @uml.property  name="lastName"
+	 */
 	public void setLastName(String last)
 	{
 		lastName = last;
 	}
+	/**
+	 * @param first
+	 * @uml.property  name="firstName"
+	 */
 	public void setFirstName(String first)
 	{
 		firstName = first;
 	}
+	/**
+	 * @param pass
+	 * @uml.property  name="password"
+	 */
 	public void setPassword(String pass)
 	{
 		password = pass;
 	}
+	/**
+	 * @param user
+	 * @uml.property  name="username"
+	 */
 	public void setUsername(String user)
 	{
 		username = user;
 	}
+	/**
+	 * @param _street
+	 * @uml.property  name="street"
+	 */
 	public void setStreet(String _street)
 	{
 		street = _street;
 	}
+	/**
+	 * @param _city
+	 * @uml.property  name="city"
+	 */
 	public void setCity(String _city)
 	{
 		city = _city;
 	}
+	/**
+	 * @param _state
+	 * @uml.property  name="state"
+	 */
 	public void setState(String _state)
 	{
 		state = _state;
 	}
+	/**
+	 * @param zip
+	 * @uml.property  name="zipCode"
+	 */
 	public void setZipCode(String zip)
 	{
 		zipCode = zip;

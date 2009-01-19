@@ -2,6 +2,9 @@ package brickcitybank;
 
 import java.util.Date;
 
+/**
+ * @author  Louis Duke
+ */
 public class Transaction {
 /*
 +---------------+---------+------+-----+---------+----------------+
@@ -21,10 +24,25 @@ public class Transaction {
  */
 	
 	private int idTransation;
+	/**
+	 * @uml.property  name="type"
+	 */
 	private char type;
+	/**
+	 * @uml.property  name="account1"
+	 */
 	private int account1;
+	/**
+	 * @uml.property  name="account2"
+	 */
 	private int account2;
+	/**
+	 * @uml.property  name="date"
+	 */
 	private Date date;
+	/**
+	 * @uml.property  name="time"
+	 */
 	private Date time;
 	private double oldBalance1;
 	private double newBalance1;
@@ -35,22 +53,42 @@ public class Transaction {
 	{
 		idTransation = _idTransation;
 	}
+	/**
+	 * @param _type
+	 * @uml.property  name="type"
+	 */
 	public void setType(char _type)
 	{
 		type = _type;
 	}
+	/**
+	 * @param _account1
+	 * @uml.property  name="account1"
+	 */
 	public void setAccount1(int _account1)
 	{
 		account1 = _account1;
 	}
+	/**
+	 * @param _account2
+	 * @uml.property  name="account2"
+	 */
 	public void setAccount2(int _account2)
 	{
 		account2 = _account2;
 	}
+	/**
+	 * @param _date
+	 * @uml.property  name="date"
+	 */
 	public void setDate(Date _date)
 	{
 		date = _date;
 	}
+	/**
+	 * @param _time
+	 * @uml.property  name="time"
+	 */
 	public void setTime(Date _time)
 	{
 		time = _time;
@@ -75,22 +113,42 @@ public class Transaction {
 	{
 		return idTransation;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="type"
+	 */
 	public char getType()
 	{
 		return type;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="account1"
+	 */
 	public int getAccount1()
 	{
 		return account1;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="account2"
+	 */
 	public int getAccount2()
 	{
 		return account2;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="date"
+	 */
 	public Date getDate()
 	{
 		return date;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="time"
+	 */
 	public Date getTime()
 	{
 		return time;
