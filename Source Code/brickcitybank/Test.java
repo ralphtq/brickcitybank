@@ -9,13 +9,31 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JSlider;
 
+/**
+ * @author  Louis Duke
+ */
 public class Test extends Frame {
 
 	private static final long serialVersionUID = 1L;
+	/**
+	 * @uml.property  name="hitme"
+	 */
 	private JButton hitme = null;
+	/**
+	 * @uml.property  name="jPanel"
+	 */
 	private JPanel jPanel = null;
+	/**
+	 * @uml.property  name="jPanel1"
+	 */
 	private JPanel jPanel1 = null;
+	/**
+	 * @uml.property  name="jButton"
+	 */
 	private JButton jButton = null;
+	/**
+	 * @uml.property  name="jSlider"
+	 */
 	private JSlider jSlider = null;
 
 	/**
@@ -42,8 +60,8 @@ public class Test extends Frame {
 
 	/**
 	 * This method initializes hitme	
-	 * 	
-	 * @return javax.swing.JButton	
+	 * @return  javax.swing.JButton
+	 * @uml.property  name="hitme"
 	 */
 	private JButton getHitme() {
 		if (hitme == null) {
@@ -60,8 +78,8 @@ public class Test extends Frame {
 
 	/**
 	 * This method initializes jPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * @return  javax.swing.JPanel
+	 * @uml.property  name="jPanel"
 	 */
 	private JPanel getJPanel() {
 		if (jPanel == null) {
@@ -73,8 +91,8 @@ public class Test extends Frame {
 
 	/**
 	 * This method initializes jPanel1	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * @return  javax.swing.JPanel
+	 * @uml.property  name="jPanel1"
 	 */
 	private JPanel getJPanel1() {
 		if (jPanel1 == null) {
@@ -98,8 +116,8 @@ public class Test extends Frame {
 
 	/**
 	 * This method initializes jButton	
-	 * 	
-	 * @return javax.swing.JButton	
+	 * @return  javax.swing.JButton
+	 * @uml.property  name="jButton"
 	 */
 	private JButton getJButton() {
 		if (jButton == null) {
@@ -111,8 +129,8 @@ public class Test extends Frame {
 
 	/**
 	 * This method initializes jSlider	
-	 * 	
-	 * @return javax.swing.JSlider	
+	 * @return  javax.swing.JSlider
+	 * @uml.property  name="jSlider"
 	 */
 	private JSlider getJSlider() {
 		if (jSlider == null) {
