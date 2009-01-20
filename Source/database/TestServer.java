@@ -1,4 +1,5 @@
-package brickcitybank;
+package database;
+
 
 public class TestServer {
 

@@ -1,4 +1,4 @@
-package brickcitybank;
+package database;
 
 import java.util.Date;
 /**

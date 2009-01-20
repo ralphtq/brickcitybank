@@ -6,12 +6,16 @@
  * Unless otherwise noted the following code is the sole intellectual property of
  * the author, all rights reserved.
  */
-package brickcitybank;
+package rmi;
 
 import java.sql.*;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.*;
+
+import database.CreateDB;
+import database.DBConnection;
+import database.User;
 
 /**
  * @author  Louis Duke

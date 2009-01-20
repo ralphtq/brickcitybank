@@ -1,4 +1,4 @@
-package brickcitybank;
+package database;
 
 import java.io.*;
 import java.sql.*;
