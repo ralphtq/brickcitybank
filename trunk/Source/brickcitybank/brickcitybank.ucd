@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1474,2076" id="brickcitybank" metadata="uml2-1.0" initialized="true" scrolledX="83" tag="1000" key="32303037303533312D3130303020427269636B4369747942616E6B2F4C6F7569732044756B65">
-  <children xsi:type="editmodel:ClassEditModel" name="Account" location="408,1737" size="118,103" id="brickcitybank/Account" runTimeClassModel="getIdAccount(),balance,setIdAccount(I)">
+  <children xsi:type="editmodel:ClassEditModel" name="Account" location="408,1737" size="118,103" id="brickcitybank/Account" runTimeClassModel="balance,getIdAccount(),setIdAccount(I)">
     <children xsi:type="editmodel:CompartmentEditModel" size="95,18">
       <children xsi:type="editmodel:AttributeEditModel" name="balance" id="brickcitybank/Account#balance"/>
     </children>
@@ -19,7 +19,7 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="CreditCard" location="576,1737" size="118,93" id="brickcitybank/CreditCard" runTimeClassModel="pin,expiration,cardNumber">
+  <children xsi:type="editmodel:ClassEditModel" name="CreditCard" location="576,1737" size="118,93" id="brickcitybank/CreditCard" runTimeClassModel="expiration,pin,cardNumber">
     <children xsi:type="editmodel:CompartmentEditModel" size="95,54">
       <children xsi:type="editmodel:AttributeEditModel" name="cardNumber" id="brickcitybank/CreditCard#cardNumber"/>
       <children xsi:type="editmodel:AttributeEditModel" name="expiration" id="brickcitybank/CreditCard#expiration"/>
@@ -93,7 +93,7 @@
       <children xsi:type="editmodel:MethodEditModel" name="CreateDB" id="brickcitybank/CreateDB#CreateDB()"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/CreateDB-Standard::Call->brickcitybank/DBConnection*brickcitybank/CreateDB-Standard::Instantiate->brickcitybank/DBConnection*brickcitybank/CreateDB-Soyatec::Import->brickcitybank/DBConnection" source="//@children.8" target="//@children.10" targetEnd="//@children.8/@sourceConnections.0/@children.2" label="//@children.8/@sourceConnections.0/@children.0" sourceEnd="//@children.8/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/CreateDB->Standard::Call" source="//@children.8" target="//@children.10" targetEnd="//@children.8/@sourceConnections.0/@children.2" label="//@children.8/@sourceConnections.0/@children.0" sourceEnd="//@children.8/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import, Instantiate, Call»" size="119,14" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="102,75" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,117"/>
@@ -104,7 +104,7 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/BrickCityBankClient-Standard::Call->brickcitybank/BCBRemoteServer*brickcitybank/BrickCityBankClient-Soyatec::Import->brickcitybank/BCBRemoteServer" source="//@children.9" target="//@children.14" targetEnd="//@children.9/@sourceConnections.0/@children.2" label="//@children.9/@sourceConnections.0/@children.0" sourceEnd="//@children.9/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/BrickCityBankClient->Standard::Call" source="//@children.9" target="//@children.14" targetEnd="//@children.9/@sourceConnections.0/@children.2" label="//@children.9/@sourceConnections.0/@children.0" sourceEnd="//@children.9/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import, Call»" size="64,14" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="167,14" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,14"/>
@@ -140,12 +140,12 @@
       <children xsi:type="editmodel:MethodEditModel" name="main" id="brickcitybank/TestServer#main([Ljava.lang.String;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/TestServer-Standard::Instantiate->brickcitybank/CreateDB*brickcitybank/TestServer-Soyatec::Import->brickcitybank/CreateDB" source="//@children.11" target="//@children.8" targetEnd="//@children.11/@sourceConnections.0/@children.2" label="//@children.11/@sourceConnections.0/@children.0" sourceEnd="//@children.11/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/TestServer->Standard::Instantiate" source="//@children.11" target="//@children.8" targetEnd="//@children.11/@sourceConnections.0/@children.2" label="//@children.11/@sourceConnections.0/@children.0" sourceEnd="//@children.11/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import, Instantiate»" size="96,14" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="31,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="82,85"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/TestServer-Standard::Instantiate->brickcitybank/User*brickcitybank/TestServer-Soyatec::Import->brickcitybank/User" source="//@children.11" target="//@children.13" targetEnd="//@children.11/@sourceConnections.1/@children.2" label="//@children.11/@sourceConnections.1/@children.0" sourceEnd="//@children.11/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/TestServer->Standard::Instantiate" source="//@children.11" target="//@children.13" targetEnd="//@children.11/@sourceConnections.1/@children.2" label="//@children.11/@sourceConnections.1/@children.0" sourceEnd="//@children.11/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import, Instantiate»" size="96,14" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="73,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,258"/>
@@ -160,7 +160,7 @@
       <children xsi:type="editmodel:MethodEditModel" name="startServer" id="brickcitybank/BrickCityBankLauncher#startServer()"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/BrickCityBankLauncher-Standard::Instantiate->brickcitybank/BCBServer*brickcitybank/BrickCityBankLauncher-Soyatec::Import->brickcitybank/BCBServer" source="//@children.12" target="//@children.15" targetEnd="//@children.12/@sourceConnections.0/@children.2" label="//@children.12/@sourceConnections.0/@children.0" sourceEnd="//@children.12/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/BrickCityBankLauncher->Standard::Instantiate" source="//@children.12" target="//@children.15" targetEnd="//@children.12/@sourceConnections.0/@children.2" label="//@children.12/@sourceConnections.0/@children.0" sourceEnd="//@children.12/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import, Instantiate»" size="96,14" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="190,74" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,29"/>
@@ -186,7 +186,7 @@
       <children xsi:type="editmodel:MethodEditModel" name="updateUser" id="brickcitybank/User#updateUser(ILjava.lang.String;Lbrickcitybank.DBConnection;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/User-Standard::Call->brickcitybank/DBConnection*brickcitybank/User-Soyatec::Import->brickcitybank/DBConnection" source="//@children.13" target="//@children.10" targetEnd="//@children.13/@sourceConnections.0/@children.2" label="//@children.13/@sourceConnections.0/@children.0" sourceEnd="//@children.13/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/User->Standard::Call" source="//@children.13" target="//@children.10" targetEnd="//@children.13/@sourceConnections.0/@children.2" label="//@children.13/@sourceConnections.0/@children.0" sourceEnd="//@children.13/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import, Call»" size="64,14" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,214" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="133,69"/>
@@ -206,7 +206,7 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.12/@sourceConnections.0" name="BCBServer" location="1223,540" size="121,193" id="brickcitybank/BCBServer" runTimeClassModel="BCBServer(),updateRecord(),createDB(Ljava.lang.String;),establishConn(Ljava.lang.String;),insertRecord(),dropRecord(),createDB(),getAllUsers()">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.12/@sourceConnections.0" name="BCBServer" location="1223,540" size="121,193" id="brickcitybank/BCBServer" runTimeClassModel="BCBServer(),updateRecord(),createDB(Ljava.lang.String;),establishConn(Ljava.lang.String;),insertRecord(),createDB(),dropRecord(),getAllUsers()">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="98,144">
       <children xsi:type="editmodel:MethodEditModel" name="BCBServer" id="brickcitybank/BCBServer#BCBServer()"/>
@@ -252,17 +252,17 @@
       <children xsi:type="editmodel:AssociationEndEditModel" location="40,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="78,171"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/BCBServer-Standard::Instantiate->brickcitybank/DBConnection*brickcitybank/BCBServer-Soyatec::Import->brickcitybank/DBConnection" source="//@children.15" target="//@children.10" targetEnd="//@children.15/@sourceConnections.5/@children.2" label="//@children.15/@sourceConnections.5/@children.0" sourceEnd="//@children.15/@sourceConnections.5/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/BCBServer->Standard::Instantiate" source="//@children.15" target="//@children.10" targetEnd="//@children.15/@sourceConnections.5/@children.2" label="//@children.15/@sourceConnections.5/@children.0" sourceEnd="//@children.15/@sourceConnections.5/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import, Instantiate»" size="96,14" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="27,193" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="183,10"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/BCBServer-Standard::Instantiate->brickcitybank/CreateDB*brickcitybank/BCBServer-Soyatec::Import->brickcitybank/CreateDB" source="//@children.15" target="//@children.8" targetEnd="//@children.15/@sourceConnections.6/@children.2" label="//@children.15/@sourceConnections.6/@children.0" sourceEnd="//@children.15/@sourceConnections.6/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/BCBServer->Standard::Instantiate" source="//@children.15" target="//@children.8" targetEnd="//@children.15/@sourceConnections.6/@children.2" label="//@children.15/@sourceConnections.6/@children.0" sourceEnd="//@children.15/@sourceConnections.6/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import, Instantiate»" size="96,14" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,166" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="87,0"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/BCBServer-Standard::Call->brickcitybank/User*brickcitybank/BCBServer-Standard::Instantiate->brickcitybank/User*brickcitybank/BCBServer-Soyatec::Import->brickcitybank/User" source="//@children.15" target="//@children.13" targetEnd="//@children.15/@sourceConnections.7/@children.2" label="//@children.15/@sourceConnections.7/@children.0" sourceEnd="//@children.15/@sourceConnections.7/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="brickcitybank/BCBServer->Standard::Call" source="//@children.15" target="//@children.13" targetEnd="//@children.15/@sourceConnections.7/@children.2" label="//@children.15/@sourceConnections.7/@children.0" sourceEnd="//@children.15/@sourceConnections.7/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import, Instantiate, Call»" size="119,14" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="116,193" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,21"/>
