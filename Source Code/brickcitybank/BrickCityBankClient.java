@@ -130,10 +130,4 @@ public class BrickCityBankClient {
 
 	}
 
-		
-			
-			
-			public void stupidMethod(){
-			System.out.println("oui this worked"); }
-
 }
