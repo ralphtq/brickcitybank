@@ -1,4 +1,4 @@
-package brickcitybank;
+package rmi;
 
 import java.rmi.*;
 import java.sql.*;

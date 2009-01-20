@@ -7,7 +7,7 @@
  * This also requires the use of a jdbc driver that is from the MySql website.
  * The driver has to be added to the classpath of the project. 
  */
-package brickcitybank;
+package database;
 import java.sql.*;
 
 /**

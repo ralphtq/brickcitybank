@@ -6,7 +6,7 @@
  * Unless otherwise noted the following code is the sole intellectual property of
  * the author, all rights reserved.
  */
-package brickcitybank;
+package rmi;
 
 import java.rmi.*;
 import java.sql.ResultSet;
