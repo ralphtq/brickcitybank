@@ -1,5 +1,5 @@
 echo off
 mysql -bu root -p -e"source start.sql"
 cd bin
-java brickcitybank.BrickCityBankClient
+java rmi.BrickCityBankClient
 echo on
