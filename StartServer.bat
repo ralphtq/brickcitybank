@@ -1,3 +1,3 @@
 echo off
 cd bin
-java -classpath .;.\mysql-connector-java-5.1.7-bin.jar brickcitybank.BrickCityBankLauncher
+java -classpath .;.\mysql-connector-java-5.1.7-bin.jar rmi.BrickCityBankLauncher
