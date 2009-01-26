@@ -15,6 +15,8 @@ public class TestServer {
 		CreateDB create = new CreateDB("admin");
 		
 		User usr = new User();
+		
+		//brickcitybank.GUI gui = new brickcitybank.GUI();
 		//usr.deleteUser(1, conn);
 		//usr.insertUser();
 
