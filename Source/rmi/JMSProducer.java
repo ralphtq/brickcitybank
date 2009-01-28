@@ -3,7 +3,7 @@ package rmi;
 import javax.naming.*;
 import javax.jms.*;
 
-public class JMSProcucer {
+public class JMSProducer {
 	
 	private String queueName;
 	private String topicName;
@@ -15,14 +15,14 @@ public class JMSProcucer {
 	private String destName;
 	
 	//---------- Constructors ----------
-	public JMSProcucer()
+	public JMSProducer()
 	{
 		
 	}
-	/*public JMSProcucer(String destName)
+	public void JMSProcucer(String destName)
 	{
 		
-	}*/
+	}
 	
 	//---------- mutatiors ----------
 	public void setDestName(String msgDest)

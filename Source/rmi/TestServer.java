@@ -1,4 +1,4 @@
-package database;
+package rmi;
 
 
 public class TestServer {
@@ -12,9 +12,9 @@ public class TestServer {
 		//DBConnection conn = new DBConnection();
 		
 		//User st = new User();
-		CreateDB create = new CreateDB("admin");
-		
-		User usr = new User();
+		//CreateDB create = new CreateDB("admin");
+		System.out.println("Testing JMS Stuff");
+		//User usr = new User();
 		
 		rmi.JMSProducer producer = new rmi.JMSProducer();
 		producer.setMessage("Test message w00t!");
