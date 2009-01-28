@@ -16,18 +16,24 @@ import javax.jms.*;
 
 public class JMSConsumer 
 {
-  private final String QUEUE_NAME = "jms/Queue";
-  private final String CONN_FACTORY = "jms/QueueConnection";
+  private final String QUEUE_NAME = "destinationQueue";
+  private final String CONN_FACTORY = "connectionFactory";
  
  private Context jndiContext; // JNDI context for looking up names
  private ConnectionFactory cf;
  private Destination dest;
     
+ 	public static void main(String[] args)
+ 	{
+ 		JMSConsumer consume = new JMSConsumer("destinationQueue");
+ 		consume.getMessages();
+ 	}
+ 
     /** Creates a new instance of Consumer */
     public JMSConsumer(String destName) {
         // get a JNDI naming context
         try 
-		  {
+		{
             jndiContext = new InitialContext();
         }
         catch(NamingException ne){
@@ -74,17 +80,18 @@ public class JMSConsumer
         
             // loop to create and send the messages
             while(true) 
-				{
+			{
                 Message m = cons.receive(); // block until a message appears
                 if(m != null) 
-					 {
-                    if(m instanceof TextMessage){
+                {
+                    if(m instanceof TextMessage)
+                    {
                         TextMessage msg = (TextMessage)m;
                         System.out.println("Consumer received " + msg.getText());
                     }
                 }
                 else 
-					 {
+				{
                     break;
                 }
             }
