@@ -5,37 +5,24 @@ import javax.jms.*;
 
 public class JMSProducer {
 	
-	private String queueName;
-	private String topicName;
-	private String connFactoryName;
+	//attributes
+	private String connFactoryName; //name of connection factory
 	private Context jndiContext;
 	private ConnectionFactory connFact;
 	private Destination messageDest;
-	private String message;
-	private String destName;
+	private String message; //message sent to consumer
+	private String destName; //name of the destination
 	
 	//---------- Constructors ----------
 	public JMSProducer()
 	{
-		System.out.println("CONSTRUCTOR!!!!");
+		this.connFactoryName = "connectionFactory";
+		this.destName = "destinationQueue";
 	}
-	public JMSProducer(String destName)
-	{
-		
-	}
-	
 	//---------- mutatiors ----------
 	public void setDestName(String msgDest)
 	{
 		destName = msgDest;
-	}
-	public void setQueueName(String qName)
-	{
-		queueName = qName;
-	}
-	public void setTopicName(String tName)
-	{
-		topicName = tName;
 	}
 	public void setConnFactoryName(String cfName)
 	{
@@ -58,14 +45,6 @@ public class JMSProducer {
 		message = mesg;
 	}
 	//---------- Accessors ----------
-	public String getQueueName()
-	{
-		return queueName;
-	}
-	public String getTopicName()
-	{
-		return topicName;
-	}
 	public String getConnFactoryName()
 	{
 		return connFactoryName;
@@ -83,6 +62,11 @@ public class JMSProducer {
 		return message;
 	}
 	//---------- METHODS -----------
+	
+	/**
+	 * Creates a connection to JNDI
+	 * 
+	 */
 	public void createConnections()
 	{
 		try
@@ -120,10 +104,18 @@ public class JMSProducer {
 		}
 		System.out.println("created dest");
 	}
-	
-	public void sendMessage()
+	//-------------------- SEND MESSAGE ------------------------
+	/**
+	 * Sends message to consumer
+	 */
+	public boolean sendMessage(String msg)
 	{
-		System.out.println("Send Message method");
+		//set the message
+		this.setMessage(msg);
+		//if messages sent correctly will be true
+		boolean success = false;
+		
+		//set some vars
 		Connection conn = null;
 		Session msgSession = null;
 		MessageProducer producer = null;
@@ -146,7 +138,7 @@ public class JMSProducer {
 			System.out.println("Sending Message: " + this.getMessage());
 			txtMsg.setText(this.getMessage());
 			producer.send(txtMsg);
-			
+			System.out.println("Message has been sent");
 			//send empty to indicate no more messages
 			producer.send(msgSession.createMessage());
 			
@@ -155,11 +147,15 @@ public class JMSProducer {
 			{
 				conn.close();
 			}
+			//set to true for successful message sent
+			success = true;
 		}
 		catch(JMSException jmse)
 		{
 			System.out.println("Error sending messages");
 			System.err.println(jmse.getMessage());
 		}
+		
+		return success;
 	}
 }//end JMS PRODUCER

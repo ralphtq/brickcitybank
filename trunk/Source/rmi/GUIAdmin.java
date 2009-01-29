@@ -104,8 +104,16 @@ public class GUIAdmin extends javax.swing.JFrame {
         producer.setConnFactoryName("connectionFactory");
         producer.setDestName("destinationQueue");
         //System.out.println(producer.getDestName() +" " +producer.getQueueName() +" " +producer.getConnFactoryName());
-        producer.createConnections();
-        producer.sendMessage();
+        //producer.createConnections();
+        //producer.sendMessage();
+        
+        
+        //DO RMI here
+        
+        
+        
+        
+        
         statusLabel.setText("Message set and set successfully: " +jmsTextField.getText());
     }
 
