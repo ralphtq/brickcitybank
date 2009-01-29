@@ -51,6 +51,9 @@ public class BCBBusiness {
 		WithdrawalTool myWithdraw = new WithdrawalTool(myConn,myTrans);
 		myTool = myWithdraw;
 		
+		//create our JMSProducer object
+		myProd = new JMSProducer();
+		
 	}
 	
 	/**
@@ -63,9 +66,11 @@ public class BCBBusiness {
 	public boolean sendJMSMessage( String mess ){
 		boolean retval = false;
 		
-		//Establish Connection
+		//Establish Connections
+		myProd.createConnections();
 		
 		//send the message up
+		retval = myProd.sendMessage(mess);
 		
 		return retval;
 	}
