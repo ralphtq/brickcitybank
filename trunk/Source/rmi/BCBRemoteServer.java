@@ -22,5 +22,7 @@ public interface BCBRemoteServer extends Remote {
 	
 	public ArrayList<String> getAllUsers() throws RemoteException;
 	
+	public void sendJMSMessage(String message) throws RemoteException;
+	
 	
 }
