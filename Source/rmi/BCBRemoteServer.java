@@ -8,6 +8,8 @@ import database.*;
 
 public interface BCBRemoteServer extends Remote {
 
+	public void setPass(String s);
+	
 	public DBConnection establishConn() throws RemoteException;
 	
 	public void createDB(String s) throws RemoteException;

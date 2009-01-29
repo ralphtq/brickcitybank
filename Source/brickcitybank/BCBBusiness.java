@@ -17,15 +17,15 @@ import database.*;
  *    This is the main 'routing' class of the server side of the Brick City Bank
  * application.
  * 
- * @author louisduke
+ * @author Louis Duke
  */
 public class BCBBusiness {
 
 	//variables
-	BCBServer myserv; //reference to the creating server
-	ActionTool myTool; //Base tool to access the database
-	JMSProducer myProd; //JMSProducer we use
-	DBConnection myConn;
+	private BCBServer myserv; //reference to the creating server
+	private ActionTool myTool; //Base tool to access the database
+	private JMSProducer myProd; //JMSProducer we use
+	private DBConnection myConn;
 	
 	/**
 	 * Constructor - Mostly empty; commented out for now
@@ -34,8 +34,8 @@ public class BCBBusiness {
 	 * @param	-	mc	-	Database Connection Object given by the creating server
 	 */
 	public BCBBusiness(BCBServer ms){
+		//Store reference to creating BCBServer
 		myserv = ms;
-		
 		
 		//establish connection
 		try{
@@ -45,12 +45,11 @@ public class BCBBusiness {
 		}
 		
 		
-		
+		//set up our tools
 		DepositTool	myDeposit = new DepositTool(myConn,null);
 		TransferTool myTrans = new TransferTool(myConn,myDeposit);
 		WithdrawalTool myWithdraw = new WithdrawalTool(myConn,myTrans);
 		myTool = myWithdraw;
-		
 		
 	}
 	
