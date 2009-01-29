@@ -71,16 +71,16 @@ public class JMSProducer {
 	{
 		try
 		{
-			System.out.println("Attempting to create jndiContext obj");
+//			System.out.println("Attempting to create jndiContext obj");
 			jndiContext = new InitialContext();
 		}
 		catch(NamingException ne)
 		{
-			System.out.println("Unble to get conext for jndi");
+			System.out.println("Unable to get context for jndi");
 			System.err.println(ne.getMessage());
 		}
-		System.out.println("jndi connection created");
-		System.out.println("Creating connection factory");
+//		System.out.println("jndi connection created");
+//		System.out.println("Creating connection factory");
 		try
 		{
 			connFact = (ConnectionFactory)jndiContext.lookup(this.connFactoryName);
@@ -90,8 +90,8 @@ public class JMSProducer {
 			System.out.println("Error looking up connection factory");
 			System.err.println(e.getMessage());
 		}
-		System.out.println("Conn Factory created");
-		System.out.println("Attempting to create dest");
+//		System.out.println("Conn Factory created");
+//		System.out.println("Attempting to create dest");
 		
 		try
 		{
@@ -102,7 +102,7 @@ public class JMSProducer {
 			System.out.println("Error finding message dest");
 			System.err.println(e.getMessage());
 		}
-		System.out.println("created dest");
+//		System.out.println("created dest");
 	}
 	//-------------------- SEND MESSAGE ------------------------
 	/**
@@ -125,20 +125,20 @@ public class JMSProducer {
 		
 		try
 		{
-			System.out.println("Create connection");
+//			System.out.println("Create connection");
 			conn = connFact.createConnection();
-			System.out.println("create session");
+//			System.out.println("create session");
 			msgSession = conn.createSession(false,Session.AUTO_ACKNOWLEDGE);
-			System.out.println("create producer");
+//			System.out.println("create producer");
 			producer = msgSession.createProducer(this.messageDest);
-			System.out.println("create message");
+//			System.out.println("create message");
 			txtMsg = msgSession.createTextMessage();
 			
 			//send message
 			System.out.println("Sending Message: " + this.getMessage());
 			txtMsg.setText(this.getMessage());
 			producer.send(txtMsg);
-			System.out.println("Message has been sent");
+//			System.out.println("Message has been sent");
 			//send empty to indicate no more messages
 			producer.send(msgSession.createMessage());
 			
