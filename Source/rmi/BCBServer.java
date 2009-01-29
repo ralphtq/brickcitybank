@@ -110,8 +110,7 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	
 	public void sendJMSMessage(String msg)
 	{
-		brickcitybank.BCBBusiness bus = new brickcitybank.BCBBusiness();
-		bus.sendJMSMessage(msg);
+		myBez.sendJMSMessage(msg);
 	}
 
 }
