@@ -11,6 +11,8 @@
 
 package rmi;
 
+import java.rmi.RemoteException;
+
 import javax.swing.UIManager;
 
 /**
@@ -98,19 +100,27 @@ public class GUIAdmin extends javax.swing.JFrame {
 
     private void setSendButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {
-        rmi.JMSProducer producer = new rmi.JMSProducer();
-        producer.setMessage(jmsTextField.getText());
+        //rmi.JMSProducer producer = new rmi.JMSProducer();
+       // producer.setMessage(jmsTextField.getText());
         //producer.setQueueName("destinationQueue");
-        producer.setConnFactoryName("connectionFactory");
-        producer.setDestName("destinationQueue");
+        //producer.setConnFactoryName("connectionFactory");
+        //producer.setDestName("destinationQueue");
         //System.out.println(producer.getDestName() +" " +producer.getQueueName() +" " +producer.getConnFactoryName());
         //producer.createConnections();
         //producer.sendMessage();
         
         
         //DO RMI here
-        
-        
+        RmiUtils rmi = new RmiUtils();
+        rmi.connectToRmi();
+        try
+        {
+	        rmi.getMyServ().sendJMSMessage(jmsTextField.getText());
+        }
+        catch(RemoteException remote)
+        {
+        	System.err.println(remote.getMessage());
+        }
         
         
         
