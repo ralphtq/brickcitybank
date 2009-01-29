@@ -17,9 +17,9 @@ public class JMSProducer {
 	//---------- Constructors ----------
 	public JMSProducer()
 	{
-		
+		System.out.println("CONSTRUCTOR!!!!");
 	}
-	public void JMSProcucer(String destName)
+	public JMSProducer(String destName)
 	{
 		
 	}
@@ -87,6 +87,7 @@ public class JMSProducer {
 	{
 		try
 		{
+			System.out.println("Attempting to create jndiContext obj");
 			jndiContext = new InitialContext();
 		}
 		catch(NamingException ne)
@@ -94,7 +95,8 @@ public class JMSProducer {
 			System.out.println("Unble to get conext for jndi");
 			System.err.println(ne.getMessage());
 		}
-		
+		System.out.println("jndi connection created");
+		System.out.println("Creating connection factory");
 		try
 		{
 			connFact = (ConnectionFactory)jndiContext.lookup(this.connFactoryName);
@@ -104,6 +106,8 @@ public class JMSProducer {
 			System.out.println("Error looking up connection factory");
 			System.err.println(e.getMessage());
 		}
+		System.out.println("Conn Factory created");
+		System.out.println("Attempting to create dest");
 		
 		try
 		{
@@ -114,10 +118,12 @@ public class JMSProducer {
 			System.out.println("Error finding message dest");
 			System.err.println(e.getMessage());
 		}
+		System.out.println("created dest");
 	}
 	
 	public void sendMessage()
 	{
+		System.out.println("Send Message method");
 		Connection conn = null;
 		Session msgSession = null;
 		MessageProducer producer = null;
@@ -127,9 +133,13 @@ public class JMSProducer {
 		
 		try
 		{
+			System.out.println("Create connection");
 			conn = connFact.createConnection();
+			System.out.println("create session");
 			msgSession = conn.createSession(false,Session.AUTO_ACKNOWLEDGE);
+			System.out.println("create producer");
 			producer = msgSession.createProducer(this.messageDest);
+			System.out.println("create message");
 			txtMsg = msgSession.createTextMessage();
 			
 			//send message
