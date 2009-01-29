@@ -8,7 +8,7 @@ import database.*;
 
 public interface BCBRemoteServer extends Remote {
 
-	public void setPass(String s);
+	public void setPass(String p);
 	
 	public DBConnection establishConn() throws RemoteException;
 	
