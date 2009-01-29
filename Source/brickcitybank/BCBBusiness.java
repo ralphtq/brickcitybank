@@ -24,20 +24,31 @@ public class BCBBusiness {
 	//variables
 	BCBServer myserv; //reference to the creating server
 	ActionTool myTool; //Base tool to access the database
-	
-	
+	JMSProducer myProd; //JMSProducer we use
+	DBConnection myConn;
 	
 	/**
-	 * Constructor - Mostly empty
+	 * Constructor - Mostly empty; commented out for now
 	 * 
 	 * @param	-	ms	-	server creating this BCBBusiness Object
+	 * @param	-	mc	-	Database Connection Object given by the creating server
 	 */
-	public BCBBusiness(BCBServer ms, DBConnection mc){
+	public BCBBusiness(BCBServer ms){
 		myserv = ms;
 		
-		DepositTool	myDeposit = new DepositTool(mc,null);
-		TransferTool myTrans = new TransferTool(mc,myDeposit);
-		WithdrawalTool myWithdraw = new WithdrawalTool(mc,myTrans);
+		
+		//establish connection
+		try{
+			myConn = myserv.establishConn();
+		}catch(Exception e){
+			System.err.println(e.getMessage());
+		}
+		
+		
+		
+		DepositTool	myDeposit = new DepositTool(myConn,null);
+		TransferTool myTrans = new TransferTool(myConn,myDeposit);
+		WithdrawalTool myWithdraw = new WithdrawalTool(myConn,myTrans);
 		myTool = myWithdraw;
 		
 		
@@ -53,16 +64,9 @@ public class BCBBusiness {
 	public boolean sendJMSMessage( String mess ){
 		boolean retval = false;
 		
-		//instantiate our producer
-		JMSProducer myProd = new JMSProducer();
+		//Establish Connection
 		
-		//set the connection information
-		
-		//set the message to send
-		myProd.setMessage(mess);
-		
-		//send the message
-		myProd.sendMessage();
+		//send the message up
 		
 		return retval;
 	}

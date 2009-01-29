@@ -17,34 +17,37 @@ import database.CreateDB;
 import database.DBConnection;
 import database.User;
 
+import brickcitybank.*;
+
 /**
  * @author  Louis Duke
  */
 public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 
 	//Veriables
-	/**
-	 * @uml.property  name="myCreateDB"
-	 * @uml.associationEnd  
-	 */
-	CreateDB myCreateDB;
-	/**
-	 * @uml.property  name="myConn"
-	 * @uml.associationEnd  
-	 */
-	DBConnection myConn;
-	/**
-	 * @uml.property  name="myUser"
-	 * @uml.associationEnd  
-	 */
-	User myUser;
+	private CreateDB myCreateDB;
+	private DBConnection myConn;
+	private User myUser;
+	private BCBBusiness myBez;
+	private String pass;
 	
 	/**
 	 * Constructor for the server... mostly empty
 	 */
 	public BCBServer() throws RemoteException {
 		myUser = new User();
+		myBez = new BCBBusiness(this);
 	}
+	
+	/**
+	 * Sets the password for the MySQL database
+	 * 
+	 * @param p
+	 */
+	public void setPass(String p){
+		pass = p;
+	}
+	
 
 	/**
 	 * This method creates and returns a Database Connection
@@ -53,16 +56,17 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 * 
 	 * @return - DBConnection		//A Database Connection Object
 	 */
-	public void establishConn(String pass) throws RemoteException{
+	public DBConnection establishConn() throws RemoteException{
 		//myConn = new DBConnection("", pass);
 		myConn = new DBConnection(pass);
+		return myConn;
 	}
 	
 	/**
 	 * createDB uses an existing connection to create the Brick City Bank
 	 * database structure
 	 * 
-	 * @args pass - user root password
+	 * @param pass - user root password
 	 */	
 	public void createDB(String pass) throws RemoteException{
 		myCreateDB = new CreateDB(pass);
@@ -103,9 +107,6 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 		retVal = myUser.getAllUsers(myConn);
 		return retVal;
 	}
-	public void createDB() throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

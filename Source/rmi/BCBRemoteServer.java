@@ -4,9 +4,11 @@ import java.rmi.*;
 import java.sql.*;
 import java.util.*;
 
+import database.*;
+
 public interface BCBRemoteServer extends Remote {
 
-	public void establishConn(String pass ) throws RemoteException;
+	public DBConnection establishConn() throws RemoteException;
 	
 	public void createDB(String s) throws RemoteException;
 	
