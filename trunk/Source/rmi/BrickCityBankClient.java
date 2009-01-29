@@ -63,7 +63,8 @@ public class BrickCityBankClient {
 
 		try{
 		//Enter Actual server usage
-		myServ.establishConn(uRespon);
+		myServ.setPass(uRespon);
+		myServ.establishConn();
 		System.out.println("Welcome to the Brick City Bank Demo\n");
 		System.out.println("Current State of the user table:");
 		ArrayList<String> al1 = new ArrayList<String>();
@@ -83,10 +84,12 @@ public class BrickCityBankClient {
 		System.out.println();
 		
 		// Insert
-		myServ.establishConn(uRespon);
+		myServ.setPass(uRespon);
+		myServ.establishConn();
 		System.out.println("Inserting \"Tom Smith\" with ID=5...");
 		myServ.insertRecord();
-		myServ.establishConn(uRespon);
+		myServ.setPass(uRespon);
+		myServ.establishConn();
 		al1 = myServ.getAllUsers();
 		for(int i = 0; i < al1.size(); i++)
 		{
@@ -95,10 +98,12 @@ public class BrickCityBankClient {
 		System.out.println("Done inserting!\n\n");
 		
 		// Update
-		myServ.establishConn(uRespon);
+		myServ.setPass(uRespon);
+		myServ.establishConn();
 		System.out.println("Updating first name of user with UID=1...");
 		myServ.updateRecord();
-		myServ.establishConn(uRespon);
+		myServ.setPass(uRespon);
+		myServ.establishConn();
 		al1 = myServ.getAllUsers();
 		for(int i = 0; i < al1.size(); i++)
 		{
@@ -108,10 +113,12 @@ public class BrickCityBankClient {
 
 		
 		// Delete
-		myServ.establishConn(uRespon);
+		myServ.setPass(uRespon);
+		myServ.establishConn();
 		System.out.println("Deleting user with UID=2...");
 		myServ.dropRecord();
-		myServ.establishConn(uRespon);
+		myServ.setPass(uRespon);
+		myServ.establishConn();
 		al1 = myServ.getAllUsers();
 		for(int i = 0; i < al1.size(); i++)
 		{

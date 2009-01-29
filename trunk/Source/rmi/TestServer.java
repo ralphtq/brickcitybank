@@ -21,7 +21,7 @@ public class TestServer {
 		producer.setConnFactoryName("connectionFactory");
 		producer.setDestName("destinationQueue");
 		producer.createConnections();
-		producer.sendMessage();
+		//producer.sendMessage();
 
 		//brickcitybank.GUI gui = new brickcitybank.GUI();
 		//usr.deleteUser(1, conn);
