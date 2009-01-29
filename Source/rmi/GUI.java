@@ -9,7 +9,7 @@
  * Created on Jan 25, 2009, 7:08:50 PM
  */
 
-package brickcitybank;
+package rmi;
 
 import javax.swing.UIManager;
 
@@ -127,7 +127,10 @@ public class GUI extends javax.swing.JFrame {
 
     private void jmsButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // Create Consumer, which will connect to Queue and get message
-        //rmi.JMSConsumer consumer = new rmi.JMSConsumer();
+        rmi.JMSConsumer consumer = new rmi.JMSConsumer("destinationQueue");
+        System.out.println("About to receive message");
+        consumer.getMessages();
+        jmsMessage.setText("Got: " +consumer.getMessage());
 }
 
     /**

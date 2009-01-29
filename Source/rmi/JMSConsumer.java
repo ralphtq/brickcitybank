@@ -18,16 +18,17 @@ public class JMSConsumer
 {
   private final String QUEUE_NAME = "destinationQueue";
   private final String CONN_FACTORY = "connectionFactory";
+  public String message = "";
  
  private Context jndiContext; // JNDI context for looking up names
  private ConnectionFactory cf;
  private Destination dest;
-    
+    /*
  	public static void main(String[] args)
  	{
  		JMSConsumer consume = new JMSConsumer("destinationQueue");
  		consume.getMessages();
- 	}
+ 	}*/
  
     /** Creates a new instance of Consumer */
     public JMSConsumer(String destName) {
@@ -79,7 +80,7 @@ public class JMSConsumer
             conn.start();
         
             // loop to create and send the messages
-            while(true) 
+            while(message.equals("")) 
 			{
                 Message m = cons.receive(); // block until a message appears
                 if(m != null) 
@@ -88,6 +89,8 @@ public class JMSConsumer
                     {
                         TextMessage msg = (TextMessage)m;
                         System.out.println("Consumer received " + msg.getText());
+                        message = msg.getText();
+                        break;
                     }
                 }
                 else 
@@ -108,4 +111,14 @@ public class JMSConsumer
             System.exit(1);
         }
 	 }
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+    
+    
 }

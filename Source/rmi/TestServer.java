@@ -1,6 +1,5 @@
 package rmi;
 
-
 public class TestServer {
 
 	/**
@@ -16,13 +15,14 @@ public class TestServer {
 		System.out.println("Testing JMS Stuff");
 		//User usr = new User();
 		
-		rmi.JMSProducer producer = new rmi.JMSProducer();
+		JMSProducer producer = new JMSProducer();
 		producer.setMessage("Test message w00t!");
 		//producer.setQueueName("destinationQueue");
 		producer.setConnFactoryName("connectionFactory");
 		producer.setDestName("destinationQueue");
 		producer.createConnections();
-		
+		producer.sendMessage();
+
 		//brickcitybank.GUI gui = new brickcitybank.GUI();
 		//usr.deleteUser(1, conn);
 		//usr.insertUser();
