@@ -43,7 +43,7 @@ public class GUIAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Brick City Bank - Administrator GUI - v1.0");
+        jLabel1.setText("Brick City Bank - Administrator GUI - v1.1");
 
         jLabel4.setText("JMS Message:");
 
@@ -61,23 +61,22 @@ public class GUIAdmin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jmsTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(setSendButton)
-                            .addGap(39, 39, 39)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(statusLabel)
-                        .addGap(67, 67, 67))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jmsTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(setSendButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(statusLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addComponent(jLabel1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,24 +91,23 @@ public class GUIAdmin extends javax.swing.JFrame {
                 .addComponent(setSendButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(statusLabel)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>
 
-    private void setSendButtonActionPerformed(java.awt.event.ActionEvent evt) 
-    {
+    private void setSendButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         //rmi.JMSProducer producer = new rmi.JMSProducer();
-       // producer.setMessage(jmsTextField.getText());
+        //producer.setMessage(jmsTextField.getText());
         //producer.setQueueName("destinationQueue");
         //producer.setConnFactoryName("connectionFactory");
         //producer.setDestName("destinationQueue");
         //System.out.println(producer.getDestName() +" " +producer.getQueueName() +" " +producer.getConnFactoryName());
         //producer.createConnections();
         //producer.sendMessage();
-        
-        
+
+
         //DO RMI here
         RmiUtils rmi = new RmiUtils();
         rmi.connectToRmi();
@@ -121,11 +119,11 @@ public class GUIAdmin extends javax.swing.JFrame {
         {
         	System.err.println(remote.getMessage());
         }
-        
-        
-        
+
+
+
         statusLabel.setText("Message set and set successfully: " +jmsTextField.getText());
-    }
+}                                             
 
     /**
     * @param args the command line arguments
