@@ -117,23 +117,23 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	}
 
 	/** 
-	 * Authentication means for ATMs
+	 * Authentication means for ATMs; routed to Business
 	 * 
 	 * @param	dcn		Users Debit Card Number
 	 * @param	pin		Users PIN
 	 */
 	public void authenATM(int dcn, int pin) throws RemoteException{
-		
+		myBez.authenticateATM(dcn, pin);
 	}
 
 	/**
-	 * Authentication means for the Web site
+	 * Authentication means for the Web site; routed to Business
 	 * 
 	 * @param	uName	User Name
 	 * @param	passW	Password for Users Account
 	 */
 	public void authenWeb(String uName, String passW) throws RemoteException{
-		
+		myBez.authenticateWeb(uName, passW);
 	}
 	
 }

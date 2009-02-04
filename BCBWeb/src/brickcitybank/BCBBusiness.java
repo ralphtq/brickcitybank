@@ -75,4 +75,26 @@ public class BCBBusiness {
 		return retval;
 	}
 	
+	/**
+	 * Authentication for ATMs; routed to the authentication module here
+	 * 
+	 * note: returns void for now, other returns possible in future
+	 * 
+	 * @param	dcn		Users Debit Card Number
+	 * @param	pin		Users PIN
+	 */
+	public void authenticateATM( int dcn, int pin ){
+		
+	}
+	
+	/**
+	 * Authentication means for the Web site; routed to the authentication module here
+	 * 
+	 * @param	uName	User Name
+	 * @param	passW	Password for Users Account
+	 */
+	public void authenticateWeb( String uName, String passW ){
+		
+	}
+	
 }
