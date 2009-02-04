@@ -108,9 +108,26 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 		return retVal;
 	}
 	
+	/**
+	 * Sends messages to the business class
+	 */
 	public void sendJMSMessage(String msg)
 	{
 		myBez.sendJMSMessage(msg);
 	}
 
+	/** 
+	 * Authentication means for ATMs
+	 */
+	public void authenATM(int dcn, int pin) throws RemoteException{
+		
+	}
+
+	/**
+	 * Authentication means for the Web site
+	 */
+	public void authenWeb(String uID, String passw) throws RemoteException{
+		
+	}
+	
 }
