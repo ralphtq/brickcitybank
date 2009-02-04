@@ -38,7 +38,7 @@ public class GUI extends javax.swing.JFrame {
         passwordField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jmsButton = new javax.swing.JButton();
@@ -50,11 +50,22 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
 
+        usernameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameFieldActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Username");
 
         jLabel5.setText("Password");
 
-        jButton1.setText("Login");
+        loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("(Functionality coming soon!)");
 
@@ -74,7 +85,7 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(usernameField, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                             .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                             .addComponent(jLabel3)))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -91,7 +102,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(loginButton)
                 .addContainerGap())
         );
 
@@ -178,6 +189,24 @@ public class GUI extends javax.swing.JFrame {
         jmsMessage.setText("Got: " +consumer.getMessage());
 }                                         
 
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {
+
+    }
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        RmiUtils rmiUtils = new RmiUtils();
+        rmiUtils.connectToRmi();
+        BCBRemoteServer serv = rmiUtils.getMyServ();
+        try
+        {
+        	serv.authenATM(Integer.parseInt(usernameField.getText()), Integer.parseInt(passwordField.getText()));
+        }
+        catch(Exception e)
+        {
+        	e.printStackTrace();
+        }
+    }
+
     /**
     * @param args the command line arguments
     */
@@ -195,7 +224,6 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -205,6 +233,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jmsButton;
     private javax.swing.JLabel jmsMessage;
+    private javax.swing.JButton loginButton;
     private javax.swing.JTextField passwordField;
     private javax.swing.JTextField usernameField;
     // End of variables declaration
