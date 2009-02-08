@@ -47,10 +47,10 @@ public class User {
 	 */
 	private String zipCode;
 	//==================== Constructors ====================
-	/*public User()
+	public User()
 	{
 		
-	}*/
+	}
 	//===================== Accessors =====================
 	/**
 	 * @return

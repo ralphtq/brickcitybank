@@ -1,5 +1,7 @@
 package rmi;
 
+import rmi.JMSProducer;
+
 public class TestServer {
 
 	/**

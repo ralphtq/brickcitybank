@@ -55,7 +55,8 @@ public class BCBBusiness {
 		myTool = myWithdraw;
 		
 		//create our JMSProducer object
-		myProd = new JMSProducer();
+		
+		//myProd = new JMSProducer();
 		
 	}
 	
