@@ -122,8 +122,12 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 * @param	dcn		Users Debit Card Number
 	 * @param	pin		Users PIN
 	 */
-	public void authenATM(int dcn, int pin) throws RemoteException{
-		myBez.authenticateATM(dcn, pin);
+	public boolean authenATM(int dcn, int pin) throws RemoteException
+	{
+		boolean loginSuccess = myBez.authenticateATM(dcn, pin);	
+		// int[] accounts = myBez.getAccounts();
+		// int[] balances = myBez.getBalances();
+		return loginSuccess;
 	}
 
 	/**
@@ -132,7 +136,8 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 * @param	uName	User Name
 	 * @param	passW	Password for Users Account
 	 */
-	public void authenWeb(String uName, String passW) throws RemoteException{
+	public void authenWeb(String uName, String passW) throws RemoteException
+	{
 		myBez.authenticateWeb(uName, passW);
 	}
 	

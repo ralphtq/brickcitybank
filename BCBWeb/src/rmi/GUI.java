@@ -50,12 +50,6 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
 
-        usernameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameFieldActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Username");
 
         jLabel5.setText("Password");
@@ -189,21 +183,29 @@ public class GUI extends javax.swing.JFrame {
         jmsMessage.setText("Got: " +consumer.getMessage());
 }                                         
 
-    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {
-
-    }
-
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+    	boolean loginSuccess = false;
         RmiUtils rmiUtils = new RmiUtils();
         rmiUtils.connectToRmi();
         BCBRemoteServer serv = rmiUtils.getMyServ();
         try
         {
-        	serv.authenATM(Integer.parseInt(usernameField.getText()), Integer.parseInt(passwordField.getText()));
+        	loginSuccess = serv.authenATM(Integer.parseInt(usernameField.getText()), Integer.parseInt(passwordField.getText()));
         }
         catch(Exception e)
         {
         	e.printStackTrace();
+        }
+        
+        if(loginSuccess)
+        {
+        	// Get accounts, balances
+        	// Create new JFrame, welcome user, show accounts + balances
+        }
+        else
+        {
+        	// Display "Login failed", kick back to login GUI
         }
     }
 
