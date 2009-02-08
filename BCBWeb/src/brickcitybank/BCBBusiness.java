@@ -144,8 +144,28 @@ public class BCBBusiness {
 	 * @param	uName	User Name
 	 * @param	passW	Password for Users Account
 	 */
-	public void authenticateWeb( String uName, String passW ){
+	public int authenticateWeb( String uName, String passW ){
+		ResultSet rs;
+		Statement state = null;
+		int userID = 0;
+		try
+		{
+			String query = "select idUser from User where UserName=\"" +uName +"and Password = " +passW +"\" ";
+	        rs = state.executeQuery(query);
+	        while(rs.next())
+	        {
+	            userID = rs.getInt(1);
+	        }
+	        
+	        return userID;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
+		// If error, say their login failed
+		return 0;
 	}
 	
 }
