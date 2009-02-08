@@ -136,9 +136,13 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 * @param	uName	User Name
 	 * @param	passW	Password for Users Account
 	 */
-	public void authenWeb(String uName, String passW) throws RemoteException
+	public int authenWeb(String uName, String passW) throws RemoteException
 	{
-		myBez.authenticateWeb(uName, passW);
+		int userID = 0;
+		userID = myBez.authenticateWeb(uName, passW);
+		// int[] accounts = myBez.getAccounts();
+		// int[] balances = myBez.getBalances();
+		return userID;
 	}
 	
 }

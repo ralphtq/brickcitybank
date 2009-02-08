@@ -26,7 +26,7 @@ public interface BCBRemoteServer extends Remote {
 	
 	public boolean authenATM(int cc, int pin) throws RemoteException;
 	
-	public void authenWeb(String uID, String passw) throws RemoteException;
+	public int authenWeb(String uID, String passw) throws RemoteException;
 	
 	
 }
