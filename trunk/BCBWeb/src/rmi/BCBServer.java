@@ -34,9 +34,22 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	/**
 	 * Constructor for the server... mostly empty
 	 */
-	public BCBServer() throws RemoteException {
+	public BCBServer() throws RemoteException 
+	{
 		myUser = new User();
 		myBez = new BCBBusiness(this);
+	}
+	
+	/**
+	 * Constructor for the server - takes password
+	 */
+	public BCBServer(String p) throws RemoteException 
+	{
+		pass = p;
+		System.out.println("BCB SERVER CONSTR");
+		myUser = new User();
+		myBez = new BCBBusiness(this);
+		
 	}
 	
 	/**
@@ -44,7 +57,7 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 * 
 	 * @param p
 	 */
-	public void setPass(String p){
+	public void setPass(String p) throws RemoteException{
 		pass = p;
 	}
 	
@@ -58,6 +71,7 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 */
 	public DBConnection establishConn() throws RemoteException{
 		//myConn = new DBConnection("", pass);
+		System.out.println("PASSWORD IS: :::: " +pass);
 		myConn = new DBConnection(pass);
 		return myConn;
 	}

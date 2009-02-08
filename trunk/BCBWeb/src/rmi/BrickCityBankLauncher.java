@@ -9,6 +9,7 @@
 package rmi;
 
 import java.rmi.*;
+import java.util.Scanner;
 
 /**
  * @author Louis Duke
@@ -23,9 +24,14 @@ public class BrickCityBankLauncher {
 	
 	public static void startServer(){
 		try {
+			Scanner scan = new Scanner(System.in);
+			System.out.println("Enter your root MySQL password: ");
+			String pass = scan.nextLine();
             //build our server object
-			BCBServer myServ = new BCBServer();
 			
+			System.out.println("before: " +pass);
+			BCBServer myServ = new BCBServer(pass);
+			System.out.println("after: " +pass);
 			//bind it to the RMI registry
             Naming.rebind("rmi://localhost:1099/BCBServer", myServ);
             System.out.println("BCBServer launched successfully.");
