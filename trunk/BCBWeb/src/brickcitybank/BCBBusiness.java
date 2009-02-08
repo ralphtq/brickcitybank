@@ -5,6 +5,9 @@
  */
 package brickcitybank;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import rmi.*;
 import brickcitybank.tools.*;
 import brickcitybank.message.*;
@@ -83,9 +86,57 @@ public class BCBBusiness {
 	 * @param	dcn		Users Debit Card Number
 	 * @param	pin		Users PIN
 	 */
-	public void authenticateATM( int dcn, int pin ){
+	public boolean authenticateATM( int dcn, int pin ){
+		ResultSet rs;
+		Statement state = null;
+		int cardPin = 0, cardNum = 0;
+		try
+		{
+			String query = "select idCredit_card, pin from credit_card where idCredit_card=\"" +dcn +"\"";
+	        rs = state.executeQuery(query);
+	        while(rs.next())
+	        {
+	            cardNum = rs.getInt(1);
+	            cardPin = rs.getInt(2);
+	        }
+	        
+	        if(cardPin == pin && cardPin != 0 && cardNum != 0)
+	        {
+	        	return true;
+	        	// Login is valid!
+	        	// 		Get the accounts for this user, store in variable, maybe array or ArrayList
+	        	//		Get the balance for those accounts, store in another array/ArrayList
+	        	//		Same index relates to same account (arrayA[3] is account , arrayB[3] is balance)
+	        	//		BCBServer will get these accounts from getAccounts() method here, if login is valid.
+	        	//		BCBServer will get balances from getBalances() method here, if login is valid.
+	        	//			These 2 methods are below, stubbed/commented
+	        }
+	        else
+	        {
+	        	return false;
+	        }
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
+		// If error, say their login failed
+		return false;
 	}
+	/*
+	public int[] getAccounts()
+	{
+		// return accounts after getting from DB
+	}
+	
+	public int[] getBalances()
+	{
+		// return balances after getting from DB
+	}
+	*/
+	
+	
 	
 	/**
 	 * Authentication means for the Web site; routed to the authentication module here
