@@ -3,6 +3,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
 import rmi.*;
 
 /**
@@ -39,10 +42,23 @@ public class Login extends HttpServlet {
 		//get values
 		
 		
-		//RmiUtils rmi = new RmiUtils();
-		//rmi.connectToRmi();
+		RmiUtils rmi = new RmiUtils();
+		rmi.connectToRmi();
+		BCBRemoteServer serv = rmi.getMyServ();
+		int userID = serv.authenWeb("username","password");
 		
-		//authenWeb("username","password");
+		if(userID == 0)
+		{
+			//reddirect user to login page
+			PrintWriter out = response.getWriter();
+			out.write("login fail");
+		}
+		else
+		{
+			//redirect people to accountlisting 
+			PrintWriter out = response.getWriter();
+			out.write("login success");
+		}
 	
 	}
 
