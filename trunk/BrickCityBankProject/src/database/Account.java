@@ -1,10 +1,17 @@
 package database;
 
+import java.io.Serializable;
+
 /**
  * @author  Louis Duke
  */
-public class Account {
+public class Account implements Serializable{
 
+	public Account(int idAcount, double balance) {
+		super();
+		this.idAcount = idAcount;
+		this.balance = balance;
+	}
 	//attributes
 	private int idAcount;
 	/**

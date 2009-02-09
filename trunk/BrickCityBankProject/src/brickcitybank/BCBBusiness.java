@@ -14,7 +14,6 @@ import brickcitybank.tools.*;
 import brickcitybank.message.*;
 import database.*;
 
-
 /**
  * BCBBusiness
  * 
@@ -180,4 +179,35 @@ public class BCBBusiness {
 		return userID;
 	}
 	
+	public ArrayList<Account> getAccount(int id, String type)
+	{
+		ResultSet rs = null;
+		Statement state = null;
+		ArrayList<Account> reply = new ArrayList<Account>();
+		double balance;
+		int accountNum;
+		int accountType;
+		try
+		{
+			state = myConn.getConn().createStatement();
+			String query = "select account_number, balance from account, user_accounts, " +type +" where account.idAccount = user_accounts.account_number and " +type +".id" +type +"=user_accounts.account_number and user_id=\'" +id +"'";
+	        System.out.println("QUERY: " +query);
+			rs = state.executeQuery(query);
+	        while(rs.next())
+	        {
+	        	accountNum = rs.getInt(1);
+	            balance = rs.getDouble(2);
+	            reply.add(new Account(accountNum, balance));
+	        }
+	        
+	        state.close();
+			//myConn.closeConnection();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		// If error, say their login failed
+		return reply;
+	}
 }

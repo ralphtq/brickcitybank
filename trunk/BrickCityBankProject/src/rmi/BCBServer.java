@@ -159,4 +159,9 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 		return userID;
 	}
 	
+	public ArrayList<database.Account> getAccount(int id, String type)
+	{
+		return myBez.getAccount(id, type);
+	}
+	
 }
