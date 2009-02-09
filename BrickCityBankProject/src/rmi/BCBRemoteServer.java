@@ -28,5 +28,6 @@ public interface BCBRemoteServer extends Remote {
 	
 	public int authenWeb(String uID, String passw) throws RemoteException;
 	
+	public ArrayList<Account> getAccount(int i , String s) throws RemoteException;
 	
 }
