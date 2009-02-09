@@ -182,6 +182,7 @@ public class DBConnection {
 	 */
 	public void setConn(Connection connect)
 	{
+		System.out.println("doneeeeeeee");
 		conn = connect;
 	}
 	//--------------------accessers--------------------
@@ -284,7 +285,7 @@ public class DBConnection {
 		}
 		catch(SQLException sql)
 		{
-			System.out.println("ClassNotFound!");
+			System.out.println("SQLException!");
 			System.out.println(sql.getMessage());
 		}
 	}

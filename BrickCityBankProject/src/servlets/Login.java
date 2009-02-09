@@ -46,9 +46,9 @@ public class Login extends HttpServlet {
 		RmiUtils rmi = new RmiUtils();
 		rmi.connectToRmi();
 		rmi.BCBRemoteServer serv = rmi.getMyServ();
-		int userID = serv.authenWeb("username","password");
+		int userID = serv.authenWeb(username,password);
 		
-		if(userID == 0)
+		if(userID == -1)
 		{
 			//reddirect user to login page
 			PrintWriter out = response.getWriter();
@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
 		{
 			//redirect people to accountlisting 
 			PrintWriter out = response.getWriter();
-			out.write("login success");
+			out.write("login success - UserID:" +userID);
 		}
 		//PrintWriter out = response.getWriter();
 		//out.write("login fail");
