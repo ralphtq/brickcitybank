@@ -7,6 +7,7 @@ package brickcitybank;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import rmi.*;
 import brickcitybank.tools.*;
@@ -41,9 +42,13 @@ public class BCBBusiness {
 		myserv = ms;
 		
 		//establish connection
-		try{
+		try
+		{
 			myConn = myserv.establishConn();
-		}catch(Exception e){
+			System.out.println("Connection established");
+		}
+		catch(Exception e)
+		{
 			System.err.println(e.getMessage());
 		}
 		
@@ -151,18 +156,24 @@ public class BCBBusiness {
 		int userID = 0;
 		try
 		{
-			String query = "select idUser from User where UserName=\"" +uName +"and Password = " +passW +"\" ";
-	        rs = state.executeQuery(query);
+			System.out.println("trying");
+			state = myConn.getConn().createStatement();
+			System.out.println("connected");
+			String query = "select idUser from User where UserName=\'" +uName +"' and Password='"+passW +"'";
+	        System.out.println(query);
+			rs = state.executeQuery(query);
 	        while(rs.next())
 	        {
 	            userID = rs.getInt(1);
 	            System.out.println(rs.getInt(1));
 	        }
+	        state.close();
+			myConn.closeConnection();
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			userID = 0;
+			userID = -1;
 		}
 		System.out.println(userID);
 		// If error, say their login failed
