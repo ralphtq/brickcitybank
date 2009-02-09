@@ -146,7 +146,7 @@ public class BCBBusiness {
 	 * @param	passW	Password for Users Account
 	 */
 	public int authenticateWeb( String uName, String passW ){
-		ResultSet rs;
+		ResultSet rs = null;
 		Statement state = null;
 		int userID = 0;
 		try
@@ -156,17 +156,17 @@ public class BCBBusiness {
 	        while(rs.next())
 	        {
 	            userID = rs.getInt(1);
+	            System.out.println(rs.getInt(1));
 	        }
-	        
-	        return userID;
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			userID = 0;
 		}
-		
+		System.out.println(userID);
 		// If error, say their login failed
-		return 0;
+		return userID;
 	}
 	
 }
