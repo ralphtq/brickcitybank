@@ -168,7 +168,7 @@ public class BCBBusiness {
 	            System.out.println(rs.getInt(1));
 	        }
 	        state.close();
-			myConn.closeConnection();
+			//myConn.closeConnection();
 		}
 		catch(Exception e)
 		{
