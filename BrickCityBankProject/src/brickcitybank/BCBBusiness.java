@@ -28,7 +28,8 @@ public class BCBBusiness {
 	private BCBServer myserv; //reference to the creating server
 	private ActionTool myTool; //Base tool to access the database
 	private JMSProducer myProd; //JMSProducer we use
-	private DBConnection myConn;
+	private DBConnection myConn; //Database Connection object
+	private Authenticator myAuthen; //Authentication Module -- not used at current time
 	
 	/**
 	 * Constructor - Mostly empty; commented out for now
@@ -57,6 +58,9 @@ public class BCBBusiness {
 		TransferTool myTrans = new TransferTool(myConn,myDeposit);
 		WithdrawalTool myWithdraw = new WithdrawalTool(myConn,myTrans);
 		myTool = myWithdraw;
+		
+		//create our authentication object
+		myAuthen = new Authenticator();
 		
 		//create our JMSProducer object
 		
@@ -129,6 +133,7 @@ public class BCBBusiness {
 		// If error, say their login failed
 		return false;
 	}
+	
 	/*
 	public int[] getAccounts()
 	{
@@ -210,4 +215,4 @@ public class BCBBusiness {
 		// If error, say their login failed
 		return reply;
 	}
-}
+} // End BCBBusiness
