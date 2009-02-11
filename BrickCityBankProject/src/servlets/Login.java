@@ -62,29 +62,47 @@ public class Login extends HttpServlet
 		}
 		else
 		{
-			//redirect people to accountlisting 
+			//redirect people to account listing 
 			PrintWriter out = response.getWriter();
-			out.write("login success - UserID:" +userID);
+			out.write("<html><head><style type=\"text/css\">h1 {text-align:center;} h3 {text-align:center;}</style>");
+			out.write("</head><body>");
+			out.write("<h1>Welcome to Brick City Bank</h1><br /><h3>Online Banking System</h3><br />");
 			loan = serv.getAccount(userID, "Loan");
 			checking = serv.getAccount(userID, "Checking");
 			savings = serv.getAccount(userID, "Saving");
 			
-			out.write("<br />Loan:<br />");
-			for(int i = 0; i<loan.size(); i++)
-			{
-				out.write(loan.get(i).getIdAccount() +"--" +loan.get(i).getBalance() +"<br />");
-			}
 			
-			out.write("<br />Checking:<br />");
+			
+			out.write("<h4>Checking Accounts:</h4>");
+			if(checking.size() < 1)
+			{
+				out.write("None");
+			}
 			for(int i = 0; i<checking.size(); i++)
 			{
-				out.write(checking.get(i).getIdAccount() +"--" +checking.get(i).getBalance() +"<br />");
+				out.write("Account#" +checking.get(i).getIdAccount() +"&nbsp;&nbsp;Balance: $" +checking.get(i).getBalance());
 			}
 			
-			out.write("<br />Saving:<br />");
+			
+			out.write("<br /><br /><br /><h4>Saving Accounts:</h4>");
+			if(savings.size() < 1)
+			{
+				out.write("None");
+			}
 			for(int i = 0; i<savings.size(); i++)
 			{
-				out.write(savings.get(i).getIdAccount() +"--" +savings.get(i).getBalance() +"<br />");
+				out.write("Account#" +savings.get(i).getIdAccount() +"&nbsp;&nbsp;Balance: $" +savings.get(i).getBalance());
+			}
+			
+			
+			out.write("<br /><br /><br /><h4>Loans:</h4>");
+			if(loan.size() < 1)
+			{
+				out.write("None");
+			}
+			for(int i = 0; i<loan.size(); i++)
+			{
+				out.write("Loan#" +loan.get(i).getIdAccount() +"&nbsp;&nbsp;Balance: $" +loan.get(i).getBalance());
 			}
 		}
 		//PrintWriter out = response.getWriter();
