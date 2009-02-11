@@ -58,13 +58,17 @@ public class Login extends HttpServlet
 		{
 			//reddirect user to login page
 			PrintWriter out = response.getWriter();
-			out.write("login fail");
+			out.write("<html><head><style type=\"text/css\">caption {font-weight:bold;} h1 {font-family:verdana;text-align:center;} h2 {font-family:verdana;text-align:center;} h3 {font-family:verdana;text-align:center;}body{font-family:verdana;text-align:center;}</style>");
+			out.write("</head><body>");
+			out.write("<h1>Brick City Bank</h1><br /><h2>Online Banking System</h2><br />");
+			out.write("Login failed.\n\n<A HREF=\"javascript:javascript:history.go(-1)\">Click here</A> to go back and try again.");
+			out.write("</body></html>");
 		}
 		else
 		{
 			//redirect people to account listing 
 			PrintWriter out = response.getWriter();
-			out.write("<html><head><style type=\"text/css\">caption {font-weight:bold;} h1 {font-family:verdana;text-align:center;} h3 {font-family:verdana;text-align:center;}body{font-family:verdana;}</style>");
+			out.write("<html><head><style type=\"text/css\">caption {font-weight:bold;} h1 {font-family:verdana;text-align:center;} h2 {font-family:verdana;text-align:center;} h3 {font-family:verdana;text-align:center;}body{font-family:verdana;}</style>");
 			out.write("</head><body>");
 			out.write("<h1>Welcome to Brick City Bank</h1><br /><h2>Online Banking System</h2><br />");
 			loan = serv.getAccount(userID, "Loan");
