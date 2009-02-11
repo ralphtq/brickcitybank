@@ -54,7 +54,7 @@ public class Login extends HttpServlet
 		rmi.BCBRemoteServer serv = rmi.getMyServ();
 		int userID = serv.authenWeb(username,password);
 		
-		if(userID == -1)
+		if(userID <= 0)
 		{
 			//reddirect user to login page
 			PrintWriter out = response.getWriter();
