@@ -68,42 +68,57 @@ public class Login extends HttpServlet
 		{
 			//redirect people to account listing 
 			PrintWriter out = response.getWriter();
-			out.write("<html><head><style type=\"text/css\">caption {font-weight:bold;} h1 {font-family:verdana;text-align:center;} h2 {font-family:verdana;text-align:center;} h3 {font-family:verdana;text-align:center;}body{font-family:verdana;}</style>");
+			out.write("<html><head>" +
+					"<style type=\"text/css\">" +
+					"caption {font-weight:bold;}" +
+					"h1 {font-family:verdana;text-align:center;} " +
+					"h2 {font-family:verdana;text-align:center;} " +
+					"h3 {font-family:verdana;text-align:center;}" +
+					"body{font-family:verdana;text-align:center;}" +
+					"h6 {font-weight:bold;text-align:center;}" +
+					"</style>");
 			out.write("</head><body>");
 			out.write("<h1>Welcome to Brick City Bank</h1><br /><h2>Online Banking System</h2><br />");
 			loan = serv.getAccount(userID, "Loan");
 			checking = serv.getAccount(userID, "Checking");
 			savings = serv.getAccount(userID, "Saving");
 			
-			
-			out.write("<TABLE Border=\"3\" Cellpadding=\"6\" Cellspacing=\"1\" Align=\"center\">"); 
-			out.write("<CAPTION>Checking Accounts:</CAPTION>");
-			out.write("<TR> <TH>Account#</TH> <TH>Balance</TH></TR>"); 
-			for(int i = 0; i<checking.size(); i++)
+			if(checking.size() > 0)
 			{
-				out.write("<tr> " +"<td>" +checking.get(i).getIdAccount() +"</td>" +"<td>$" +checking.get(i).getBalance() +"</td></tr>");
+				out.write("<TABLE Border=\"3\" Cellpadding=\"6\" Cellspacing=\"1\" Align=\"center\">"); 
+				out.write("<CAPTION>Checking Accounts:</CAPTION>");
+				out.write("<TR> <TH>Account#</TH> <TH>Balance</TH></TR>"); 
+				for(int i = 0; i<checking.size(); i++)
+				{
+					out.write("<tr> " +"<td>" +checking.get(i).getIdAccount() +"</td>" +"<td>$" +checking.get(i).getBalance() +"</td></tr>");
+				}
+				out.write("</table><br /><br />");
 			}
-			out.write("</table><br /><br />");
-			
-			
-			out.write("<TABLE Border=\"3\" Cellpadding=\"6\" Cellspacing=\"1\" Align=\"center\">"); 
-			out.write("<CAPTION>Saving Accounts:</CAPTION>");
-			out.write("<TR> <TH>Account#</TH> <TH>Balance</TH></TR>"); 
-			for(int i = 0; i<savings.size(); i++)
+
+			if(savings.size() > 0)
 			{
-				out.write("<tr> " +"<td>" +savings.get(i).getIdAccount() +"</td>" +"<td>$" +savings.get(i).getBalance() +"</td></tr>");
+				out.write("<TABLE Border=\"3\" Cellpadding=\"6\" Cellspacing=\"1\" Align=\"center\">"); 
+				out.write("<CAPTION>Saving Accounts:</CAPTION>");
+				out.write("<TR> <TH>Account#</TH> <TH>Balance</TH></TR>"); 
+				for(int i = 0; i<savings.size(); i++)
+				{
+					out.write("<tr> " +"<td>" +savings.get(i).getIdAccount() +"</td>" +"<td>$" +savings.get(i).getBalance() +"</td></tr>");
+				}
+				out.write("</table><br /><br />");
 			}
-			out.write("</table><br /><br />");
 			
 			
-			out.write("<TABLE Border=\"3\" Cellpadding=\"6\" Cellspacing=\"1\" Align=\"center\">"); 
-			out.write("<CAPTION>Loans:</CAPTION>");
-			out.write("<TR> <TH>Loan#</TH> <TH>Balance</TH></TR>"); 
-			for(int i = 0; i<loan.size(); i++)
+			if(loan.size() > 0)
 			{
-				out.write("<tr> " +"<td>" +loan.get(i).getIdAccount() +"</td>" +"<td>$" +loan.get(i).getBalance() +"</td></tr>");
+				out.write("<TABLE Border=\"3\" Cellpadding=\"6\" Cellspacing=\"1\" Align=\"center\">"); 
+				out.write("<CAPTION>Loans:</CAPTION>");
+				out.write("<TR> <TH>Loan#</TH> <TH>Balance</TH></TR>"); 
+				for(int i = 0; i<loan.size(); i++)
+				{
+					out.write("<tr> " +"<td>" +loan.get(i).getIdAccount() +"</td>" +"<td>$" +loan.get(i).getBalance() +"</td></tr>");
+				}
+				out.write("</table><br /><br />");
 			}
-			out.write("</table><br /><br />");
 		}
 		//PrintWriter out = response.getWriter();
 		//out.write("login fail");
