@@ -19,4 +19,24 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Action</display-name>
+    <servlet-name>Action</servlet-name>
+    <servlet-class>Action</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Action</servlet-name>
+    <url-pattern>/Action</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Summary</display-name>
+    <servlet-name>Summary</servlet-name>
+    <servlet-class>Summary</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Summary</servlet-name>
+    <url-pattern>/Summary</url-pattern>
+  </servlet-mapping>
 </web-app>

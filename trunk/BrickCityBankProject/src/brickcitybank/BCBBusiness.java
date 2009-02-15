@@ -215,4 +215,9 @@ public class BCBBusiness {
 		// If error, say their login failed
 		return reply;
 	}
+	
+	public MessageResponse doAction(MessageOrder mom)
+	{
+		return myTool.manageAction(mom);
+	}
 } // End BCBBusiness

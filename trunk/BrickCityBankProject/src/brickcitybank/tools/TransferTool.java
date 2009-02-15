@@ -157,8 +157,12 @@ public class TransferTool extends ActionTool{
 	public boolean existAction(MessageOrder m) {
 		boolean response = false;
 		
-		response = (m instanceof MessageTransfer );
-			
+		if(m instanceof MessageTransfer)
+			response = true;
+		else
+			response = false;
+		
+		System.out.println("transfer!"+ response);	
 			
 		return response;
 	}
