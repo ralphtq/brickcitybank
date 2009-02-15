@@ -20,8 +20,8 @@ public abstract class ActionTool {
 	//the actionTool successor
 	private ActionTool succ;
 	
-	static final int DEPOSIT = 0;
-	static final int WITHDRAW = 1;
+	public static final int DEPOSIT = 0;
+	public static final int WITHDRAW = 1;
 	
 	
 	
@@ -42,12 +42,18 @@ public abstract class ActionTool {
 	 * @return
 	 */
 	public MessageResponse manageAction(MessageOrder m){
-		 if(existAction(m)){
+		 if(existAction(m))
+		 {
 			 return executeAction( m);
-		 }else{
-			 if (succ != null){
-				 return succ.executeAction(m);
-			 }else {
+		 }
+		 else
+		 {
+			 if (succ != null)
+			 {
+				 return succ.manageAction(m);
+			 }
+			 else 
+			 {
 				 //to check return error?but will never being accessed
 				 return new MessageResponse();
 			 }

@@ -111,9 +111,10 @@ public class WithdrawalTool extends ActionTool{
 		boolean response = false;
 		
 		if (m instanceof MessageOrderMoney )
-			{
+		{
 			response = (((MessageOrderMoney) m).getTYPE_TRANSACTION() == WITHDRAW);
-			}
+			System.out.println("withdraw!!!!!! response: "+ response +" end response");
+		}
 			
 		return response;
 	}

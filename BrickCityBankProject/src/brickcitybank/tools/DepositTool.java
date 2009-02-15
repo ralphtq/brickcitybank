@@ -40,6 +40,7 @@ public class DepositTool extends ActionTool{
 		if (m instanceof MessageOrderMoney )
 			{
 			response = (((MessageOrderMoney) m).getTYPE_TRANSACTION() == DEPOSIT);
+			System.out.println("Good deposit!"+ response);
 			}
 			
 		return response;
@@ -51,7 +52,7 @@ public class DepositTool extends ActionTool{
 	 * 
 	 */
 	public MessageResponse executeAction(MessageOrder m) {
-		
+		System.out.println("Top of executeAction in DepositTool");
 		if(((MessageOrderMoney)m).getSum()<0){
 			//can't accept the sum must be >0
 			return new MessageResponse("Sum to depose must be positive!");
@@ -96,11 +97,12 @@ public class DepositTool extends ActionTool{
 					throw new AccountNotFoundException();
 				}
 			}
-				
-			boolean successQuery = state.execute("UPDATE Account set Balance="+sumToUpdate + " WHERE idAccount ="+m.getIdAcount()+" ");
-					
-			if (successQuery){
-			//succes in updating
+			
+			int successQuery = state.executeUpdate("UPDATE Account set Balance="+sumToUpdate + " WHERE idAccount ="+m.getIdAcount()+" ");
+
+			if (successQuery > 0)
+			{	
+			//success in updating
 			return new MessageResponse("Your Balance has been succesfully updated, the current balance is "+sumToUpdate);
 			}else{
 			//can't update

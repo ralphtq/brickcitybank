@@ -12,6 +12,7 @@ import java.sql.*;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.*;
+import brickcitybank.message.*;
 
 import database.CreateDB;
 import database.DBConnection;
@@ -162,6 +163,11 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	public ArrayList<database.Account> getAccount(int id, String type)
 	{
 		return myBez.getAccount(id, type);
+	}
+	
+	public MessageResponse bankAction(MessageOrder mo) throws RemoteException
+	{
+		return myBez.doAction(mo);
 	}
 	
 }

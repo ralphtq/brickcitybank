@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 //import org.apache.jasper.tagplugins.jstl.core.Out;
 
@@ -42,22 +43,35 @@ public class Login extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		//get username
-		String username = request.getParameter("userName");
-		//getpassword
-		String password = request.getParameter("password");
-		//get values
-		
+		int userID;
+		HttpSession session = request.getSession();
+		PrintWriter out = response.getWriter();
+
 		RmiUtils rmi = new RmiUtils();
 		rmi.connectToRmi();
 		rmi.BCBRemoteServer serv = rmi.getMyServ();
-		int userID = serv.authenWeb(username,password);
+		
+		if(session.getAttribute("userID") == null)
+		{
+			//get username
+			String username = request.getParameter("userName");
+			//getpassword
+			String password = request.getParameter("password");
+			//get values
+			
+			
+			userID = serv.authenWeb(username,password);
+		}
+		else
+		{
+			userID = Integer.parseInt(session.getAttribute("userID").toString());
+		}
+		
+		
 		
 		if(userID <= 0)
 		{
 			//reddirect user to login page
-			PrintWriter out = response.getWriter();
 			out.write("<html><head><style type=\"text/css\">caption {font-weight:bold;} h1 {font-family:verdana;text-align:center;} h2 {font-family:verdana;text-align:center;} h3 {font-family:verdana;text-align:center;}body{font-family:verdana;text-align:center;}</style>");
 			out.write("</head><body>");
 			out.write("<h1>Brick City Bank</h1><br /><h2>Online Banking System</h2><br />");
@@ -66,8 +80,8 @@ public class Login extends HttpServlet
 		}
 		else
 		{
+			session.setAttribute("userID", userID);
 			//redirect people to account listing 
-			PrintWriter out = response.getWriter();
 			out.write("<html><head>" +
 					"<style type=\"text/css\">" +
 					"caption {font-weight:bold;}" +
@@ -87,10 +101,12 @@ public class Login extends HttpServlet
 			{
 				out.write("<TABLE Border=\"3\" Cellpadding=\"6\" Cellspacing=\"1\" Align=\"center\">"); 
 				out.write("<CAPTION>Checking Accounts:</CAPTION>");
-				out.write("<TR> <TH>Account#</TH> <TH>Balance</TH></TR>"); 
+				out.write("<TR> <TH>Account#</TH> <TH>Balance</TH> </TR>"); 
 				for(int i = 0; i<checking.size(); i++)
 				{
-					out.write("<tr> " +"<td>" +checking.get(i).getIdAccount() +"</td>" +"<td>$" +checking.get(i).getBalance() +"</td></tr>");
+					out.write("<tr> " +"<td>" +checking.get(i).getIdAccount() +"</td>" +"<td>$" +checking.get(i).getBalance() +"</td>" +
+							"<td><a href=\"Deposit.jsp?accountid=" +checking.get(i).getIdAccount() +"&balance=" +checking.get(i).getBalance()
+							+"\">Deposit</a></td></tr>");
 				}
 				out.write("</table><br /><br />");
 			}
