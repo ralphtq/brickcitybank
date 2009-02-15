@@ -1,11 +1,8 @@
-Transfer, Authentication, Accounts and History Servlets Written and tested
-	Authentication - Caroline
-	*Transfer
+Transfer, Accounts and History Servlets Written and tested
+	Transfer
+	Withdrawal
+	Deposit
 	History
-	Accounts
-Authentication class(es) Written and BCBServer/Business Updated - Lou
-Web Front end developed - Bill
-ATM GUI Updated to work with Authentication - Jeff
-JMS Updates - Ira
-
-*Not critical for this release;
+Web Front end developed -> JSP
+JMS Update
+ATM GUI Updated to work with Authentication
