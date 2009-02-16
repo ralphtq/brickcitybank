@@ -84,29 +84,34 @@ public class DepositTool extends ActionTool{
 					//the user entered to much money for the loan
 					throw new  SumIncorrectException("Your Loan has not been updated, you try to add to much money, the current balance is "+sumToUpdate);
 					}
-			}else{
+			}
+			else
+			{
 				//it's not a loan
 				rs = state.executeQuery("SELECT Balance FROM Account WHERE idAccount ="+m.getIdAcount());
-				if (rs.first()){
+				if (rs.first())
+				{
 					//means it has an entry
-					
-						sumToUpdate = rs.getDouble("Balance");
-						sumToUpdate += ((MessageOrderMoney)m).getSum();
-						
-				}else{
+					sumToUpdate = rs.getDouble("Balance");
+					sumToUpdate += ((MessageOrderMoney)m).getSum();
+				}
+				else
+				{
 					throw new AccountNotFoundException();
 				}
 			}
 			
 			int successQuery = state.executeUpdate("UPDATE Account set Balance="+sumToUpdate + " WHERE idAccount ="+m.getIdAcount()+" ");
-
+			System.out.println(successQuery +"<- successquery");
 			if (successQuery > 0)
 			{	
-			//success in updating
-			return new MessageResponse("Your Balance has been succesfully updated, the current balance is "+sumToUpdate);
-			}else{
-			//can't update
-			throw new  CannotUpdateException("Your Loan has not been updated, please try again");
+				//success in updating
+				return new MessageResponse("Your Balance has been succesfully updated, the current balance is "+sumToUpdate);
+			}
+			else
+			{
+				//can't update
+				throw new  CannotUpdateException("Your Loan has not been updated, please try again");
 			}
 				
 		

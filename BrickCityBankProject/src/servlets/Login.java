@@ -106,7 +106,10 @@ public class Login extends HttpServlet
 				{
 					out.write("<tr> " +"<td>" +checking.get(i).getIdAccount() +"</td>" +"<td>$" +checking.get(i).getBalance() +"</td>" +
 							"<td><a href=\"Deposit.jsp?accountid=" +checking.get(i).getIdAccount() +"&balance=" +checking.get(i).getBalance()
-							+"\">Deposit</a></td></tr>");
+							+"\">Deposit</a></td>" +
+							"<td><a href=\"Withdraw.jsp?accountid=" +checking.get(i).getIdAccount() +"&balance=" +checking.get(i).getBalance()
+							+"\">Withdraw</a></td>" +
+									"</tr>");
 				}
 				out.write("</table><br /><br />");
 			}
@@ -118,7 +121,12 @@ public class Login extends HttpServlet
 				out.write("<TR> <TH>Account#</TH> <TH>Balance</TH></TR>"); 
 				for(int i = 0; i<savings.size(); i++)
 				{
-					out.write("<tr> " +"<td>" +savings.get(i).getIdAccount() +"</td>" +"<td>$" +savings.get(i).getBalance() +"</td></tr>");
+					out.write("<tr> " +"<td>" +savings.get(i).getIdAccount() +"</td>" +"<td>$" +savings.get(i).getBalance() +"</td>" +
+							"<td><a href=\"Deposit.jsp?accountid=" +savings.get(i).getIdAccount() +"&balance=" +savings.get(i).getBalance()
+							+"\">Deposit</a></td>" 
+							+"<td><a href=\"Withdraw.jsp?accountid=" +savings.get(i).getIdAccount() +"&balance=" +savings.get(i).getBalance()
+							+"\">Withdraw</a></td>"
+							+"</tr>");
 				}
 				out.write("</table><br /><br />");
 			}
