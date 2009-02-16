@@ -65,30 +65,38 @@ public class WithdrawalTool extends ActionTool{
 							sumToUpdate -= ((MessageOrderMoney)m).getSum();
 					
 					
-							boolean successQuery = state.execute("UPDATE Account set Balance="+sumToUpdate + " WHERE idAccount ="+m.getIdAcount()+" ");
-						
-							if (successQuery){
-								//succes in updating
+							int successQuery = state.executeUpdate("UPDATE Account set Balance="+sumToUpdate + " WHERE idAccount ="+m.getIdAcount()+" ");
+							
+							if (successQuery > 0)
+							{
+								//success in updating
 								return new MessageResponse("Your Balance has been succesfully updated, the current balance is "+sumToUpdate);
-							}else{
-							//can't update
-							throw new  CannotUpdateException("Your Balance has not been updated, please try again");
+							}
+							else
+							{
+								System.out.println(successQuery +"<- successquery");
+								//can't update
+								throw new  CannotUpdateException("Your Balance has not been updated, please try again");
 							}
 						}
-					}else{
+					}else
+					{
 						//the account number doesn't exist
 						throw new AccountNotFoundException();
 					}
 			}
-			catch (AccountNotFoundException e){
+			catch (AccountNotFoundException e)
+			{
 				//when the Account is not found
 				return new MessageResponse(e.getMessage());
-				}
-			catch (CannotUpdateException e){
+			}
+			catch (CannotUpdateException e)
+			{
 				//when it's not possible to update the balance
 				return new MessageResponse(e.getMessage());
 			}
-			catch (SumIncorrectException e){
+			catch (SumIncorrectException e)
+			{
 				//when a user entered a non valid sum of money
 				return new MessageResponse(e.getMessage());
 			}
