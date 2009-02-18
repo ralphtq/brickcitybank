@@ -64,7 +64,7 @@ public class BCBBusiness {
 		
 		//create our JMSProducer object
 		
-		//myProd = new JMSProducer();
+		myProd = new JMSProducer();
 		
 	}
 	
@@ -86,7 +86,16 @@ public class BCBBusiness {
 		
 		return retval;
 	}
-	
+	public String getJMSMessage()
+	{
+		String msg = "";
+		
+		JMSConsumer consumer = new JMSConsumer("destinationQueue");
+		
+		msg = consumer.getMessage();
+		
+		return msg;
+	}
 	/**
 	 * Authentication for ATMs; routed to the authentication module here
 	 * 
@@ -216,7 +225,6 @@ public class BCBBusiness {
 		// If error, say their login failed
 		return reply;
 	}
-	
 	
 	
 	public MessageResponse doAction(MessageOrder mo)
