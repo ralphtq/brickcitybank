@@ -40,9 +40,10 @@ public class DepositTool extends ActionTool{
 		if (m instanceof MessageOrderMoney )
 			{
 			response = (((MessageOrderMoney) m).getTYPE_TRANSACTION() == DEPOSIT);
-			System.out.println("Good deposit!"+ response);
-			}
 			
+			}
+		
+		System.out.println("Deposit tool response :"+ response);
 		return response;
 	}
 	

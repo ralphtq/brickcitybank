@@ -123,6 +123,7 @@ public class WithdrawalTool extends ActionTool{
 			response = (((MessageOrderMoney) m).getTYPE_TRANSACTION() == WITHDRAW);
 			System.out.println("withdraw!!!!!! response: "+ response +" end response");
 		}
+		System.out.println("Withdrawal tool response :"+ response);
 			
 		return response;
 	}

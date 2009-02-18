@@ -49,45 +49,6 @@ public class Action extends HttpServlet {
 		rmi.BCBRemoteServer serv = rmi.getMyServ();
 		
 		// should try catch this, error out if letters etc
-		try
-		{
-			depositAmount = Double.parseDouble(request.getParameter("depositAmount"));
-		}
-		catch(NullPointerException npe)
-		{
-			System.out.println("NullPointerException for DEPOSIT");
-		}
-
-		try
-		{
-			withdrawAmount = Double.parseDouble(request.getParameter("withdrawAmount"));
-		}
-		catch(NullPointerException npe)
-		{
-			System.out.println("NullPointerException for WITHDRAW");
-		}
-		
-		try
-		{
-			transferAmount = Double.parseDouble(request.getParameter("transferAmount"));
-		}
-		catch(NullPointerException npe)
-		{
-			System.out.println("NullPointerException for TRANSFER");
-		}
-		
-		try
-		{
-			destAccount = Integer.parseInt(request.getParameter("destAccount"));
-		}
-		catch(NullPointerException npe)
-		{
-			System.out.println("NullPointerException for DESTACCOUNT");
-		}
-		catch(Exception e)
-		{
-			
-		}
 		
 		int accountID = Integer.parseInt(request.getParameter("accountid"));
 		String action = (String)request.getParameter("action");
@@ -95,23 +56,53 @@ public class Action extends HttpServlet {
 		int userID = Integer.parseInt(idString);
 		
 		PrintWriter out = response.getWriter();
-		out.write("Deposit amount: " +depositAmount);
-		out.write("Withdraw amount: " +withdrawAmount);
-		out.write("Transfer amount: " +transferAmount);
 		
+		
+		
+		
+		//if it's a deposit
 		if(action.equals("deposit"))
 		{
+			//get the deposit amount
+			try{
+			depositAmount = Double.parseDouble(request.getParameter("depositAmount"));
+			}catch(Exception e){
+				out.write("Deposit amount forced to 0");
+				depositAmount = 0;
+			}
+			out.write("Deposit amount: " +depositAmount);
 			MessageOrderMoney mom = new MessageOrderMoney(userID, accountID, ActionTool.DEPOSIT, depositAmount);
 			out.write("<br />" +serv.bankAction(mom).getResponse());
 		}
 		else if(action.equals("withdraw"))
 		{
+			//if it's a withdrawal
+			try{
+			withdrawAmount = Double.parseDouble(request.getParameter("withdrawAmount"));
+			}catch(Exception e){
+				out.write("Withdrawal amount forced to 0");
+				withdrawAmount = 0;
+			}
+			out.write("Withdraw amount: " +withdrawAmount);
 			MessageOrderMoney mom = new MessageOrderMoney(userID, accountID, ActionTool.WITHDRAW, withdrawAmount);
 			out.write("<br />" +serv.bankAction(mom).getResponse());		
 		}
 		else if(action.equals("transfer"))
 		{
+			//it's a tranfert
 			System.out.println("Action - Transfer");
+			try{
+				transferAmount = Double.parseDouble(request.getParameter("transferAmount"));
+				destAccount = Integer.parseInt(request.getParameter("destAccount"));
+			}catch(Exception e){
+				out.write("Transfert amount forced to 0");
+				transferAmount = 0;
+				destAccount = 0;
+			}
+			out.write("Operation : Transfer amount: " +transferAmount+ "  to acount " + destAccount);
+			
+			
+			//create message and send it to the server
 			MessageTransfer mt = new MessageTransfer(userID, accountID, transferAmount, destAccount);
 			System.out.println("Action - trying serv.bankAction()");
 			// THIS DOESNT DO ANYTHING!!!! returns null
