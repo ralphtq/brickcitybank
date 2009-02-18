@@ -6,6 +6,7 @@ import java.util.*;
 
 import brickcitybank.message.MessageOrder;
 import brickcitybank.message.MessageResponse;
+import brickcitybank.message.MessageTransfer;
 
 import database.*;
 
@@ -34,5 +35,7 @@ public interface BCBRemoteServer extends Remote {
 	public ArrayList<Account> getAccount(int i , String s) throws RemoteException;
 	
 	public MessageResponse bankAction(MessageOrder mo) throws RemoteException;
+	
+	//public MessageResponse bankActionTransfer(MessageTransfer mt) throws RemoteException;
 	
 }

@@ -7,7 +7,8 @@ package brickcitybank.message;
  * @author Caroline
  *
  */
-public class MessageTransfer extends MessageOrder{
+public class MessageTransfer extends MessageOrder
+{
 	
 
 	/**
@@ -25,16 +26,17 @@ public class MessageTransfer extends MessageOrder{
 	 * @param id_user
 	 * @param idAcount
 	 */
-	public MessageTransfer(int id_user, int idAcount) {
+	public MessageTransfer(int id_user, int idAcount) 
+	{
 		super(id_user, idAcount);
-		// TODO Auto-generated constructor stub
 	}
 	
 	
 	/**
 	 * @return the sumToTransfer
 	 */
-	public double getSumToTransfer() {
+	public double getSumToTransfer() 
+	{
 		return sumToTransfer;
 	}
 
@@ -42,7 +44,8 @@ public class MessageTransfer extends MessageOrder{
 	/**
 	 * @param sumToTransfer the sumToTransfer to set
 	 */
-	public void setSumToTransfer(double sumToTransfer) {
+	public void setSumToTransfer(double sumToTransfer) 
+	{
 		this.sumToTransfer = sumToTransfer;
 	}
 
@@ -50,7 +53,8 @@ public class MessageTransfer extends MessageOrder{
 	/**
 	 * @return the toIdAccount
 	 */
-	public int getToIdAccount() {
+	public int getToIdAccount() 
+	{
 		return toIdAccount;
 	}
 
@@ -70,9 +74,10 @@ public class MessageTransfer extends MessageOrder{
 	 * @param sumToTransfer
 	 * @param toIdAccount
 	 */
-	public MessageTransfer(int id_user, int idAcount, double sumToTransfer,
-			int toIdAccount) {
+	public MessageTransfer(int id_user, int idAcount, double sumToTransfer, int toIdAccount) 
+	{
 		super(id_user, idAcount);
+		System.out.println("MessageTransfer - constructor");
 		this.sumToTransfer = sumToTransfer;
 		this.toIdAccount = toIdAccount;
 	}

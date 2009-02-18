@@ -20,6 +20,8 @@ public class Action extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     double depositAmount = 0;
     double withdrawAmount = 0;
+    double transferAmount = 0;
+    int destAccount = 0;
     
     /**
      * @see HttpServlet#HttpServlet()
@@ -65,6 +67,28 @@ public class Action extends HttpServlet {
 			System.out.println("NullPointerException for WITHDRAW");
 		}
 		
+		try
+		{
+			transferAmount = Double.parseDouble(request.getParameter("transferAmount"));
+		}
+		catch(NullPointerException npe)
+		{
+			System.out.println("NullPointerException for TRANSFER");
+		}
+		
+		try
+		{
+			destAccount = Integer.parseInt(request.getParameter("destAccount"));
+		}
+		catch(NullPointerException npe)
+		{
+			System.out.println("NullPointerException for DESTACCOUNT");
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
 		int accountID = Integer.parseInt(request.getParameter("accountid"));
 		String action = (String)request.getParameter("action");
 		String idString = session.getAttribute("userID").toString();
@@ -73,18 +97,27 @@ public class Action extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.write("Deposit amount: " +depositAmount);
 		out.write("Withdraw amount: " +withdrawAmount);
+		out.write("Transfer amount: " +transferAmount);
 		
 		if(action.equals("deposit"))
 		{
-			System.out.println("in deposit");
 			MessageOrderMoney mom = new MessageOrderMoney(userID, accountID, ActionTool.DEPOSIT, depositAmount);
 			out.write("<br />" +serv.bankAction(mom).getResponse());
 		}
 		else if(action.equals("withdraw"))
 		{
-			System.out.println("in withdraw");
 			MessageOrderMoney mom = new MessageOrderMoney(userID, accountID, ActionTool.WITHDRAW, withdrawAmount);
 			out.write("<br />" +serv.bankAction(mom).getResponse());		
+		}
+		else if(action.equals("transfer"))
+		{
+			System.out.println("Action - Transfer");
+			MessageTransfer mt = new MessageTransfer(userID, accountID, transferAmount, destAccount);
+			System.out.println("Action - trying serv.bankAction()");
+			// THIS DOESNT DO ANYTHING!!!! returns null
+			out.write("<br />" +serv.bankAction(mt).getResponse());		
+			//
+			System.out.println("Action - done");
 		}
 		
 		// Return user to Accounts Summary page (Login servlet)

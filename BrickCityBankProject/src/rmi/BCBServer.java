@@ -167,7 +167,14 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	
 	public MessageResponse bankAction(MessageOrder mo) throws RemoteException
 	{
+		System.out.println("BCBServ-bankaction mo");
 		return myBez.doAction(mo);
 	}
+
+	/*public MessageResponse bankActionTransfer(MessageTransfer mt) throws RemoteException
+	{
+		System.out.println("BCBServ-bankaction mt");
+		return myBez.doAction(mt);
+	}*/
 	
 }

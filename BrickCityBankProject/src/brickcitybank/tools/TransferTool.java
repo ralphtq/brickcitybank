@@ -31,13 +31,15 @@ public class TransferTool extends ActionTool{
 	 * @param succ
 	 */
 	
-	public TransferTool(DBConnection connector, ActionTool succ) {
+	public TransferTool(DBConnection connector, ActionTool succ) 
+	{
 		super(connector, succ);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public MessageResponse executeAction(MessageOrder m) {
+	public MessageResponse executeAction(MessageOrder m) 
+	{
 		// TODO Auto-generated method stub
 		try{
 		this.getConnector().getConn().setAutoCommit(false);
@@ -45,23 +47,30 @@ public class TransferTool extends ActionTool{
 		ResultSet rs = null;
 		
 		//first check the sum is positive
-		if (((MessageTransfer)m).getSumToTransfer()<0){
+		if (((MessageTransfer)m).getSumToTransfer()<0)
+		{
 			throw new SumIncorrectException("Sum to Transfert must be > 0");
-		}else{
+		}
+		else
+		{
+			System.out.println("HERE I AM");
 			//the sum is > 0
 			double sumToUpdate = 0;
 			//check if idAccount number 1 has enough money 
 			rs = state.executeQuery("SELECT Balance FROM Account WHERE idAccount ="+m.getIdAcount());
-			if (rs.first()){
+			if (rs.first())
+			{
 				//means it has an entry
 				
 				sumToUpdate = rs.getDouble("Balance");
 				
-				if(sumToUpdate < ((MessageTransfer)m).getSumToTransfer()){
+				if(sumToUpdate < ((MessageTransfer)m).getSumToTransfer())
+				{
 					//means that the user wants to withdraw more than he owes
 					throw new SumIncorrectException("You want to transfer more than you have, your current balance is :"+sumToUpdate);
 	
-				}else{
+				}else
+				{
 					//acount1 has enough money
 					sumToUpdate -= ((MessageTransfer)m).getSumToTransfer();
 					//money of account2
@@ -73,16 +82,21 @@ public class TransferTool extends ActionTool{
 						
 						sumToUpdateAc2 = rs.getDouble("Balance");
 						
-						if (sumToUpdateAc2 >= ((MessageTransfer)m).getSumToTransfer()){
+						if (sumToUpdateAc2 >= ((MessageTransfer)m).getSumToTransfer())
+						{
 							
 							//means the sum to add is < than the current balance the user owes
 							//add it the the account (update)
 							sumToUpdateAc2 -= ((MessageTransfer)m).getSumToTransfer();
-						}else{
+						}
+						else
+						{
 							//the user entered to much money for the loan
 							throw new  SumIncorrectException("Your Loan has not been updated, you try to add to much money, the current balance is "+sumToUpdate);
-							}
-					}else{
+						}
+					}
+					else
+					{
 						//it's not a loan
 						rs = state.executeQuery("SELECT Balance FROM Account WHERE idAccount ="+((MessageTransfer)m).getToIdAccount());
 						if (rs.first()){
@@ -90,7 +104,9 @@ public class TransferTool extends ActionTool{
 							
 							sumToUpdateAc2 = rs.getDouble("Balance");
 							sumToUpdateAc2 += ((MessageOrderMoney)m).getSum();
-						}else{
+						}
+						else
+						{
 							throw new AccountNotFoundException();
 						}
 					}
@@ -101,54 +117,67 @@ public class TransferTool extends ActionTool{
 						
 					boolean successQuery = state.execute("UPDATE Account set Balance="+sumToUpdate + " WHERE idAccount ="+m.getIdAcount()+" ");
 							
-					if (successQuery){
+					if (successQuery)
+					{
 						//succes in updating account1
 						successQuery = state.execute("UPDATE Account set Balance="+sumToUpdateAc2 + " WHERE idAccount ="+((MessageTransfer)m).getToIdAccount()+" ");
 								
-						if (successQuery){
+						if (successQuery)
+						{
 									
 							//commit
 							this.getConnector().getConn().commit();
 							return new MessageResponse("Your Balance has been succesfully updated, the current balance is "+sumToUpdate);
-						}else{
+						}
+						else
+						{
 							//can't update
 							throw new  CannotUpdateException("Your Loan has not been updated, please try again");
 						}
-					}else{
+					}
+					else
+					{
 						//can't update
 						throw new  CannotUpdateException("Your Loan has not been updated, please try again");
 					}
 				}	
-			}else{
+			}
+			else
+			{
 				throw new AccountNotFoundException();
 			}
 			
 		}
 		
-		}catch(Exception e)
-	{
-		try{
+		}
+		catch(Exception e)
+		{
+		try
+		{
 			this.getConnector().getConn().rollback();
 			System.err.println(e.getMessage());
 			return new MessageResponse(e.getMessage());
 			
-		}catch(Exception e2)
+		}
+		catch(Exception e2)
 		{
 		
 		System.err.println(e2.getMessage());
 		System.err.println("  Error Message: " + e.getMessage());
 		return new MessageResponse(e.getMessage());
 		//System.err.println(" Vendor Message: " + e.getErrorCode());
-	}
-	}
-		finally{
-		//change the mode as it was before
-			try{
-		this.getConnector().getConn().setAutoCommit(true);
-			}catch(Exception e2)
-			{}
 		}
 	}
+	finally
+	{
+		//change the mode as it was before
+		try
+		{
+			this.getConnector().getConn().setAutoCommit(true);
+		}
+		catch(Exception e2) {}
+	}
+}
 
 	@Override
 	/**
