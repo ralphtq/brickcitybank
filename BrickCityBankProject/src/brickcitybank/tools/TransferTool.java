@@ -5,6 +5,8 @@ package brickcitybank.tools;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.transaction.*;
 
@@ -25,6 +27,8 @@ import brickcitybank.message.MessageTransfer;
  */
 public class TransferTool extends ActionTool{
 
+	String old1, old2, new1, new2;
+	int successQuery;
 	/**
 	 * Constructor
 	 * @param connector
@@ -127,10 +131,75 @@ public class TransferTool extends ActionTool{
 								
 						if (successQuery > 0)
 						{
+							try
+							{
+								// Get old balance
+								rs = state.executeQuery("select balance from account where idAccount =" +m.getIdAcount());
+								old1 = "0";
+								old2 = "0";
+								new1 = "0";
+								new2 = "0";
+								while(rs.next())
+								{
+									old1 = rs.getString(1);
+									new1 = old1;
+								}
+							}
+							catch(Exception e) {e.printStackTrace();}
+							
+							try
+							{
+								successQuery = state.executeUpdate("UPDATE Account set Balance="+sumToUpdate + " WHERE idAccount ="+m.getIdAcount()+" ");
+							}
+							catch(Exception e) {e.printStackTrace();}
+							
+							try
+							{
+								rs = state.executeQuery("select balance from account where idAccount =" +m.getIdAcount());
+								while(rs.next())
+								{
+									old2 = rs.getString(1);
+									new2 = old2;
+								}
+					
+								if (successQuery > 0)
+								{	
+									//success in updating
 									
-							//commit
-							System.out.println("Everything went ok update!");
-							//this.getConnector().getConn().commit();
+									// Insert this transaction into transaction table
+									String DATE_FORMAT_NOW = "yyyy-MM-dd";
+									String TIME_FORMAT_NOW = "HH:mm:ss";
+									Calendar cal = Calendar.getInstance();
+									SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+									String date = sdf.format(cal.getTime());
+									sdf = new SimpleDateFormat(TIME_FORMAT_NOW);
+									String time = sdf.format(cal.getTime());
+									System.out.println("Date: " +date +" time: " +time);
+					
+									String query = "insert into transaction (type, account1, account2, Date, Time, old_balance1, new_balance1, old_balance2, new_balance2) " +
+									"values ('T', '"+m.getIdAcount() +"', '" +m.getIdAcount() +"', '" +date +"', '" +time +"', '" +old1 +"', '" +new1 +"', '" +old2 +"', '" +new2 +"')";
+									
+									System.out.println(query);
+									state.executeUpdate(query);
+									
+									return new MessageResponse("Your Balance has been succesfully updated, the current balance is "+sumToUpdate);
+								}
+								else
+								{
+									//can't update
+									throw new  CannotUpdateException("Your Loan has not been updated, please try again");
+								}
+							}
+							catch (CannotUpdateException e)
+							{
+								//when it's not possible to update the balance
+								return new MessageResponse(e.getMessage());
+							}
+							catch(Exception e) 
+							{ 
+								e.printStackTrace();
+							}
+
 							return new MessageResponse("Your Balance has been succesfully updated, the current balance is "+sumToUpdate);
 						}
 						else
