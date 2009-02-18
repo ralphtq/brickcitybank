@@ -8,15 +8,15 @@
 </head>
 <body>
 <%
-out.write("Withdraw<br />" +"user ID: "+session.getAttribute("userID"));
-out.write("<br />Balance: " +(String)request.getParameter("balance"));
+out.write("<h2>Withdraw</h2>" +"user ID: "+session.getAttribute("userID"));
+out.write("<h3>Balance: " +(String)request.getParameter("balance")+"</h3>" );
 %>
 <br><br>
-<form action="Action" method="POST">
-	Withdraw Amount: $<input type="text" name="withdrawAmount" value="0">
+<form action="Action" method="POST"><ul><li>
+	Withdraw Amount: $<input type="text" name="withdrawAmount" value="0"></li>
 	<input type="hidden" name="accountid" value=<%=(String)request.getParameter("accountid")%>>
 	<input type="hidden" name="action" value="withdraw">
-	<input type="submit" value="Withdraw">
+	<li><input type="submit" value="Withdraw"></li>
 </form>
 </body>
 </html>

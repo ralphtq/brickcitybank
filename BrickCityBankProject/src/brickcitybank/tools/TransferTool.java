@@ -40,12 +40,13 @@ public class TransferTool extends ActionTool{
 	@Override
 	public MessageResponse executeAction(MessageOrder m) 
 	{
+		System.out.println("Tranfer in execution");
 		// TODO Auto-generated method stub
 		try{
-		this.getConnector().getConn().setAutoCommit(false);
+		this.getConnector().getConn().setAutoCommit(true);
 		Statement state = null;
 		ResultSet rs = null;
-		
+		state = getConnector().getConn().createStatement();
 		//first check the sum is positive
 		if (((MessageTransfer)m).getSumToTransfer()<0)
 		{
@@ -54,16 +55,18 @@ public class TransferTool extends ActionTool{
 		else
 		{
 			System.out.println("HERE I AM");
+			System.out.println("my idAccount :"+m.getIdAcount());
 			//the sum is > 0
 			double sumToUpdate = 0;
 			//check if idAccount number 1 has enough money 
+			System.out.println("SELECT Balance FROM Account WHERE idAccount ="+m.getIdAcount());
 			rs = state.executeQuery("SELECT Balance FROM Account WHERE idAccount ="+m.getIdAcount());
 			if (rs.first())
 			{
 				//means it has an entry
-				
+				System.out.println("ok");
 				sumToUpdate = rs.getDouble("Balance");
-				
+				System.out.println("Account1 found, balance :" + sumToUpdate);
 				if(sumToUpdate < ((MessageTransfer)m).getSumToTransfer())
 				{
 					//means that the user wants to withdraw more than he owes
@@ -103,11 +106,11 @@ public class TransferTool extends ActionTool{
 							//means it has an entry
 							
 							sumToUpdateAc2 = rs.getDouble("Balance");
-							sumToUpdateAc2 += ((MessageOrderMoney)m).getSum();
+							sumToUpdateAc2 += ((MessageTransfer)m).getSumToTransfer();
 						}
 						else
 						{
-							throw new AccountNotFoundException();
+							throw new AccountNotFoundException("Account not found");
 						}
 					}
 					//update both account
@@ -115,18 +118,19 @@ public class TransferTool extends ActionTool{
 					//account 2 = balance2 + sum to transfer
 						
 						
-					boolean successQuery = state.execute("UPDATE Account set Balance="+sumToUpdate + " WHERE idAccount ="+m.getIdAcount()+" ");
+					int successQuery = state.executeUpdate("UPDATE Account set Balance="+sumToUpdate + " WHERE idAccount ="+m.getIdAcount()+" ");
 							
-					if (successQuery)
+					if (successQuery >0)
 					{
 						//succes in updating account1
-						successQuery = state.execute("UPDATE Account set Balance="+sumToUpdateAc2 + " WHERE idAccount ="+((MessageTransfer)m).getToIdAccount()+" ");
+						successQuery = state.executeUpdate("UPDATE Account set Balance="+sumToUpdateAc2 + " WHERE idAccount ="+((MessageTransfer)m).getToIdAccount()+" ");
 								
-						if (successQuery)
+						if (successQuery > 0)
 						{
 									
 							//commit
-							this.getConnector().getConn().commit();
+							System.out.println("Everything went ok update!");
+							//this.getConnector().getConn().commit();
 							return new MessageResponse("Your Balance has been succesfully updated, the current balance is "+sumToUpdate);
 						}
 						else
@@ -144,7 +148,7 @@ public class TransferTool extends ActionTool{
 			}
 			else
 			{
-				throw new AccountNotFoundException();
+				throw new AccountNotFoundException("Account not found");
 			}
 			
 		}
@@ -154,7 +158,7 @@ public class TransferTool extends ActionTool{
 		{
 		try
 		{
-			this.getConnector().getConn().rollback();
+			//this.getConnector().getConn().rollback();
 			System.err.println(e.getMessage());
 			return new MessageResponse(e.getMessage());
 			
@@ -191,7 +195,8 @@ public class TransferTool extends ActionTool{
 		else
 			response = false;
 		
-		System.out.println("transfer!"+ response);	
+		//System.out.println("transfer!"+ response);	
+		System.out.println("Transfer tool response :"+ response);
 			
 		return response;
 	}
