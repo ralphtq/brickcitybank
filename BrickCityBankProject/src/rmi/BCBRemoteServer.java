@@ -28,6 +28,8 @@ public interface BCBRemoteServer extends Remote {
 	
 	public void sendJMSMessage(String message) throws RemoteException;
 	
+	public String getJMSMessage() throws RemoteException;
+	
 	public boolean authenATM(int cc, int pin) throws RemoteException;
 	
 	public int authenWeb(String uID, String passw) throws RemoteException;

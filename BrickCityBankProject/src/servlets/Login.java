@@ -55,6 +55,8 @@ public class Login extends HttpServlet
 		String username = "";
         String password = "";
 		
+        String jmsMessage = serv.getJMSMessage();
+        System.out.println("jms message from server: " + jmsMessage);
 		try
 		{
 			//get username
