@@ -29,9 +29,8 @@ public class BrickCityBankLauncher {
 			String pass = scan.nextLine();
             //build our server object
 			
-			System.out.println("before: " +pass);
 			BCBServer myServ = new BCBServer(pass);
-			System.out.println("after: " +pass);
+			
 			//bind it to the RMI registry
             Naming.rebind("rmi://localhost:1099/BCBServer", myServ);
             System.out.println("BCBServer launched successfully.");
@@ -39,6 +38,7 @@ public class BrickCityBankLauncher {
         catch(Exception e){
         	//if the server fails to launch tell us why
             System.out.println("Server launch error: " + e.getMessage());
+            System.out.println(e.getCause());
         }
 	}
 	
