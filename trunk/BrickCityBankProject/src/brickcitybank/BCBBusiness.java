@@ -154,7 +154,8 @@ public class BCBBusiness {
 	 * @param	uName	User Name
 	 * @param	passW	Password for Users Account
 	 */
-	public int authenticateWeb( String uName, String passW ){
+	public int authenticateWeb( String uName, String passW )
+	{
 		ResultSet rs = null;
 		Statement state = null;
 		int userID = 0;
@@ -216,8 +217,11 @@ public class BCBBusiness {
 		return reply;
 	}
 	
-	public MessageResponse doAction(MessageOrder mom)
+	
+	
+	public MessageResponse doAction(MessageOrder mo)
 	{
-		return myTool.manageAction(mom);
+		System.out.println("Business - doaction");
+		return myTool.manageAction(mo); // ActionTool
 	}
 } // End BCBBusiness

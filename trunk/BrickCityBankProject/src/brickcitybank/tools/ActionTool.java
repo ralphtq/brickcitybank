@@ -41,7 +41,9 @@ public abstract class ActionTool {
 	 * @param m
 	 * @return
 	 */
-	public MessageResponse manageAction(MessageOrder m){
+	public MessageResponse manageAction(MessageOrder m)
+	{
+		System.out.println("ActionTools - manageAction");
 		 if(existAction(m))
 		 {
 			 return executeAction( m);

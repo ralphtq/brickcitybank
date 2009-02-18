@@ -16,7 +16,8 @@ public class MessageResponse implements Serializable {
 	/**
 	 * Default Constructor
 	 */
-	public MessageResponse() {
+	public MessageResponse() 
+	{
 		super();
 		response = "";
 	}
@@ -26,18 +27,21 @@ public class MessageResponse implements Serializable {
 	 * Constructor
 	 * @param response
 	 */
-	public MessageResponse(String response) {
+	public MessageResponse(String response) 
+	{
 		super();
 		this.response = response;
 	}
 
 
 
-	public String getResponse() {
+	public String getResponse() 
+	{
 		return response;
 	}
 
-	public void setResponse(String response) {
+	public void setResponse(String response) 
+	{
 		this.response = response;
 	}
 	

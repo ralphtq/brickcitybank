@@ -11,10 +11,6 @@ import java.io.Serializable;
  */
 public class MessageOrder implements Serializable {
 	//the attributes
-	
-	
-	
-
 	/**
 	 * 
 	 */
