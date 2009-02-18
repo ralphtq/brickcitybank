@@ -130,7 +130,16 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	{
 		myBez.sendJMSMessage(msg);
 	}
-
+	
+	public String getJMSMessage()
+	{
+		String jmsMessage = "";
+		
+		jmsMessage = myBez.getJMSMessage();
+		
+		return jmsMessage;
+	}
+	
 	/** 
 	 * Authentication means for ATMs; routed to Business
 	 * 
