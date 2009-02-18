@@ -8,16 +8,18 @@
 </head>
 <body>
 <%
-out.write("Transfer<br />" +"user ID: "+session.getAttribute("userID"));
+out.write("<h2>Transfer<h1>" +" user ID: "+session.getAttribute("userID"));
 out.write("<br />Balance: " +(String)request.getParameter("balance"));
 %>
 <br><br>
 <form action="Action" method="POST">
-	Transfer Amount: $<input type="text" name="transferAmount" value="0">
-	To Account# <input type="text" name="destAccount" value="0">
+	<ul>
+	<li>Transfer Amount: $<input type="text" name="transferAmount" value="0"></li>
+	<li>To Account# <input type="text" name="destAccount" value="0"></li>
 	<input type="hidden" name="accountid" value=<%=(String)request.getParameter("accountid")%>>
 	<input type="hidden" name="action" value="transfer">
-	<input type="submit" value="Transfer">
+	<li><input type="submit" value="Transfer"></li>
+	</ul>
 </form>
 </body>
 </html>
