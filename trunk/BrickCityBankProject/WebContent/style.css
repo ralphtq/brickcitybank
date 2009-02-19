@@ -1,0 +1,197 @@
+body
+{
+	
+   margin: auto;
+   margin-left: 5%;
+   margin-right: 5%;
+   margin-top: 10px; 
+   margin-bottom: 10px;
+   
+   background: #42afdc url("img/html-bg.gif") repeat-x;
+
+   font-size:1em;
+   font-family: "Arial", "Helvetica", sans-serif;
+   color: #888;
+   }
+   
+
+#gen {
+	
+}
+   
+a { text-decoration: none; color: #11A0CF; font-size: 1em; padding: 1px 2px; }
+a:hover { background-color: #f4f4f4; }
+acronym { border-bottom: 1px dotted #cc0000; cursor: help; }
+
+h1{
+
+margin:auto;
+text-align:center;
+color:white;
+line-height:50px;
+
+}
+
+h2{
+padding: 0 0 0 55px;
+background: url("img/dollar.png") no-repeat 0px 0px ;
+font-size:1.6em;
+color:black;
+line-height: 50px;
+border-bottom: dotted 1px #CCCCCC;
+}
+
+
+
+h4{
+/*	background: url(img/terre.png) no-repeat;*/
+padding: 0 0 0 10px;
+}
+   
+/*------------------------------------------------------------*
+**  Header
+**------------------------------------------------------------*/	   
+#header
+{
+
+   height: 120px;
+   margin-bottom: 10px;
+   color:#fff;
+   
+   padding-top:25px;
+   font-family: "Arial", "Helvetica", sans-serif;
+   background: url("img/main-bg.jpg") no-repeat center top;
+   border-bottom:3px #ccc solid;
+}
+
+
+
+#ban-title{
+padding-left:40px;
+padding-top:200px;
+font-size:3.5em;
+color:white;
+  
+}
+
+
+/*------------------------------------------------------------*
+**  Content
+**------------------------------------------------------------*/
+
+#content
+{
+
+
+   margin-right: 24%;
+   margin-bottom: 20px;   
+   background:white url("img/bg.jpg") repeat-x;
+   padding: 15px;
+   padding-left : 55px;
+   padding-right : 55px;
+   text-align:justify;
+   min-height:800px; 
+}
+#content h1
+{
+color:black;
+}
+
+#my_content ul li {
+list-style: none;
+padding: 0 0 0 25px;
+line-height: 2em;
+	
+}
+/*
+Table
+*/
+table.fancytable {
+  text-align:center;
+  margin: 1em 1em 1em 0;
+  background: whitesmoke;
+  border-collapse: collapse;
+}
+table.fancytable tr:hover {
+   background: lightsteelblue !important;
+}
+table.fancytable th, table.fancytable td {
+  border: 1px silver solid;
+  width:100px;
+  padding: 0.5em;
+}
+
+
+/****************************************
+*MENU
+************************************************/
+
+
+#menu
+{
+  font-size:1em;
+  color:white;
+  font-family: "Arial", "Helvetica", sans-serif;
+  float: right;
+  background-color: #888;
+  margin-left:10px;
+  padding-left:35px;
+  padding-right:15px;
+
+}
+
+#menu h3
+{
+	color:white;
+
+
+padding: 0 0 0 10px;
+border-bottom: dotted 1px #CCCCCC;
+
+}
+.center{
+text-align:center;
+}
+
+.element_menu
+{
+   /*background-color: #626262*/
+   /*background-image: url("img/motif.png");*/
+   
+   
+   /*border-right: 2px solid black;
+   border-bottom:2px solid black;
+   border-left:2px solid black;
+   border-top:2px solid black;*/
+   background-color: #888;
+   line-height: 25px;
+   margin-bottom: 10px;
+   padding: 10 10 10 10px;
+}
+#menu ul li{
+list-style: none;
+
+padding: 0 0 0 0px;
+padding-left: 25px;
+padding-bottom: 5px;
+margin-left: -15px;
+line-height: 35px;
+
+}
+
+/*****
+Footer
+********/
+#footer
+{
+border-top: 3px solid #ccc;
+text-align: center;
+font-size:0.8em;
+ background:black;
+z-index: 500;
+clear: both;
+}
+
+
+
+
