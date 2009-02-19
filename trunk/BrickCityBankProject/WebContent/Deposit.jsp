@@ -1,22 +1,31 @@
-<%@ page session="true" language="java" import="java.util.*" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>BrickCityBank - Deposit</title>
-</head>
-<body>
+<%@ include file="header.jsp" %>
+<%@ include file="menu.jsp" %>
+<div id="content">
+<h2>Deposit</h2>
+<p>
 <%
-out.write("Deposit<br />" +"user ID: "+session.getAttribute("userID"));
-out.write("<br />Balance: " +(String)request.getParameter("balance"));
+out.write("Your user ID is : "+session.getAttribute("userID"));
 %>
-<br><br>
+<br /></p>
+<h3>
+ Here are your current account information:
+</h3>
+<table class="fancytable">
+<tr><td>Account#</td><td>Balance: $</td></tr>
+<tr><td><%=(String)request.getParameter("accountid")%></td><td><%=(String)request.getParameter("balance")%></td>
+</tr>
+</table>
+
+<h3>
+Please fill in the form to perform the deposit:
+</h3>
 <form action="Action" method="POST">
-	Deposit Amount: $<input type="text" name="depositAmount" value="0">
+	Deposit Amount: $ &nbsp;&nbsp;<input type="text" name="depositAmount" value="0"><br /><br /><br />
 	<input type="hidden" name="accountid" value=<%=(String)request.getParameter("accountid")%>>
 	<input type="hidden" name="action" value="deposit">
 	<input type="submit" value="Deposit">
 </form>
+</div>
+</div>
 </body>
 </html>
