@@ -135,10 +135,9 @@ public class JMSProducer {
 			txtMsg = msgSession.createTextMessage();
 			
 			//send message
-			System.out.println("Sending Message: " + this.getMessage());
 			txtMsg.setText(this.getMessage());
 			producer.send(txtMsg);
-//			System.out.println("Message has been sent");
+			System.out.println("Message Sent: " + this.getMessage());
 			//send empty to indicate no more messages
 			producer.send(msgSession.createMessage());
 			

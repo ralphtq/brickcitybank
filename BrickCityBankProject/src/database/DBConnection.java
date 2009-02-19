@@ -262,7 +262,7 @@ public class DBConnection {
 		{
 			connStr = "jdbc:mysql://" + address + ":" + port + "/" + DBName;
 		}
-		System.out.println(connStr);	
+		//System.out.println(connStr);	
 	}
 	public void connect()
 	{
