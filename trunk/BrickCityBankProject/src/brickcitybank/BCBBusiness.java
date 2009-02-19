@@ -86,14 +86,16 @@ public class BCBBusiness {
 		
 		return retval;
 	}
+	
 	public String getJMSMessage()
 	{
 		String msg = "";
 		
 		JMSConsumer consumer = new JMSConsumer("destinationQueue");
-		
+		consumer.getMessages();
 		msg = consumer.getMessage();
 		
+		System.out.println("JMS message recived: " + msg);
 		return msg;
 	}
 	/**

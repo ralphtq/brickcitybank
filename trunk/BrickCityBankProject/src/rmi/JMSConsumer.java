@@ -65,6 +65,7 @@ public class JMSConsumer
     /** get messages from the queue */
     public void getMessages() 
 	 {
+    	System.out.println("get messages method");
          try 
 			{
             // create the connection
