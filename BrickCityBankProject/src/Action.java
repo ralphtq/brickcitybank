@@ -70,7 +70,7 @@ public class Action extends HttpServlet {
 	        String menu ="";
 	        
 	        
-	        menu += "<div id=\"menu\"><div class='element_menu'><h3>Log part</h3>";
+	        menu += "<div id=\"menu\"><div class='element_menu'><h3>Login</h3>";
 	        String user ="";
 	        if((session.getAttribute("userID")) == null){
 	        	menu += "<form action=\"http://localhost:8181/BrickCityBankProject/Login\" method=\"post\">";
@@ -79,7 +79,7 @@ public class Action extends HttpServlet {
 	        	menu += "<input type=\"submit\" value=\"Login\"/></form>";
 	        }else{
 	        	user =(String)session.getAttribute("userID").toString();
-	        	menu +=("You are logged in "+ user);
+	        	menu +=("You are logged in. User ID: "+ idString);
 	        	// Log out
 	        	menu +=("<center><br><form action=\"Login\" method=\"POST\">");
 	        	menu +=("<input type=\"hidden\" name=\"logout\" value=\"logout\">");
@@ -126,7 +126,6 @@ public class Action extends HttpServlet {
 		{
 			//it's a tranfert
 			out.write("<h2>Result Transfer</h2>");
-			System.out.println("Action - Transfer");
 			try{
 				transferAmount = Double.parseDouble(request.getParameter("transferAmount"));
 				destAccount = Integer.parseInt(request.getParameter("destAccount"));
@@ -140,9 +139,8 @@ public class Action extends HttpServlet {
 			
 			//create message and send it to the server
 			MessageTransfer mt = new MessageTransfer(userID, accountID, transferAmount, destAccount);
-			System.out.println("Action - trying serv.bankAction()");
 			out.write("<br /><p>" +serv.bankAction(mt).getResponse()+"</p>");		
-			System.out.println("Action - done");
+			//System.out.println("Action - done");
 		}
 		else if(action.equals("history"))
 		{
@@ -157,7 +155,7 @@ public class Action extends HttpServlet {
 			// THIS DOESNT DO ANYTHING!!!! returns null
 			out.write("<br /><p>" +serv.bankAction(mh).getResponse()+"</p>");		
 			//
-			System.out.println("Action - done");
+			//System.out.println("Action - done");
 		}
 		// Return user to Accounts Summary page (Login servlet)
 		out.write("<form action=\"Login\" method=\"POST\">");

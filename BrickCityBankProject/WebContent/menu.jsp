@@ -1,6 +1,6 @@
 <div id="menu">
 <div class='element_menu'>
-<h3>Log part</h3>
+<h3>Login</h3>
 <%
 
 HttpSession s = request.getSession(false);
@@ -14,8 +14,22 @@ if((s.getAttribute("userID")) == null){
 	</form>
 <%
 }else{
-	user =(String)s.getAttribute("userID").toString();
-	out.write("You are logged in"+ user);
+	
+	try
+	{
+		user =(String)s.getAttribute("userID").toString();
+		String username = s.getAttribute("username").toString();
+	
+	
+		if(username != null)
+			out.write("You are logged in as:\n"+ username);
+		else
+			out.write("You are logged in. User ID: " +user);
+	}
+	catch(Exception e)
+	{
+		out.write("You are logged in.");
+	}
 	// Log out
 	out.write("<center><br><form action=\"Login\" method=\"POST\">");
 	out.write("<input type=\"hidden\" name=\"logout\" value=\"logout\">");

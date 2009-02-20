@@ -33,7 +33,7 @@ public class BrickCityBankLauncher {
 			
 			//bind it to the RMI registry
             Naming.rebind("rmi://localhost:1099/BCBServer", myServ);
-            System.out.println("BCBServer launched successfully.");
+            System.out.println("\n\nIf you don't see 'Exception's or 'Access Denied' above, then\nBCBServer launched successfully.");
         }
         catch(Exception e){
         	//if the server fails to launch tell us why

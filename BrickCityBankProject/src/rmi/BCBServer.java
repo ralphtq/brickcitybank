@@ -47,7 +47,7 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	public BCBServer(String p) throws RemoteException 
 	{
 		pass = p;
-		System.out.println("BCB SERVER CONSTR");
+		//System.out.println("BCB SERVER CONSTR");
 		myUser = new User();
 		myBez = new BCBBusiness(this);
 		
@@ -72,7 +72,7 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	 */
 	public DBConnection establishConn() throws RemoteException{
 		//myConn = new DBConnection("", pass);
-		System.out.println("PASSWORD IS: :::: " +pass);
+		//System.out.println("PASSWORD IS: :::: " +pass);
 		myConn = new DBConnection(pass);
 		return myConn;
 	}
@@ -131,11 +131,11 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 		myBez.sendJMSMessage(msg);
 	}
 	
-	public String getJMSMessage()
+	public String getJMSMessage(boolean ack)
 	{
 		String jmsMessage = "";
 		
-		jmsMessage = myBez.getJMSMessage();
+		jmsMessage = myBez.getJMSMessage(ack);
 		
 		return jmsMessage;
 	}
@@ -176,7 +176,7 @@ public class BCBServer extends UnicastRemoteObject implements BCBRemoteServer {
 	
 	public MessageResponse bankAction(MessageOrder mo) throws RemoteException
 	{
-		System.out.println("BCBServ-bankaction mo");
+		//System.out.println("BCBServ-bankaction mo");
 		return myBez.doAction(mo);
 	}
 

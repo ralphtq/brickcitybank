@@ -45,7 +45,7 @@ public class BCBBusiness {
 		try
 		{
 			myConn = myserv.establishConn();
-			System.out.println("Connection established");
+			//System.out.println("Connection established.");
 		}
 		catch(Exception e)
 		{
@@ -65,7 +65,7 @@ public class BCBBusiness {
 		
 		//create our JMSProducer object
 		
-		//myProd = new JMSProducer();
+		myProd = new JMSProducer();
 		
 	}
 	
@@ -79,6 +79,7 @@ public class BCBBusiness {
 	public boolean sendJMSMessage( String mess ){
 		boolean retval = false;
 		
+		getJMSMessage(false);
 		//Establish Connections
 		myProd.createConnections();
 		
@@ -88,7 +89,7 @@ public class BCBBusiness {
 		return retval;
 	}
 	
-	public String getJMSMessage()
+	public String getJMSMessage(boolean ack)
 	{
 		String msg = "";
 		
@@ -96,7 +97,12 @@ public class BCBBusiness {
 		consumer.getMessages();
 		msg = consumer.getMessage();
 		
-		System.out.println("JMS message recived: " + msg);
+		if(ack)
+		{
+			sendJMSMessage(msg);
+		}
+		
+		//System.out.println("JMS message recived: " + msg);
 		return msg;
 	}
 	/**
@@ -173,16 +179,16 @@ public class BCBBusiness {
 		int userID = 0;
 		try
 		{
-			System.out.println("trying");
+			//System.out.println("trying");
 			state = myConn.getConn().createStatement();
-			System.out.println("connected");
+			//System.out.println("connected");
 			String query = "select idUser from User where UserName=\'" +uName +"' and Password='"+passW +"'";
-	        System.out.println(query);
+	        //System.out.println(query);
 			rs = state.executeQuery(query);
 	        while(rs.next())
 	        {
 	            userID = rs.getInt(1);
-	            System.out.println(rs.getInt(1));
+	            //System.out.println(rs.getInt(1));
 	        }
 	        state.close();
 			//myConn.closeConnection();
@@ -192,7 +198,7 @@ public class BCBBusiness {
 			e.printStackTrace();
 			userID = -1;
 		}
-		System.out.println(userID);
+		//System.out.println(userID);
 		// If error, say their login failed
 		return userID;
 	}
@@ -209,7 +215,7 @@ public class BCBBusiness {
 		{
 			state = myConn.getConn().createStatement();
 			String query = "select account_number, balance from account, user_accounts, " +type +" where account.idAccount = user_accounts.account_number and " +type +".id" +type +"=user_accounts.account_number and user_id=\'" +id +"'";
-	        System.out.println("QUERY: " +query);
+	        //System.out.println("QUERY: " +query);
 			rs = state.executeQuery(query);
 	        while(rs.next())
 	        {
@@ -232,7 +238,7 @@ public class BCBBusiness {
 	
 	public MessageResponse doAction(MessageOrder mo)
 	{
-		System.out.println("Business - doaction");
+		//System.out.println("Business - doaction");
 		return myTool.manageAction(mo); // ActionTool
 	}
 } // End BCBBusiness

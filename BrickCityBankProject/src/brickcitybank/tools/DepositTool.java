@@ -48,7 +48,7 @@ public class DepositTool extends ActionTool{
 			
 			}
 		
-		System.out.println("Deposit tool response :"+ response);
+		//System.out.println("Deposit tool response :"+ response);
 		return response;
 	}
 	
@@ -59,7 +59,7 @@ public class DepositTool extends ActionTool{
 	 */
 	public MessageResponse executeAction(MessageOrder m) 
 	{
-		System.out.println("Top of executeAction in DepositTool");
+		//System.out.println("Top of executeAction in DepositTool");
 		if(((MessageOrderMoney)m).getSum()<0){
 			//can't accept the sum must be >0
 			return new MessageResponse("Sum to depose must be positive!");
@@ -154,12 +154,12 @@ public class DepositTool extends ActionTool{
 					String date = sdf.format(cal.getTime());
 					sdf = new SimpleDateFormat(TIME_FORMAT_NOW);
 					String time = sdf.format(cal.getTime());
-					System.out.println("Date: " +date +" time: " +time);
+					//System.out.println("Date: " +date +" time: " +time);
 	
 					String query = "insert into transaction (type, account1, account2, Date, Time, old_balance1, new_balance1, old_balance2, new_balance2) " +
 					"values ('D', '"+m.getIdAcount() +"', '" +m.getIdAcount() +"', '" +date +"', '" +time +"', '" +old1 +"', '" +new1 +"', '" +old2 +"', '" +new2 +"')";
 					
-					System.out.println(query);
+					//System.out.println(query);
 					state.executeUpdate(query);
 					
 					return new MessageResponse("Your Balance has been succesfully updated, the current balance is "+sumToUpdate);
@@ -196,7 +196,7 @@ public class DepositTool extends ActionTool{
 		{
 			System.err.println(e.getMessage());
 			System.err.println("  Error Message: " + e.getMessage());
-			//System.err.println(" Vendor Message: " + e.getErrorCode());
+			System.err.println(" Vendor Message: " + e.getErrorCode());
 		}
 		catch(Exception e) { e.printStackTrace(); }
 		

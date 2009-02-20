@@ -13,7 +13,13 @@ body
    font-family: "Arial", "Helvetica", sans-serif;
    color: #888;
    }
-   
+
+.msg {
+	text-align:center;
+	color:black;
+	font-weight:bold;	
+	border:1px dotted black;
+}
 
 #gen {
 	
@@ -172,7 +178,7 @@ text-align:center;
    /*background-color: #626262*/
    /*background-image: url("img/motif.png");*/
    
-   
+   width:150px;
    /*border-right: 2px solid black;
    border-bottom:2px solid black;
    border-left:2px solid black;

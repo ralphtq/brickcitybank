@@ -4,7 +4,7 @@
 <h2>Deposit</h2>
 <p>
 <%
-out.write("Your user ID is : "+session.getAttribute("userID"));
+out.write("Your user ID is: "+session.getAttribute("userID"));
 %>
 <br /></p>
 <h3>
