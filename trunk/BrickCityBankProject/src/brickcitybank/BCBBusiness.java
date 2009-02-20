@@ -57,14 +57,15 @@ public class BCBBusiness {
 		DepositTool	myDeposit = new DepositTool(myConn,null);
 		TransferTool myTrans = new TransferTool(myConn,myDeposit);
 		WithdrawalTool myWithdraw = new WithdrawalTool(myConn,myTrans);
-		myTool = myWithdraw;
+		HistoryTool myHistory = new HistoryTool(myConn,myWithdraw);
+		myTool = myHistory;
 		
 		//create our authentication object
 		myAuthen = new Authenticator();
 		
 		//create our JMSProducer object
 		
-		myProd = new JMSProducer();
+		//myProd = new JMSProducer();
 		
 	}
 	
