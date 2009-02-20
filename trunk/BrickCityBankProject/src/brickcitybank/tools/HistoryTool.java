@@ -30,17 +30,23 @@ public class HistoryTool extends ActionTool
 			
 			rs = state.executeQuery("select * from transaction where account1=' " +account + " ' or account2 = ' " + account + " ' ");
 			String resp = "";
+			System.out.println("select * from transaction where account1=' " +account + " ' or account2 = ' " + account + " ' ");
 			
-			resp += "<table class=\"fancytable\">";
-			resp += "<tr><th>ID</th><th>Type</th><th>Account1</th><th>Account2</th><th>Date</th><th>Time</th>"
+			resp += "<table class=\"fancytable2\">";
+			resp += "<tr><th>Type</th><th>Account1</th><th>Account2</th><th>Date</th><th>Time</th>"
 						+"<th>OldBalance1</th><th>NewBalance1</th><th>OldBalance2</th><th>NewBalance2</th></tr>";
 			
 			while(rs.next())
 			{
 				resp += "<tr>";
-				for(int i = 0; i < 9; i++)
+				for(int i = 2; i <= 10; i++)
 				{
-					resp += "<td>" +rs.getString(i) +"</td>";
+					try{
+						resp += "<td>" +rs.getString(i) +"</td>";
+					}
+					catch(Exception e){
+						resp += "<td></td>";
+					}
 				}
 				resp += "</tr>";
 			}
@@ -53,7 +59,7 @@ public class HistoryTool extends ActionTool
 			System.out.println("SQL Exception in HistoryTool");
 		}
 		
-		return null;
+		return new MessageResponse("<p>Something went wrong!</p>");
 	}
 
 	@Override
