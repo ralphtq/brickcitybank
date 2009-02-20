@@ -1,9 +1,3 @@
-Transfer, Accounts and History Servlets Written and tested
-	Transfer
-	Withdrawal - Done Jeff
-	Deposit - Done Meeting 2/15/09
-	History
-Web Front end developed -> JSP - In Progress
 JMS Update
 Business Modified to use Authenticator class
 ATM GUI Updated to work with Authentication -> Probably Axed
