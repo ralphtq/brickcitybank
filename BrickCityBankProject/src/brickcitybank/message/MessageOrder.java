@@ -23,7 +23,8 @@ public class MessageOrder implements Serializable {
 	 * @param id_user
 	 * @param idAcount
 	 */
-	public MessageOrder(int id_user, int idAcount) {
+	public MessageOrder(int id_user, int idAcount) 
+	{
 		super();
 		this.id_user = id_user;
 		this.idAcount = idAcount;
