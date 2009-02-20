@@ -65,15 +65,6 @@ public class Login extends HttpServlet
         "<a id=\"ban-title\" href=\"welcome.jsp\">Brick City Bank</a>"+
         "</div>";
         out.write(header);
-        
-       
-       
-        
-        
-        
-		
-        //String jmsMessage = serv.getJMSMessage();
-        //System.out.println("jms message from server: " + jmsMessage);
 		
         try
 		{
@@ -123,7 +114,7 @@ public class Login extends HttpServlet
 				 String menu ="";
 			        
 			        
-			        menu += "<div id=\"menu\"><div class='element_menu'><h3>Log part</h3>";
+			        menu += "<div id=\"menu\"><div class='element_menu'><h3>Login</h3>";
 		        String user ="";
 	        	menu += "<form action=\"http://localhost:8181/BrickCityBankProject/Login\" method=\"post\">";
 	        	menu += "	Username:<br/> <input type=\"text\" name=\"userName\"/><br/>";
@@ -160,7 +151,7 @@ public class Login extends HttpServlet
 		        String menu ="";
 		        
 		        
-		        menu += "<div id=\"menu\"><div class='element_menu'><h3>Log part</h3>";
+		        menu += "<div id=\"menu\"><div class='element_menu'><h3>Login</h3>";
 		        String user ="";
 		        if((session.getAttribute("userID")) == null){
 		        	menu += "<form action=\"http://localhost:8181/BrickCityBankProject/Login\" method=\"post\">";
@@ -169,7 +160,11 @@ public class Login extends HttpServlet
 		        	menu += "<input type=\"submit\" value=\"Login\"/></form>";
 		        }else{
 		        	user =(String)session.getAttribute("username").toString();
-		        	menu +=("You are logged in"+ user);
+		        	
+		        	if(username != null)
+		        		menu +=("You are logged in as:\n"+ username);
+		        	else
+		        		menu +=("You are logged in. User ID: " +userID);
 		        	// Log out
 		        	menu +=("<center><br><form action=\"Login\" method=\"POST\">");
 		        	menu +=("<input type=\"hidden\" name=\"logout\" value=\"logout\">");
@@ -200,10 +195,13 @@ public class Login extends HttpServlet
 		        String menu ="";
 		        
 		        
-		        menu += "<div id=\"menu\"><div class='element_menu'><h3>Log part</h3>";
+		        menu += "<div id=\"menu\"><div class='element_menu'><h3>Login</h3>";
 		        String user ="";
 		        
-		        	menu +=("You are logged in"+ user);
+			        if(username != null)
+		        		menu +=("You are logged in as:\n"+ username);
+		        	else
+		        		menu +=("You are logged in. User ID: " +userID);
 		        	// Log out
 		        	menu +=("<center><br><form action=\"Login\" method=\"POST\">");
 		        	menu +=("<input type=\"hidden\" name=\"logout\" value=\"logout\">");

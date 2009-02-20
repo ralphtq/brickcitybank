@@ -47,7 +47,7 @@ public class TransferTool extends ActionTool{
 			//it's not the same account
 		double old1=0, old2=0, new1=0, new2=0;
 		//int successQuery;
-		System.out.println("Tranfer in execution");
+		//System.out.println("Tranfer in execution");
 		// TODO Auto-generated method stub
 		try{
 		this.getConnector().getConn().setAutoCommit(true);
@@ -62,19 +62,19 @@ public class TransferTool extends ActionTool{
 		else
 		{
 
-			System.out.println("my idAccount :"+m.getIdAcount());
+			//System.out.println("my idAccount :"+m.getIdAcount());
 			//the sum is > 0
 			double sumToUpdate = 0;
 			//check if idAccount number 1 has enough money 
-			System.out.println("SELECT Balance FROM Account WHERE idAccount ="+m.getIdAcount());
+			//System.out.println("SELECT Balance FROM Account WHERE idAccount ="+m.getIdAcount());
 			rs = state.executeQuery("SELECT Balance FROM Account WHERE idAccount ="+m.getIdAcount());
 			if (rs.first())
 			{
 				//means it has an entry
-				System.out.println("ok");
+				//System.out.println("ok");
 				sumToUpdate = rs.getDouble("Balance");
 				old1=sumToUpdate;
-				System.out.println("Account1 found, balance :" + sumToUpdate);
+				//System.out.println("Account1 found, balance :" + sumToUpdate);
 				if(sumToUpdate < ((MessageTransfer)m).getSumToTransfer())
 				{
 					//means that the user wants to withdraw more than he owes
@@ -155,12 +155,12 @@ public class TransferTool extends ActionTool{
 									String date = sdf.format(cal.getTime());
 									sdf = new SimpleDateFormat(TIME_FORMAT_NOW);
 									String time = sdf.format(cal.getTime());
-									System.out.println("Date: " +date +" time: " +time);
+									//System.out.println("Date: " +date +" time: " +time);
 					
 									String query = "insert into transaction (type, account1, account2, Date, Time, old_balance1, new_balance1, old_balance2, new_balance2) " +
 									"values ('T', '"+m.getIdAcount() +"', '" +((MessageTransfer)m).getToIdAccount() +"', '" +date +"', '" +time +"', '" +old1 +"', '" +sumToUpdate +"', '" +old2 +"', '" +sumToUpdateAc2+"')";
 									
-									System.out.println(query);
+									//System.out.println(query);
 									state.executeUpdate(query);
 									
 									return new MessageResponse("Your Balance has been succesfully updated, the current balance is "+sumToUpdate);
@@ -215,11 +215,9 @@ public class TransferTool extends ActionTool{
 		}
 		catch(Exception e2)
 		{
-		
-		System.err.println(e2.getMessage());
-		System.err.println("  Error Message: " + e.getMessage());
-		return new MessageResponse(e.getMessage());
-		//System.err.println(" Vendor Message: " + e.getErrorCode());
+			System.err.println(e2.getMessage());
+			System.err.println("  Error Message: " + e2.getMessage());
+			return new MessageResponse(e2.getMessage());
 		}
 	}
 	finally
@@ -249,7 +247,7 @@ public class TransferTool extends ActionTool{
 			response = false;
 		
 		//System.out.println("transfer!"+ response);	
-		System.out.println("Transfer tool response :"+ response);
+		//System.out.println("Transfer tool response :"+ response);
 			
 		return response;
 	}

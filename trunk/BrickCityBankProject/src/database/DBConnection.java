@@ -182,7 +182,7 @@ public class DBConnection {
 	 */
 	public void setConn(Connection connect)
 	{
-		System.out.println("doneeeeeeee");
+		//System.out.println("doneeeeeeee");
 		conn = connect;
 	}
 	//--------------------accessers--------------------
@@ -252,7 +252,7 @@ public class DBConnection {
 	public void buildConnString()
 	{
 		
-		System.out.println("port: " + port);
+		//System.out.println("port: " + port);
 		
 		if(port == null || port.equals(""))
 		{	
@@ -269,7 +269,7 @@ public class DBConnection {
 		try
 		{
 			//load driver
-			System.out.println("Attempting to load driver!");
+			System.out.println("\nAttempting to load driver!");
 			Class.forName("org.gjt.mm.mysql.Driver");
 			System.out.println("Driver loaded!");
 			

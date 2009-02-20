@@ -30,7 +30,7 @@ public class HistoryTool extends ActionTool
 			
 			rs = state.executeQuery("select * from transaction where account1=' " +account + " ' or account2 = ' " + account + " ' ");
 			String resp = "";
-			System.out.println("select * from transaction where account1=' " +account + " ' or account2 = ' " + account + " ' ");
+			//System.out.println("select * from transaction where account1=' " +account + " ' or account2 = ' " + account + " ' ");
 			
 			resp += "<table class=\"fancytable2\">";
 			resp += "<tr><th>Type</th><th>Account1</th><th>Account2</th><th>Date</th><th>Time</th>"

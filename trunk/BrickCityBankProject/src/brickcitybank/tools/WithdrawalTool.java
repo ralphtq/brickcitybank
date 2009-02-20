@@ -114,12 +114,12 @@ public class WithdrawalTool extends ActionTool{
 									String date = sdf.format(cal.getTime());
 									sdf = new SimpleDateFormat(TIME_FORMAT_NOW);
 									String time = sdf.format(cal.getTime());
-									System.out.println("Date: " +date +" time: " +time);
+									//System.out.println("Date: " +date +" time: " +time);
 					
 									String query = "insert into transaction (type, account1, account2, Date, Time, old_balance1, new_balance1, old_balance2, new_balance2) " +
 									"values ('W', '"+m.getIdAcount() +"', '" +m.getIdAcount() +"', '" +date +"', '" +time +"', '" +old1 +"', '" +new1 +"', '" +old1 +"', '" +new1 +"')";
 									
-									System.out.println(query);
+									//System.out.println(query);
 									state.executeUpdate(query);
 									
 									return new MessageResponse("Your Balance has been succesfully updated, the current balance is "+sumToUpdate);
@@ -171,7 +171,7 @@ public class WithdrawalTool extends ActionTool{
 				{
 					System.err.println(e.getMessage());
 					System.err.println("  Error Message: " + e.getMessage());
-					//System.err.println(" Vendor Message: " + e.getErrorCode());
+					System.err.println(" Vendor Message: " + e.getErrorCode());
 				}
 				catch(Exception e) { e.printStackTrace(); }
 				
@@ -189,9 +189,9 @@ public class WithdrawalTool extends ActionTool{
 		if (m instanceof MessageOrderMoney )
 		{
 			response = (((MessageOrderMoney) m).getTYPE_TRANSACTION() == WITHDRAW);
-			System.out.println("withdraw!!!!!! response: "+ response +" end response");
+			//System.out.println("withdraw!!!!!! response: "+ response +" end response");
 		}
-		System.out.println("Withdrawal tool response :"+ response);
+		//System.out.println("Withdrawal tool response :"+ response);
 			
 		return response;
 	}

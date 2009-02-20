@@ -65,7 +65,7 @@ public class JMSConsumer
     /** get messages from the queue */
     public void getMessages() 
 	 {
-    	System.out.println("get messages method");
+    		
          try 
 			{
             // create the connection
@@ -83,13 +83,13 @@ public class JMSConsumer
             // loop to create and send the messages
             while(message.equals("")) 
 			{
-                Message m = cons.receive(); // block until a message appears
+                Message m = cons.receive(500); // block until a message appears
                 if(m != null) 
                 {
                     if(m instanceof TextMessage)
                     {
                         TextMessage msg = (TextMessage)m;
-                        System.out.println("Consumer received " + msg.getText());
+                        //System.out.println("Consumer received " + msg.getText());
                         message = msg.getText();
                         break;
                     }

@@ -1,3 +1,4 @@
+<%@ page import="rmi.*" %>
 <%@ include file="header.jsp" %>
 <%@ include file="menu.jsp" %>
 <div id="content">
@@ -5,12 +6,26 @@
 Welcome to Brick City Bank !
 </h1>
 <p>
+<%
+	RmiUtils rmi = new RmiUtils();
+	rmi.connectToRmi();
+	rmi.BCBRemoteServer serv = rmi.getMyServ();
+	String jmsMessage = "";
+	jmsMessage = serv.getJMSMessage(true);
+	
+	if(!jmsMessage.equals(""))
+    	out.write("<p class=\"msg\">Message of the Day: " + jmsMessage +"</p>");
+%>
+</p>
+
+<p>
 
 This is a project for 4002-572
 Distributed Application Programming
 <br />
 <br />
 </p>
+
 <p>
 For our project, we decided to implement a banking system. 
 We plan to support Savings, Checking and loans within the application.

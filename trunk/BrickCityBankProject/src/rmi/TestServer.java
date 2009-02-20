@@ -14,7 +14,7 @@ public class TestServer {
 		
 		//User st = new User();
 		//CreateDB create = new CreateDB("admin");
-		System.out.println("Testing JMS Stuff");
+		//System.out.println("Testing JMS Stuff");
 		//User usr = new User();
 		
 		JMSProducer producer = new JMSProducer();

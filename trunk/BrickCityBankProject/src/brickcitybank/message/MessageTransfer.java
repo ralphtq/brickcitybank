@@ -77,7 +77,7 @@ public class MessageTransfer extends MessageOrder
 	public MessageTransfer(int id_user, int idAcount, double sumToTransfer, int toIdAccount) 
 	{
 		super(id_user, idAcount);
-		System.out.println("MessageTransfer - constructor");
+		//System.out.println("MessageTransfer - constructor");
 		this.sumToTransfer = sumToTransfer;
 		this.toIdAccount = toIdAccount;
 	}
