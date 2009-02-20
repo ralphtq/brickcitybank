@@ -141,9 +141,7 @@ public class Action extends HttpServlet {
 			//create message and send it to the server
 			MessageTransfer mt = new MessageTransfer(userID, accountID, transferAmount, destAccount);
 			System.out.println("Action - trying serv.bankAction()");
-			// THIS DOESNT DO ANYTHING!!!! returns null
 			out.write("<br /><p>" +serv.bankAction(mt).getResponse()+"</p>");		
-			//
 			System.out.println("Action - done");
 		}
 		else if(action.equals("history"))
