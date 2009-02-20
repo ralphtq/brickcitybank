@@ -46,6 +46,8 @@ public class Login extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int userID = 0;
 		HttpSession session = request.getSession();
+		
+		//System.out.print("a userid?"+(session.getAttribute("userID")) == null);
 		PrintWriter out = response.getWriter();
 
 		RmiUtils rmi = new RmiUtils();
@@ -54,9 +56,24 @@ public class Login extends HttpServlet
 		
 		String username = "";
         String password = "";
+		//echo the page
+        
+        String header ="<html><link rel=\"STYLESHEET\" type=\"text/css\" href=\"style.css\">"+
+        "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">"+
+        "<title>Brick City Bank</title>"+
+        "</head><body><div id=\"header\">"+
+        "<a id=\"ban-title\" href=\"welcome.jsp\">Brick City Bank</a>"+
+        "</div>";
+        out.write(header);
+        
+       
+       
+        
+        
+        
 		
-        String jmsMessage = serv.getJMSMessage();
-        System.out.println("jms message from server: " + jmsMessage);
+        //String jmsMessage = serv.getJMSMessage();
+        //System.out.println("jms message from server: " + jmsMessage);
 		
         try
 		{
@@ -84,6 +101,7 @@ public class Login extends HttpServlet
 			// Already logged in.
 			else
 			{
+				System.out.println("Already logged in!");
 				userID = Integer.parseInt(session.getAttribute("userID").toString());
 			}
 		}
@@ -100,14 +118,28 @@ public class Login extends HttpServlet
 			if(request.getParameter("logout").equals("logout"))
 			{
 				//redirect user to login page
-				out.write("<html><head><style type=\"text/css\">caption {font-weight:bold;} h1 {font-family:verdana;text-align:center;} h2 {font-family:verdana;text-align:center;} h3 {font-family:verdana;text-align:center;}body{font-family:verdana;text-align:center;}</style>");
-				out.write("</head><body>");
-				out.write("<h1>Brick City Bank</h1><br /><h2>Online Banking System</h2><br />");
+				
+				//print menu
+				 String menu ="";
+			        
+			        
+			        menu += "<div id=\"menu\"><div class='element_menu'><h3>Log part</h3>";
+		        String user ="";
+	        	menu += "<form action=\"http://localhost:8181/BrickCityBankProject/Login\" method=\"post\">";
+	        	menu += "	Username:<br/> <input type=\"text\" name=\"userName\"/><br/>";
+	        	menu += "	Password:<br/> <input type=\"password\" name=\"password\"/><br /><br />";
+	        	menu += "<input type=\"submit\" value=\"Login\"/></form>";
+	        	menu +=" </div></div>";
+			    out.write(menu);
+
+				out.write("<div id=\"content\"><h1>Brick City Bank</h1><br /><h2>Online Banking System</h2><br />");
 				out.write("You have been logged out.");
+
+				//kill the session
 				session.invalidate();
 				session = null;
-				out.write("<a href=\"C:/login.html\"> Click here</a> to continue.");
-				out.write("</body></html>");
+				userID =0;
+				out.write("</div></body></html>");
 			}
 		}
 		catch(Exception e)
@@ -115,35 +147,75 @@ public class Login extends HttpServlet
 			//e.printStackTrace();
 			loggedOut = true;
 		}
-
+		
+		//System.out.println("Here  print first bool: "+ !request.getParameter("logout").equals("logout") +" second bool "+ !loggedOut);
 		try
 		{
-			if(userID <= 0 && !request.getParameter("logout").equals("logout") && !loggedOut)
+			if(userID <= 0)
 			{
+				
+				//print menu
+				
+				 //echo the menu
+		        String menu ="";
+		        
+		        
+		        menu += "<div id=\"menu\"><div class='element_menu'><h3>Log part</h3>";
+		        String user ="";
+		        if((session.getAttribute("userID")) == null){
+		        	menu += "<form action=\"http://localhost:8181/BrickCityBankProject/Login\" method=\"post\">";
+		        	menu += "	Username:<br/> <input type=\"text\" name=\"userName\"/><br/>";
+		        	menu += "	Password:<br/> <input type=\"password\" name=\"password\"/><br /><br />";
+		        	menu += "<input type=\"submit\" value=\"Login\"/></form>";
+		        }else{
+		        	user =(String)session.getAttribute("username").toString();
+		        	menu +=("You are logged in"+ user);
+		        	// Log out
+		        	menu +=("<center><br><form action=\"Login\" method=\"POST\">");
+		        	menu +=("<input type=\"hidden\" name=\"logout\" value=\"logout\">");
+		        	menu +=("<input type=\"submit\" value=\"Logout\"></center></form>");
+		        }
+
+		        menu +=" </div></div>";
+		        out.write(menu);
 				//redirect user to login page
-				out.write("<html><head><style type=\"text/css\">caption {font-weight:bold;} h1 {font-family:verdana;text-align:center;} h2 {font-family:verdana;text-align:center;} h3 {font-family:verdana;text-align:center;}body{font-family:verdana;text-align:center;}</style>");
-				out.write("</head><body>");
+				out.write("<div id=\"content\">");
 				out.write("<h1>Brick City Bank</h1><br /><h2>Online Banking System</h2><br />");
 				out.write("Login failed.");
 				session.invalidate();
 				session = null;
 				out.write(" <a href=\"C:/login.html\">Click here</a> to go back and try again.");
-				out.write("</body></html>");
+				out.write("</div></body></html>");
 			}
 			else
 			{
+				//connected and registered into the bank database
 				session.setAttribute("userID", userID);
+				session.setAttribute("username", username);
+				
+				
+				System.out.print("userID >=0");
+				//print menu
+				 //echo the menu
+		        String menu ="";
+		        
+		        
+		        menu += "<div id=\"menu\"><div class='element_menu'><h3>Log part</h3>";
+		        String user ="";
+		        
+		        	menu +=("You are logged in"+ user);
+		        	// Log out
+		        	menu +=("<center><br><form action=\"Login\" method=\"POST\">");
+		        	menu +=("<input type=\"hidden\" name=\"logout\" value=\"logout\">");
+		        	menu +=("<input type=\"submit\" value=\"Logout\"></center></form>");
+		        
+
+		        menu +=" </div></div>";
+		        out.write(menu);
+				
+				
 				//redirect people to account listing 
-				out.write("<html><head>" +
-						"<style type=\"text/css\">" +
-						"caption {font-weight:bold;}" +
-						"h1 {font-family:verdana;text-align:center;} " +
-						"h2 {font-family:verdana;text-align:center;} " +
-						"h3 {font-family:verdana;text-align:center;}" +
-						"body{font-family:verdana;text-align:center;}" +
-						"h6 {font-weight:bold;text-align:center;}" +
-						"</style>");
-				out.write("</head><body>");
+				out.write("<div id=\"content\">");
 				out.write("<h1>Welcome to Brick City Bank</h1><br /><h2>Online Banking System</h2><br />");
 				loan = serv.getAccount(userID, "Loan");
 				checking = serv.getAccount(userID, "Checking");
@@ -201,10 +273,14 @@ public class Login extends HttpServlet
 				}
 				
 				// Log out
-				out.write("<br><form action=\"Login\" method=\"POST\">");
-				out.write("<input type=\"hidden\" name=\"logout\" value=\"logout\">");
-				out.write("<input type=\"submit\" value=\"Logout\">");
-				out.write("</form>");
+//				out.write("<br><form action=\"Login\" method=\"POST\">");
+//				out.write("<input type=\"hidden\" name=\"logout\" value=\"logout\">");
+//				out.write("<input type=\"submit\" value=\"Logout\"></form></div>");
+				
+				
+				
+		        //end
+				out.write("</body></html>");
 			}
 		}
 		catch(Exception e)
