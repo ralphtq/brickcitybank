@@ -236,7 +236,9 @@ public class Login extends HttpServlet
 								"<td><a href=\"Withdraw.jsp?accountid=" +checking.get(i).getIdAccount() +"&balance=" +checking.get(i).getBalance()
 								+"\">Withdraw</a></td>" +
 								"<td><a href=\"Transfer.jsp?accountid=" +checking.get(i).getIdAccount() +"&balance=" +checking.get(i).getBalance()
-								+"\">Transfer</a></td>"
+								+"\">Transfer</a></td>"+
+								"<td><a href=\"History.jsp?accountid=" +checking.get(i).getIdAccount() +"&balance=" +checking.get(i).getBalance()
+								+"\">History</a></td>"
 								+"</tr>");
 					}
 					out.write("</table><br /><br />");
