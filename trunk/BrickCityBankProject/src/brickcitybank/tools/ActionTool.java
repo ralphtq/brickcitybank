@@ -22,6 +22,7 @@ public abstract class ActionTool {
 	
 	public static final int DEPOSIT = 0;
 	public static final int WITHDRAW = 1;
+	public static final int HISTORY = -1;
 	
 	
 	

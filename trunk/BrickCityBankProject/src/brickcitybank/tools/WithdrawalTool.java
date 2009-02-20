@@ -22,8 +22,7 @@ import exception.SumIncorrectException;
  */
 public class WithdrawalTool extends ActionTool{
 
-	String old1, old2, new1, new2;
-	int successQuery;
+	
 	/**
 	 * Constructor
 	 * @param connector
@@ -41,6 +40,8 @@ public class WithdrawalTool extends ActionTool{
 	 */
 	public MessageResponse executeAction(MessageOrder m)
 	{
+		double old1=0,  new1=0;
+		
 		if(((MessageOrderMoney)m).getSum()<0)
 		{
 			//can't accept the sum must be >0
@@ -63,6 +64,7 @@ public class WithdrawalTool extends ActionTool{
 					//means it has an entry
 					
 					sumToUpdate = rs.getDouble("Balance");
+					old1 = sumToUpdate;
 					
 					if(sumToUpdate <= ((MessageOrderMoney)m).getSum())
 					{
@@ -75,6 +77,7 @@ public class WithdrawalTool extends ActionTool{
 						//correct amount
 					
 						sumToUpdate -= ((MessageOrderMoney)m).getSum();
+						new1 =sumToUpdate;
 				
 				
 						int successQuery = state.executeUpdate("UPDATE Account set Balance="+sumToUpdate + " WHERE idAccount ="+m.getIdAcount()+" ");
@@ -82,21 +85,7 @@ public class WithdrawalTool extends ActionTool{
 						if (successQuery > 0)
 						{
 							//success in updating
-							try
-							{
-								// Get old balance
-								rs = state.executeQuery("select balance from account where idAccount =" +m.getIdAcount());
-								old1 = "0";
-								old2 = "0";
-								new1 = "0";
-								new2 = "0";
-								while(rs.next())
-								{
-									old1 = rs.getString(1);
-									new1 = old1;
-								}
-							}
-							catch(Exception e) {e.printStackTrace();}
+							
 							
 							try
 							{
@@ -106,13 +95,13 @@ public class WithdrawalTool extends ActionTool{
 							
 							try
 							{
-								rs = state.executeQuery("select balance from account where idAccount =" +m.getIdAcount());
-								while(rs.next())
-								{
-									old2 = rs.getString(1);
-									new2 = old2;
-								}
-					
+//								rs = state.executeQuery("select balance from account where idAccount =" +m.getIdAcount());
+//								while(rs.next())
+//								{
+//									old2 = rs.getString(1);
+//									new2 = old2;
+//								}
+//					
 								if (successQuery > 0)
 								{	
 									//success in updating
@@ -128,7 +117,7 @@ public class WithdrawalTool extends ActionTool{
 									System.out.println("Date: " +date +" time: " +time);
 					
 									String query = "insert into transaction (type, account1, account2, Date, Time, old_balance1, new_balance1, old_balance2, new_balance2) " +
-									"values ('W', '"+m.getIdAcount() +"', '" +m.getIdAcount() +"', '" +date +"', '" +time +"', '" +old1 +"', '" +new1 +"', '" +old2 +"', '" +new2 +"')";
+									"values ('W', '"+m.getIdAcount() +"', '" +m.getIdAcount() +"', '" +date +"', '" +time +"', '" +old1 +"', '" +new1 +"', '" +old1 +"', '" +new1 +"')";
 									
 									System.out.println(query);
 									state.executeUpdate(query);

@@ -255,7 +255,11 @@ public class Login extends HttpServlet
 								"<td><a href=\"Deposit.jsp?accountid=" +savings.get(i).getIdAccount() +"&balance=" +savings.get(i).getBalance()
 								+"\">Deposit</a></td>" 
 								+"<td><a href=\"Withdraw.jsp?accountid=" +savings.get(i).getIdAccount() +"&balance=" +savings.get(i).getBalance()
-								+"\">Withdraw</a></td>"
+								+"\">Withdraw</a></td>" +
+								"<td><a href=\"Transfer.jsp?accountid=" +savings.get(i).getIdAccount() +"&balance=" +savings.get(i).getBalance()
+								+"\">Transfer</a></td>"+
+								"<td><a href=\"History.jsp?accountid=" +savings.get(i).getIdAccount() +"&balance=" +savings.get(i).getBalance()
+								+"\">History</a></td>"
 								+"</tr>");
 					}
 					out.write("</table><br /><br />");
@@ -269,7 +273,12 @@ public class Login extends HttpServlet
 					out.write("<TR> <TH>Loan#</TH> <TH>Balance</TH></TR>"); 
 					for(int i = 0; i<loan.size(); i++)
 					{
-						out.write("<tr> " +"<td>" +loan.get(i).getIdAccount() +"</td>" +"<td>$" +loan.get(i).getBalance() +"</td></tr>");
+						out.write("<tr> " +"<td>" +loan.get(i).getIdAccount() +"</td>" +"<td>$" +loan.get(i).getBalance() +"</td>"
+								+
+								"<td><a href=\"Deposit.jsp?accountid=" +loan.get(i).getIdAccount() +"&balance=" +loan.get(i).getBalance()
+								+"\">Deposit</a></td>" +
+								"<td><a href=\"History.jsp?accountid=" +loan.get(i).getIdAccount() +"&balance=" +loan.get(i).getBalance()
+								+"\">History</a></td>");
 					}
 					out.write("</table><br /><br />");
 				}
