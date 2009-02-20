@@ -121,7 +121,21 @@ table.fancytable th, table.fancytable td {
   padding: 0.5em;
 }
 
-
+table.fancytable2 {
+  text-align:center;
+  margin: 0.8em 0.8em 0.8em 0;
+  background: whitesmoke;
+  font-size:1em;
+  border-collapse: collapse;
+}
+table.fancytable2 tr:hover {
+   background: lightsteelblue !important;
+}
+table.fancytable2 th, table.fancytable2 tr,table.fancytable2 td {
+  border: 1px silver solid;
+  font-size:0.9em;
+  padding: 0.5em;
+}
 /****************************************
 *MENU
 ************************************************/
