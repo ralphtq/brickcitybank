@@ -27,8 +27,7 @@ import brickcitybank.message.MessageTransfer;
  */
 public class TransferTool extends ActionTool{
 
-	String old1, old2, new1, new2;
-	int successQuery;
+	
 	/**
 	 * Constructor
 	 * @param connector
@@ -44,6 +43,10 @@ public class TransferTool extends ActionTool{
 	@Override
 	public MessageResponse executeAction(MessageOrder m) 
 	{
+		if(((MessageTransfer)m).getToIdAccount() != m.getIdAcount()){
+			//it's not the same account
+		double old1=0, old2=0, new1=0, new2=0;
+		//int successQuery;
 		System.out.println("Tranfer in execution");
 		// TODO Auto-generated method stub
 		try{
@@ -58,7 +61,7 @@ public class TransferTool extends ActionTool{
 		}
 		else
 		{
-			System.out.println("HERE I AM");
+
 			System.out.println("my idAccount :"+m.getIdAcount());
 			//the sum is > 0
 			double sumToUpdate = 0;
@@ -70,6 +73,7 @@ public class TransferTool extends ActionTool{
 				//means it has an entry
 				System.out.println("ok");
 				sumToUpdate = rs.getDouble("Balance");
+				old1=sumToUpdate;
 				System.out.println("Account1 found, balance :" + sumToUpdate);
 				if(sumToUpdate < ((MessageTransfer)m).getSumToTransfer())
 				{
@@ -88,6 +92,7 @@ public class TransferTool extends ActionTool{
 						//means it's a loan
 						
 						sumToUpdateAc2 = rs.getDouble("Balance");
+						old2 =sumToUpdateAc2 ;
 						
 						if (sumToUpdateAc2 >= ((MessageTransfer)m).getSumToTransfer())
 						{
@@ -110,6 +115,8 @@ public class TransferTool extends ActionTool{
 							//means it has an entry
 							
 							sumToUpdateAc2 = rs.getDouble("Balance");
+							old2 = sumToUpdateAc2;
+							
 							sumToUpdateAc2 += ((MessageTransfer)m).getSumToTransfer();
 						}
 						else
@@ -131,36 +138,10 @@ public class TransferTool extends ActionTool{
 								
 						if (successQuery > 0)
 						{
+
 							try
 							{
-								// Get old balance
-								rs = state.executeQuery("select balance from account where idAccount =" +m.getIdAcount());
-								old1 = "0";
-								old2 = "0";
-								new1 = "0";
-								new2 = "0";
-								while(rs.next())
-								{
-									old1 = rs.getString(1);
-									new1 = old1;
-								}
-							}
-							catch(Exception e) {e.printStackTrace();}
-							
-							try
-							{
-								successQuery = state.executeUpdate("UPDATE Account set Balance="+sumToUpdate + " WHERE idAccount ="+m.getIdAcount()+" ");
-							}
-							catch(Exception e) {e.printStackTrace();}
-							
-							try
-							{
-								rs = state.executeQuery("select balance from account where idAccount =" +m.getIdAcount());
-								while(rs.next())
-								{
-									old2 = rs.getString(1);
-									new2 = old2;
-								}
+								
 					
 								if (successQuery > 0)
 								{	
@@ -177,7 +158,7 @@ public class TransferTool extends ActionTool{
 									System.out.println("Date: " +date +" time: " +time);
 					
 									String query = "insert into transaction (type, account1, account2, Date, Time, old_balance1, new_balance1, old_balance2, new_balance2) " +
-									"values ('T', '"+m.getIdAcount() +"', '" +m.getIdAcount() +"', '" +date +"', '" +time +"', '" +old1 +"', '" +new1 +"', '" +old2 +"', '" +new2 +"')";
+									"values ('T', '"+m.getIdAcount() +"', '" +((MessageTransfer)m).getToIdAccount() +"', '" +date +"', '" +time +"', '" +old1 +"', '" +sumToUpdate +"', '" +old2 +"', '" +sumToUpdateAc2+"')";
 									
 									System.out.println(query);
 									state.executeUpdate(query);
@@ -250,6 +231,9 @@ public class TransferTool extends ActionTool{
 		}
 		catch(Exception e2) {}
 	}
+		}else{
+			return new MessageResponse("<p>You can't tranfer to the same account!</p>");
+		}
 }
 
 	@Override
