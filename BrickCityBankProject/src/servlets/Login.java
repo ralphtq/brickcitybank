@@ -184,7 +184,7 @@ public class Login extends HttpServlet
 				out.write("Login failed.");
 				session.invalidate();
 				session = null;
-				out.write(" <a href=\"C:/login.html\">Click here</a> to go back and try again.");
+				out.write(" <a href=\"welcome.jsp\">Click here</a> to go back and try again.");
 				out.write("</div></body></html>");
 			}
 			else
