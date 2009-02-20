@@ -147,6 +147,7 @@ public class GUIAdmin extends javax.swing.JFrame {
 
         statusLabel.setText("Message set and sent successfully:");
         statusLabel2.setText(jmsTextField.getText());
+        jmsTextField.setText("");
 }                                             
 
     /**
